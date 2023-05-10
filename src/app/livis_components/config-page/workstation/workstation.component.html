@@ -1,0 +1,326 @@
+<div class="main-content">
+    <div class="container-fluid">
+      
+      <mat-card>
+        <mat-card-title>
+          <button mat-raised-button (click)="addWorkstation()" class="btn btn-fill btn-primary pull-right">
+            Add Workstation
+          </button>  
+        </mat-card-title>
+       
+        <mat-card-content>
+          <mat-form-field class="col-md-3 col-md-offset-4">
+            <mat-label>Filter Workstations</mat-label>
+            <input matInput class="form-control" type="text" [(ngModel)]="filterValue"
+          (blur)="filterWorkStation(filterValue)" placeholder="Search Workstation">
+          </mat-form-field>
+          <mat-table #table [dataSource]="dataSource" matSort>
+            <!-- First Column ID-->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
+            </ng-container>
+  
+            <!-- Second Column -->
+            <ng-container matColumnDef="workstation_name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.workstation_name}} </mat-cell>
+            </ng-container>
+  
+            <!-- Third Column -->
+            <ng-container matColumnDef="ip">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> IP </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{element.workstation_ip}}
+              </mat-cell>
+            </ng-container>
+            <!-- Fourth Column -->
+            <ng-container matColumnDef="port">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Port</mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.workstation_port }} </mat-cell>
+            </ng-container>
+
+             <!-- Fourth Column -->
+             <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <div *ngIf="element.workstation_status">
+                  <span color="primary" class="material-icons icon-status-active">fiber_manual_record </span>
+                </div>
+                <div *ngIf="!element.workstation_status">
+                  <span color="primary" class="material-icons icon-status-inactive">fiber_manual_record </span>
+                </div>    
+              </mat-cell>
+            </ng-container>
+
+              <!-- Fourth Column -->
+              <ng-container matColumnDef="camera">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Camera </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <button mat-icon-button matTooltip="Click to view Camera Info" class="iconbutton"
+                  color="" (click)="getCameraDetails(element._id)">
+                  <mat-icon class="livis-info"  matBadge="{{element.cameras?element.cameras.length:0}}" matBadgePosition="above after">photo_camera</mat-icon>
+                </button> 
+                   </mat-cell>
+              </ng-container>
+
+               
+            <!-- Action Column -->
+            <ng-container matColumnDef="operation">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Operation </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                  color="primary" (click)="editWorkStation(element._id)">
+                  <mat-icon class="livis-warning">edit</mat-icon>
+                </button> 
+                <button mat-icon-button matTooltip="Click to Delete" class="iconbutton"
+                  color="" (click)="deleteWorkstation(element._id)">
+                  <mat-icon class="livis-danger">delete</mat-icon>
+                </button> 
+                </mat-cell>
+            </ng-container>
+           
+  
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </mat-card-content>
+        <mat-card-content>
+            <mat-paginator #paginator [length]="resultsLength"
+                [pageSize]="10"
+                [pageSizeOptions]="[10,20,100]">
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+      
+       
+    </div>
+</div>
+
+  <!-- Add Workstation Modal -->
+  <div class="modal fade" id="add-workstation-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Workstation</h4>
+          <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="workstationForm" novalidate (ngSubmit)="addNewWorkStation(workstationForm)">
+          
+
+            <mat-form-field class="">
+              <input matInput placeholder="Workstation Name" type="text" formControlName="workstation_name">
+              <mat-error *ngIf="isSubmitted && !workstationForm.controls.workstation_name.valid" class="text-danger">
+                Name is required (minimum 3 characters).
+              </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field class="">
+              <input matInput placeholder="IP" type="text" formControlName="workstation_ip">
+              <mat-error *ngIf="isSubmitted && !workstationForm.controls.workstation_ip.valid" class="text-danger">
+                IP is required .
+              </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field class="">
+              <input matInput placeholder="Port" type="text" formControlName="workstation_port">
+              <mat-error *ngIf="isSubmitted && !workstationForm.controls.workstation_port.valid" class="text-danger">
+                Port is required .
+              </mat-error>
+            </mat-form-field>
+
+           
+
+            <div class="form-group">
+              <mat-checkbox formControlName="workstation_status">Status</mat-checkbox>
+              
+            </div>
+            <!--Camera-->
+            <div formArrayName="cameras">
+              <div *ngFor="let address of workstationForm.controls.cameras.controls; let i=index" class="panel panel-default">
+                <div class="panel-heading">
+                  <span class="livis-bold-text">Cameras {{i + 1}}</span>
+                  <span class="fa fa-remove pull-right" *ngIf="workstationForm.controls.cameras.controls.length > 1" (click)="removeCamera(i)"></span>
+                </div>
+                <div class="panel-body" [formGroupName]="i">
+                  <mat-form-field class="">
+                    <input matInput placeholder="Camera Id" type="text" class="form-control" formControlName="camera_id">
+                    <mat-error *ngIf="isSubmitted && !workstationForm.controls.cameras.controls[i].controls.camera_id.valid" class="text-danger">
+                      Camera ID is required
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field class="">
+                    <input matInput placeholder="Camera Name" type="text" class="form-control" formControlName="camera_name">
+                    <mat-error *ngIf="isSubmitted && !workstationForm.controls.cameras.controls[i].controls.camera_id.valid" class="text-danger">
+                      Camera ID is required
+                    </mat-error>
+                  </mat-form-field>
+                 
+                </div>
+              </div>
+            </div>
+    
+            <div class="margin-20">
+              <a (click)="addCamera()" style="cursor: default">
+                Add another camera +
+              </a>
+            </div>
+    
+            <div class="modal-footer">
+              <button mat-raised-button type="button" class="btn btn-fill btn-dark livis-close-btn" data-dismiss="modal">Close</button>
+              <button mat-raised-button type="submit" class="btn btn-primary" >Submit</button>
+            </div>
+            <div class="clearfix"></div>
+    
+            
+          </form>
+        
+          
+        </div>
+        <!-- <div class="modal-footer">
+          <button mat-raised-button type="button" class="btn btn-fill btn-dark" data-dismiss="modal">Close</button>
+          <button mat-raised-button type="button" class="btn btn-fill btn-rose">Submit</button>
+         
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <!--  End Modal -->
+
+
+
+
+  <!-- Camera Details Modal -->
+  <div class="modal fade" id="camera-details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Camera Details</h4>
+          <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>           
+                <th *ngFor="let head of cameraDetailsHeading">{{head}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cameraInfo;let i = index">  
+                <td>{{(i+1)}}</td>         
+                <td>{{item.camera_id?item.camera_id:"--"}}</td>
+                <td>{{item.camera_name?item.camera_name:"--"}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+        
+          
+        </div>
+        <div class="modal-footer">
+          <button mat-raised-button type="button" class="btn btn-fill btn-dark" data-dismiss="modal">Close</button>
+        </div> 
+      </div>
+    </div>
+  </div>
+  <!--  End Modal -->
+
+   <!-- Edit Workstation Modal -->
+   <div class="modal fade" id="edit-workstation-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Workstation</h4>
+          <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="workstationFormEdit" novalidate (ngSubmit)="updateWorkStation(workstationFormEdit)">
+            <mat-form-field class="invisible-field">
+              <input matInput type="text"  formControlName="_id">
+          </mat-form-field>
+            <mat-form-field class="">
+              <input matInput placeholder="Workstation Name" type="text" formControlName="edit_workstation_name">
+              <mat-error *ngIf="isSubmitedEdit && !workstationFormEdit.controls.edit_workstation_name.valid" class="text-danger">
+                Name is required (minimum 3 characters).
+              </mat-error>
+            </mat-form-field>
+
+
+            <mat-form-field class="">
+              <input matInput placeholder="Workstation IP" type="text" formControlName="edit_workstation_ip">
+              <mat-error *ngIf="isSubmitedEdit && !workstationFormEdit.controls.edit_workstation_ip.valid" class="text-danger">
+                IP is required.
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="">
+              <input matInput placeholder="Workstation Port" type="text" formControlName="edit_workstation_port">
+              <mat-error *ngIf="isSubmitedEdit && !workstationFormEdit.controls.edit_workstation_port.valid" class="text-danger">
+                Port is required.
+              </mat-error>
+            </mat-form-field>
+
+            
+            <div class="form-group">
+              <mat-checkbox formControlName="edit_workstation_status">Status</mat-checkbox>
+              <mat-error *ngIf="isSubmitedEdit && !workstationFormEdit.controls.edit_workstation_status.valid" class="text-danger">
+                Status is required .
+              </mat-error>
+            </div>
+
+
+            <!--Camera-->
+            <div formArrayName="camerasEdit">
+              <div *ngFor="let address of workstationFormEdit.controls.camerasEdit.controls; let i=index" class="panel panel-default">
+                <div class="panel-heading">
+                  <span class="livis-bold-text">Cameras {{i + 1}}</span>
+                  <span class="fa fa-remove pull-right" *ngIf="workstationFormEdit.controls.camerasEdit.controls.length > 1" (click)="removeCameraEdit(i)"></span>
+                </div>
+                <div class="panel-body" [formGroupName]="i">
+                  <div class="form-group col-xs-6">
+
+                    <input placeholder="Camera Id" type="text" class="form-control" formControlName="edit_camera_id">
+                    <small  *ngIf="isSubmitedEdit && !workstationFormEdit.controls.camerasEdit.controls[i].controls.edit_camera_id.valid" class="text-danger">
+                        Camera ID is required
+                    </small>
+                  </div>
+                  <div class="form-group col-xs-6">
+                   
+                    <input placeholder="Camera Name" type="text" class="form-control" formControlName="edit_camera_name">
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="margin-20">
+              <a (click)="addCameraEdit()" style="cursor: default">
+                Add another camera +
+              </a>
+            </div>
+    
+            <div class="modal-footer">
+              <button mat-raised-button type="button" class="btn btn-fill btn-dark livis-close-btn" data-dismiss="modal">Close</button>
+              <button mat-raised-button type="submit" class="btn btn-primary" >Submit</button>
+            </div>
+            <div class="clearfix"></div>
+    
+            
+          </form>
+        
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!--  End Modal -->

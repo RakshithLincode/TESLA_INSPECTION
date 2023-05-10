@@ -1,0 +1,139 @@
+<div class="main-content">
+    <div class="container-fluid">
+     
+        <mat-card class="reports-wrap">
+            <form [formGroup]="searchForm" novalidate (submit)="serachFilter(searchForm)">
+                <div class="row reports-header">
+                    <mat-form-field class="col-md-3">
+                      
+                        <input placeholder="Select Date Range"
+                            matInput
+                            ngxDaterangepickerMd
+                            startKey="start"
+                            endKey="end"
+                            [locale]="{applyLabel: 'ok', format: 'YYYY-MM-DD'}"
+                            id = "date_range"
+                            formControlName="date_range"
+                            
+                        />
+                        <mat-error *ngIf="isSubmitted && !searchForm.controls.date_range.valid" class="text-danger">
+                            Date Range is required .
+                        </mat-error>
+                        </mat-form-field>
+                    
+                        <mat-form-field class="col-md-3">
+                            <mat-select  formControlName="Workstation_name" placeholder="Select Workstation" class="">
+                                <mat-option *ngFor="let workstation of workstations" [value]="workstation._id">
+                                
+                                {{ workstation.workstation_name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field> 
+
+                        <mat-form-field class="col-md-3">
+                            <mat-select  formControlName="operator_name" placeholder="Select Operator" class="">
+                                <mat-option *ngFor="let operator of operators" [value]="operator.user_id">
+                                
+                                {{ operator.operator_name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field> 
+                    
+                    
+                    
+                    
+    
+                        <div class="col-md-3 form-group">
+                            <button mat-raised-button  class="btn btn-primary livis-search-btn livis-close-btn">
+                                <i class="material-icons">search</i> search
+                            </button> 
+                            &nbsp;
+                            <button type="button" (click) = "downloadReport();" mat-raised-button  class="btn btn-success">
+                                <i class="material-icons">get_app</i> Download
+                            </button> 
+                    
+                        </div> 
+                    
+                </div>
+            </form>
+                
+            <!-- <div class="row reports-body"> -->
+                <mat-card-content class="defect-table-wrap">
+                    <mat-table class="table-responsive" id="defect-report-table" #table [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="slNo">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Sl No. </mat-header-cell>
+                            <mat-cell *matCellDef="let element;let i = index"> {{(i+1)}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="createdAt">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+                            <mat-cell  *matCellDef="let element">
+                                <span class="main-element"> {{element.date}}</span>
+                            </mat-cell>
+
+                        </ng-container>
+
+                        <ng-container matColumnDef="defectTypeNew">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Defect Type </mat-header-cell>
+                            <mat-cell  *matCellDef="let element">
+                                <span class="second-element"><a href="javascript:void(0);" (click)="viewDefectDetails(element.id,element)"> {{element.created_at}} </a></span>
+                            </mat-cell>
+
+                        </ng-container>
+
+                        <ng-container matColumnDef="operatorName">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Operator Name </mat-header-cell>
+                            <mat-cell  *matCellDef="let element">
+                                <span class="main-element"> {{element.operator}}</span>
+                            </mat-cell>
+
+                        </ng-container>
+
+                        <ng-container matColumnDef="accepted">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Accepted </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.accepted}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="rejected">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Rejected </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.rejected}} </mat-cell>
+                        </ng-container>
+
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight-selected-row': selectedRowIndex == row.id}"
+                        ></mat-row> 
+                    </mat-table>
+                    <div class="defect-detail-table-wrap invisible-element">
+                        <button mat-raised-button (click)="backNormal()" mat-min-fab class="btn btn-primary btn-fab">
+                            <i class="material-icons">arrow_back</i>
+                        </button>
+                      
+                        <table class="table" id="defect-detail-table">
+                            <thead>
+                            <th>SN</th>
+                            <th>Date & Time</th>
+                            <th>Operator Name</th>
+                            <th>Workstation No</th>
+                            <th>Video</th>
+                            </thead>
+                            <tbody id="defect-details-body">
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </mat-card-content>    
+               
+                <mat-card-content>
+                    <mat-paginator #paginator [length]="resultsLength"
+                        [pageSize]="5"
+                        [pageSizeOptions]="[5, 10, 20]">
+                    </mat-paginator>
+                </mat-card-content>
+           <!-- </div> -->
+               
+        </mat-card>    
+      
+     
+    </div>
+</div>          

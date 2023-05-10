@@ -1,0 +1,24 @@
+.livis-sidebar{
+    margin: 6px 20px 6px 20px;
+    max-height: 98% !important;
+    border-radius: 30px !important;
+    /* border-radius: 25px; */
+    background: white !important;
+    box-shadow: none !important;
+}
+@media (max-width : 991px){
+    .livis-sidebar{
+        margin: 0px !important; 
+        max-height: 100% !important;
+        border-radius: 30px !important;
+        /* border-radius: 25px; */
+        background: white !important;
+    }
+
+}
+.main-panel{
+    /* width: calc(100% - 280px) !important; */
+}
+.wrapper{
+    max-height: 96vh !important;
+}

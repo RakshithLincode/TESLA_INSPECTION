@@ -1,0 +1,57 @@
+<nav style="height: 60px !important;width: 100% !important; " class="row d-flex align-items-center m-0 p-0 ">
+    <div class="row col-md-12 d-flex justify-content-center align-items-center m-0 p-0 ">
+        <div class="col-md-3 d-flex justify-content-start align-items-center">
+            <img src="/assets/img/large-livis-logo-white.png" style="width: 110px; padding-left: 15px;">
+        </div>
+        <div class="col-md-6 row justify-content-center align-items-center m-0 p-0 ">
+            <a class="navbar-brand "
+                style="font-weight: 700 !important; font-size: 30px !important; font-family:LivisFontHeading !important;color: black !important; "
+                href="{{getPath()}}"> {{getTitle()}} PANEL</a>
+        </div>
+        <div class="col-md-3  justify-content-end p-0">
+            <ul class=" navbar-nav ms-auto justify-content-end" style="flex-direction: row !important;">
+                <li class="nav-item justify-content-center" *ngIf="!isAdmin">
+                    <a class="dropdown-toggle col-md-4 col-sm-3 row justify-content-center icons-ms"
+                        matTooltip="Operator Panel" id="monitor" style="align-items: center !important ;"
+                        href="operator">
+                        <img src="../../../assets/img/monitor.png" alt="">
+                    </a>
+                </li>
+                <li class="nav-item justify-content-center" >
+                    <a class="dropdown-toggle col-md-4 col-sm-3 row justify-content-center icons-ms"
+                        matTooltip="Reports Panel" id="stats" style="align-items: center !important ;"
+                        href="report/reports">
+                        <img src="../../../assets/img/statistics.png" alt="">
+                    </a>
+                </li>
+                <div class="nav-item justify-content-center mx-2 dropdown" style="width: 120px !important; background-color : transparent !important " *ngIf="isAdmin">
+                    <button class="btn btn-secondary dropdown-toggle button-hover-remove" type="button" id="dropdownMenuButton" style=" background-color : transparent !important; color: #51697B !important; font-weight: 600; border: 0.5px solid #51697B; "
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      More Option
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" [routerLink]="['/user/users']">Users and Management</a>
+                      <a class="dropdown-item" [routerLink]="['/config/parts']">Parts Management</a>
+                      <!-- <a class="dropdown-item" [routerLink]="['/config/masterfile']">Master File</a> -->
+                      <a class="dropdown-item" [routerLink]="['/aboutus']">About Us</a>
+                      <!-- <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a> -->
+                    </div>
+                  </div>
+
+                <li class="nav-item justify-content-center">
+                    <a class="dropdown-toggle col-md-4 col-sm-4 row justify-content-center align-items-center" href="#"
+                        role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <img src="../../../assets/img/profile3.png" alt="">
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item settings-icon row justify-content-between"
+                                [routerLink]="['/logout']">Logout<img width="15"
+                                    src="../../../../assets/img/exit.png" /></a>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

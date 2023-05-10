@@ -1,0 +1,127 @@
+
+<div class="wrapper wrapper-full-page">
+  <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('./assets/img/login.jpg'); background-size: cover; background-position: top center;">
+    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+    <div class="container custom-container-padding">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
+          <form [formGroup]="loginForm">
+            <div class="card card-login card-hidden">
+              <div class="wizard-navigation">
+                <ul class="nav nav-pills">
+                  <li class="nav-item" >
+                    <a data-toggle="tab" role="tab" class="nav-link active full-width">
+                      Login
+                    </a>
+                  </li>
+                  <!-- <li class="nav-item" (click)="tabChange('admin')">
+                    <a data-toggle="tab" role="tab" class="nav-link">
+                      Admin
+                    </a>
+                  </li> -->
+                </ul>
+              </div>
+              <div class="card-body ">
+                <!-- <p class="card-description text-center">Sign in to your account</p> -->
+               
+                <span class="bmd-form-group" [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">email</i>
+                      </span>
+                    </div>
+                    <input type="email" id="email"  class="form-control" name="email" formControlName ="email"  placeholder="Email...">
+                   
+                    
+                  </div>
+                  <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+                    <div class="text-danger text-center" *ngIf="formControls.email.errors.required">Email is required</div>
+                  </div>
+              
+                </span>
+                <span class="bmd-form-group" [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">lock_outline</i>
+                      </span>
+                    </div>
+                    <input type="password" id="password" class="form-control" formControlName ="password" placeholder="Password...">
+                  </div>
+
+                  <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+                    <div class="text-danger text-center" *ngIf="formControls.password.errors.required">Password is required</div>
+                  </div>
+                </span>
+
+                <!-- <span *ngIf="currentTab !== 'admin'" class="bmd-form-group" [ngClass]="{ 'has-error': isSubmitted && formControls.workstation_name.errors }">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">computer</i>
+                      </span>
+                    </div>
+                   
+                    <mat-select placeholder="Select Workstation" class="form-control" formControlName="workstation_name">
+                      <mat-option *ngFor="let workstation of workstations" [value]="workstation._id">
+                       
+                        {{ workstation.workstation_name }}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+                  <div *ngIf="isSubmitted && formControls.workstation_name.errors" class="help-block">
+                    <div class="text-danger text-center" *ngIf="formControls.workstation_name.errors.required">Please Select Workstation</div>
+                  </div>
+                </span> -->
+
+                <!-- <div class="col-lg-5 col-md-8 col-sm-4">
+                  <mat-form-field>
+                      <mat-select placeholder="Select Workstation" name="workstation_name">
+                        <mat-option *ngFor="let city of cities" [value]="city.value">
+                          {{ city.viewValue }}
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+              </div> -->
+              </div>
+              <div class="card-footer justify-content-center">
+                  <button
+                    *ngIf="currentTab === 'admin'; else operatorLogin"
+                    type="submit"
+                    class="btn btn-primary btn-link btn-lg"
+                    (click)="loginAdmin()"
+                  >{{'LOGIN' }}</button>
+                  <ng-template #operatorLogin>
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-link btn-lg"
+                      (click)="loginUser($event)"
+                    >{{'LOGIN' }}</button>
+                  </ng-template>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer class="footer ">
+      <div class="footer-main">
+        <nav class="pull-left">
+          <ul>
+            <li>
+              <a
+                target="_blank"
+                style="padding: 0px; color: white; font-size: 15px; z-index: 10;"
+                href="https://www.lincode.ai"
+              > POWERED BY LINCODE</a>
+             </li>
+          </ul>
+        </nav>
+        <div class="logo-image">
+          <img *ngIf="logo" [src]="logo" alt="">
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>

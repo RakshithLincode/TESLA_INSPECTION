@@ -1,0 +1,297 @@
+<footer class="footer">
+  <div class="container-fluid">
+
+    <!-- default footer ----added by vinayaka  -->
+    <div class="container-fluid row footer-static" >
+      <div class="col-md-5 d-flex justify-content-start align-items-center powered-by"  >
+          A <img width="40"  class="ml-2" src="../../../assets/img/logo.png"/>
+          &nbsp;Product &nbsp; &copy; {{year}} - {{year + 1}}
+      </div>
+      <div class="copyright-text col-md-4 livis-heading">
+       
+      </div>
+      <div class="col-md-3 d-flex justify-content-end website-email-wrap">
+        <a class="social-links" href="https://www.lincode.ai" target="_blank">
+          <i class="material-icons ">language</i>&nbsp;
+          <span class="livis-title">lincode.ai</span>
+        </a>&nbsp;&nbsp;&nbsp;
+        <a class="social-links" href="https://facebook.com/lincodelabs" target="_blank">
+          <i class="material-icons">mail_outline</i>&nbsp;
+          <span class="livis-title">info@lincode.ai</span>
+        </a>
+      </div>
+    </div>
+    <!-- default footer ends----added by vinayaka  -->
+
+
+
+    <nav class="pull-left">
+      <ul *ngIf="!user_deatail">
+        <li>
+          <a href="https://www.lincode.ai"> Lincode </a>
+        </li>
+        <li>
+          <a href="https://www.lincode.ai"> About Us </a>
+        </li>
+        <li>
+          <a href="https://www.lincode.ai"> Blog </a>
+        </li>
+      </ul>
+
+      <ul *ngIf="user_deatail">
+        <!-- <li>Copyright &copy; 2021 LINCODE</li> -->
+      </ul>
+
+      <ul id="chatbot" *ngIf="isBotActive; else botBlock">
+        <!-- <kendo-chat
+          [messages]="feed | async"
+          [user]="user"
+          (sendMessage)="sendMessage($event)"
+        >
+        </kendo-chat>
+        <img
+          (click)="closeBot()"
+          id="close-chatbot"
+          src="../../../assets/close.svg"
+          alt=""
+        /> -->
+        <div class="chatbot">
+          <div class="chatbot__header">
+            <p style="margin: auto auto auto 0">
+              <strong>Got a question?</strong>
+              <span class="u-text-highlight">Ask Here</span>
+            </p>
+            <svg class="chatbot__close-button icon-speech" viewBox="0 0 32 32">
+              <use xlink:href="#icon-speech" />
+            </svg>
+            <svg
+              class="chatbot__close-button icon-close"
+              (click)="closeBot()"
+              viewBox="0 0 32 32"
+            >
+              <use xlink:href="#icon-close" />
+            </svg>
+          </div>
+          <div class="chatbot__message-window">
+            <ul class="chatbot__messages">
+              <ng-container *ngFor="let message of messages">
+                <li class="is-ai animation" *ngIf="message.type === 'ans'">
+                  <div class="is-ai__profile-picture">
+                    <img
+                      style="height: 25px; width: auto"
+                      src="../../../assets/chatbot.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="chatbot__arrow chatbot__arrow--left"></span>
+                  <p class="chatbot__message">
+                    {{ message.res }}
+                  </p>
+                </li>
+                <li class="is-ai animation" *ngIf="message.type === 'qts1'">
+                  <div class="is-ai__profile-picture">
+                    <img
+                      style="height: 25px; width: auto"
+                      src="../../../assets/chatbot.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="chatbot__arrow chatbot__arrow--left"></span>
+                  <div class="chatbot__message text-response">
+                    <p>To set up a new camera follow the steps below:</p>
+                    <ul>
+                      <li>a. Login as an Admin</li>
+                      <li>b. Click on Configuration icon</li>
+                      <li>c. On the left side panel, click on Config</li>
+                      <li>d. Select Workstations from the dropdown menu</li>
+                      <li>
+                        e. For a specific workstation, click on the pencil icon
+                      </li>
+                      <li>f. In the edit menu click on add another camera</li>
+                      <li>g. Specify the camera name and its Id</li>
+                      <li>h. Click on Submit button</li>
+                    </ul>
+                    <p>
+                      Yes, it is possible to use phone camera, make sure to
+                      connect to the same network and add camera rtsp stream ip
+                      address in place of camera id while configuring
+                      workstation camera
+                    </p>
+                  </div>
+                </li>
+                <li class="is-ai animation" *ngIf="message.type === 'qts2'">
+                  <div class="is-ai__profile-picture">
+                    <img
+                      style="height: 25px; width: auto"
+                      src="../../../assets/chatbot.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="chatbot__arrow chatbot__arrow--left"></span>
+                  <div class="chatbot__message text-response">
+                    <p>
+                      Yes, it is possible to add more data to an already trained
+                      part to train it again. Follow the below procedure to add
+                      more data
+                    </p>
+                    <li>a. Login as Admin</li>
+                    <li>b. Click on Capture</li>
+                    <li>c. Select the workstation and part in the dropdown</li>
+                    <li>d. Click on add data</li>
+                    <li>
+                      e. We can either capture more data using the camera or we
+                      can upload a zip file containing images
+                    </li>
+                    <li>f. Annotate the newly added images</li>
+                    <li>
+                      g. Follow the usual training procedure to train the part
+                    </li>
+                    <li>
+                      h. New version would be added after the training is
+                      successful with better accuracy which would be ready for
+                      deployment
+                    </li>
+                  </div>
+                </li>
+                <li class="is-user animation" *ngIf="message.type === 'qts'">
+                  <p class="chatbot__message">{{ message.res }}</p>
+                  <span class="chatbot__arrow chatbot__arrow--right"></span>
+                </li>
+                <li class="is-ai animation" *ngIf="message.type === 'image'">
+                  <div class="is-ai__profile-picture">
+                    <img
+                      style="height: 25px; width: auto"
+                      src="../../../assets/chatbot.png"
+                      alt=""
+                    />
+                  </div>
+                  <span class="chatbot__arrow chatbot__arrow--left"></span>
+                  <div class="chatbot__message" (click)="openImageModal()">
+                    <img [src]="message.res" alt="" />
+                  </div>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+          <div class="chatbot__entry chatbot--closed">
+            <mat-form-field class="example-full-width">
+              <input
+                type="text"
+                placeholder="Write a Message..."
+                aria-label="Number"
+                matInput
+                [formControl]="inputQts"
+                [matAutocomplete]="auto"
+                (keyup.enter)="submitMsg()"
+                (input)="qtsInput($event)"
+              />
+              <mat-autocomplete #auto="matAutocomplete" showPanel="false">
+                <mat-option *ngFor="let option of options" [value]="option">
+                  {{ option }}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <svg
+              class="chatbot__submit"
+              (click)="submitMsg()"
+              viewBox="0 0 32 32"
+            >
+              <use xlink:href="#icon-send" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Symbols -->
+        <svg>
+          <!-- Close icon -->
+          <symbol id="icon-close" viewBox="0 0 32 32">
+            <title>Close</title>
+            <path
+              d="M2.624 8.297l2.963-2.963 23.704 23.704-2.963 2.963-23.704-23.704z"
+            />
+            <path
+              d="M2.624 29.037l23.704-23.704 2.963 2.963-23.704 23.704-2.963-2.963z"
+            />
+          </symbol>
+
+          <!-- Speech icon -->
+          <symbol id="icon-speech" viewBox="0 0 32 32">
+            <title>Speech</title>
+            <path
+              d="M21.795 5.333h-11.413c-0.038 0-0.077 0-0.114 0l-0.134 0.011v2.796c0.143-0.006 0.273-0.009 0.385-0.009h11.277c0.070 0 7.074 0.213 7.074 7.695 0 5.179-2.956 7.695-9.036 7.695h-3.792c-0.691 0-1.12 0.526-1.38 1.159l-1.387 3.093-1.625 3.77 0.245 0.453h2.56l2.538-5.678h2.837c7.633 0 11.84-3.727 11.84-10.494 0.001-8.564-7.313-10.492-9.875-10.492z"
+            />
+            <path
+              d="M10.912 24.259c-0.242-0.442-0.703-0.737-1.234-0.737-0 0-0 0-0 0h-0.56c-0.599-0.011-1.171-0.108-1.71-0.28l0.042 0.012c-1.82-0.559-4.427-2.26-4.427-7.424 0-6.683 5.024-7.597 7.109-7.686v-2.8c-2.042 0.095-9.91 1.067-9.91 10.483 0 4.832 1.961 7.367 3.606 8.64 1.38 1.067 3.109 1.744 4.991 1.843l0.033 0.019 2.805 5.211 1.41-3.273z"
+            />
+          </symbol>
+
+          <!-- Send icon -->
+          <symbol id="icon-send" viewBox="0 0 23.97 21.9">
+            <title>Send</title>
+            <path d="M0.31,9.43a0.5,0.5,0,0,0,0,.93l8.3,3.23L23.15,0Z" />
+            <path
+              d="M9,14.6H9V21.4a0.5,0.5,0,0,0,.93.25L13.22,16l6,3.32A0.5,0.5,0,0,0,20,19l4-18.4Z"
+            />
+          </symbol>
+
+          <!-- Avatar icon -->
+          <symbol id="avatar" width="32" height="32" viewBox="0 0 44.25 44">
+            <title>Avatar</title>
+            <path
+              style="fill: #7226e0; fill-rule: evenodd"
+              d="M1035.88,1696.25a22,22,0,1,1-22.13,22A22.065,22.065,0,0,1,1035.88,1696.25Z"
+              transform="translate(-1013.75 -1696.25)"
+            />
+            <path
+              style="fill: #fff; fill-rule: evenodd"
+              d="M1030.18,1725.16h2.35a0.335,0.335,0,0,0,.34-0.33v-5.23h5.94v5.23a0.342,0.342,0,0,0,.34.33h2.36a0.342,0.342,0,0,0,.34-0.33v-12.36a0.34,0.34,0,0,0-.34-0.32h-2.36a0.34,0.34,0,0,0-.34.32v4.51h-5.94v-4.51a0.333,0.333,0,0,0-.34-0.32h-2.35a0.333,0.333,0,0,0-.34.32v12.36a0.335,0.335,0,0,0,.34.33"
+              transform="translate(-1013.75 -1696.25)"
+            />
+          </symbol>
+        </svg>
+      </ul>
+      <ng-template #botBlock>
+        <!-- <ul id="closed-chatbot" (click)="showBot()">
+          <img
+            matTooltip="Ask Here!"
+            matTooltipPosition="left"
+            style="filter: drop-shadow(0px 3px 6px rgb(0 0 0 / 23%))"
+            src="../../../assets/chatbot.png"
+            alt=""
+          />
+        </ul> -->
+      </ng-template>
+    </nav>
+  </div>
+</footer>
+
+<div
+  class="modal fade"
+  id="image-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg card">
+    <div class="modal-content">
+      <div class="modal-header card-header">
+        <h4 class="modal-title card-title">
+          {{ 'Image' }}
+        </h4>
+        <button
+          mat-button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-hidden="true"
+        >
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+      <div class="modal-body card-body">
+        <img style="width: 100%; height: auto" [src]="imageSrc" alt="" />
+      </div>
+    </div>
+  </div>
+</div>

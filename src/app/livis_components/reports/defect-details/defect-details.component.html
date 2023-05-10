@@ -1,0 +1,198 @@
+<div class="main-content">
+    <div class="container-fluid">
+     
+        <mat-card class="reports-wrap">
+            <form [formGroup]="searchForm" novalidate (submit)="serachFilter(searchForm)">
+            <div class="row reports-header">
+                <mat-form-field class="col-md-3">
+                  
+                    <input placeholder="Select Date Range"
+                        matInput
+                        ngxDaterangepickerMd
+                        startKey="start"
+                        endKey="end"
+                        [locale]="{applyLabel: 'ok', format: 'YYYY-MM-DD'}"
+                        id = "date_range"
+                        formControlName="date_range"
+                        
+                    />
+                    <mat-error *ngIf="isSubmitted && !searchForm.controls.date_range.valid" class="text-danger">
+                        Date Range is required .
+                    </mat-error>
+                    </mat-form-field>
+                
+                    <mat-form-field class="col-md-3">
+                        <mat-select multiple formControlName="feature_list" placeholder="Select Feature Types" class="">
+                            <mat-option *ngFor="let feature of featureList" [value]="feature">
+                            
+                            {{ feature | livisUnderscorePipe | titlecase}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> 
+                
+                    <mat-form-field class="col-md-3">
+                        <mat-select multiple formControlName="defect_list" placeholder="Select Defect Types" class="">
+                            <mat-option *ngFor="let defect of defectList" [value]="defect">
+                            
+                            {{ defect | livisUnderscorePipe | titlecase}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>  
+                
+                
+
+                    <div class="col-md-3 form-group">
+                        <button mat-raised-button  class="btn btn-primary livis-search-btn livis-close-btn">
+                            <i class="material-icons">search</i> search
+                        </button> 
+                    </div> 
+                
+            </div>
+        </form>
+            
+            <!-- <div class="row reports-body"> -->
+                <mat-card-content class="defect-table-wrap">
+                    <mat-table class="table table-responsive" id="defect-report-table" #table [dataSource]="dataSource" matSort>
+                        <ng-container matColumnDef="slNo">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Sl No. </mat-header-cell>
+                            <mat-cell *matCellDef="let element;let i = index"> {{(i+1)}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="operator">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Operator </mat-header-cell>
+                            <mat-cell  *matCellDef="let element">
+                                <span class="main-element"> {{element.operator?element.operator:"shyam"}}</span>
+                            </mat-cell>
+                        </ng-container>
+
+                       
+
+                        <ng-container matColumnDef="createdAt">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Scanned At </mat-header-cell>
+                            <mat-cell  *matCellDef="let element">
+                                <span class="main-element"> {{element.timestamp?dateTransformation(element.timestamp):"--"}}</span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="partNumber">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Part Number </mat-header-cell>
+                            <mat-cell  *matCellDef="let element">
+                                <span class="main-element"> {{element.part_number}}</span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="pluggedcell">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Plugged Cell </mat-header-cell>
+                            <mat-cell  *matCellDef="let element">
+                                <span class="main-element"> {{parcePluggedCell(element.plugged_cell_percent)}}</span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="serialNumber">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Serial Number </mat-header-cell>
+                            <mat-cell  *matCellDef="let element">
+                                <span class="main-element"> {{element.serial_number}}</span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="Defects">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Defects </mat-header-cell>
+                            <mat-cell  *matCellDef="let element">
+                                <span class="main-element" title="{{transformArrayString(element.defect_list)  | livisUnderscorePipe | titlecase}}"> {{listSubstring(element.defect_list) | livisUnderscorePipe | titlecase}}</span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="MissingFeature">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Features </mat-header-cell>
+                            <mat-cell  *matCellDef="let element">
+                                <span class="main-element" title="{{transformArrayString(element.feature_list) | livisUnderscorePipe | titlecase}}"> {{listSubstring(element.feature_list) | livisUnderscorePipe | titlecase}}</span>
+                            </mat-cell>
+                        </ng-container>
+
+                        
+                        <!-- <ng-container matColumnDef="remark">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header> Remark</mat-header-cell>
+                            <mat-cell  *matCellDef="let element">
+                                <span class="main-element"> {{element.defect_type}}</span>
+                            </mat-cell>
+                        </ng-container> -->
+                        
+
+                        <ng-container matColumnDef="operation">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Remark </mat-header-cell>
+                            <mat-cell *matCellDef="let element">
+                                <button  *ngIf = "!element.remark" href="JavaScript:Void(0)" (click)="showRemarkForm(element.process_id,element.inspected_part_id)"  mat-raised-button class="btn btn-info btn-sm btn-round">
+                                    <i class="material-icons">comment</i> Add Remark
+                                </button> 
+                                <!-- <a >
+                                   Add Remark+
+                                </a>  -->
+                                <a *ngIf = "element.remark" title="{{element.remark}}" href="JavaScript:Void(0)" (click)="showRemarkForm(element.process_id,element.inspected_part_id,element.remark)" >
+                                    {{listSubstring(element.remark)}}+
+                                 </a> 
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'highlight-selected-row': selectedRowIndex == row.id}"
+                        ></mat-row> 
+                    </mat-table>
+
+                </mat-card-content>    
+               
+                <mat-card-content>
+                    <mat-paginator #paginator [length]="resultsLength"
+                        [pageSize]="10"
+                        [pageSizeOptions]="[10, 50, 100]">
+                    </mat-paginator>
+                </mat-card-content>
+           <!-- </div> -->
+               
+        </mat-card>    
+      
+     
+    </div>
+</div>          
+
+    <!-- Part Remark  Modal -->
+    <div class="modal fade" id="add-remark-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog card">
+          <div class="modal-content">
+            <div class="modal-header card-header">
+              <h4 class="modal-title card-title">Remark</h4>
+              <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                <i class="material-icons">clear</i>
+              </button>
+            </div>
+            <div class="modal-body card-body">
+                <!-- <div class="card">  -->
+              <form [formGroup]="remarkForm" novalidate (submit)="updateRemark(remarkForm)">
+                <mat-form-field class="invisible-field">
+                  <input matInput type="text"  formControlName="process_id">
+                </mat-form-field>
+
+                <mat-form-field class="invisible-field">
+                  <input matInput type="text"  formControlName="inseption_id">
+                </mat-form-field>
+               
+                <mat-form-field class="example-full-width">
+                  <input matInput formControlName="remark" placeholder="Remark *" type="text">
+                  <mat-error *ngIf="isSubmitted && !remarkForm.controls.remark.valid" class="text-danger">
+                    Part Number is required .
+                  </mat-error>
+                </mat-form-field>
+    
+                <div class="category form-category">* Required fields</div>
+                <div class="modal-footer">
+                    <button mat-raised-button type="button" class="btn btn-fill btn-dark livis-close-btn" data-dismiss="modal">Close</button>
+                    <button mat-raised-button type="submit" class="btn btn-fill btn-primary">Update</button>
+                   
+                </div>
+              </form>
+              <!-- </div> -->
+            </div>
+           
+          </div>
+        </div>
+      </div>
+      <!--  End Modal -->
+  

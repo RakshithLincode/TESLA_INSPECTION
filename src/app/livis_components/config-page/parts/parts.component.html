@@ -1,0 +1,290 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    <mat-card>
+      <mat-card-title>
+        <button mat-raised-button (click)="addParts()" class="btn btn-fill btn-primary pull-right">
+          Add Label
+        </button>
+      </mat-card-title>
+
+      <mat-card-content>
+        <mat-form-field class="col-md-3 col-md-offset-4">
+          <mat-label>Search Model</mat-label>
+          <input matInput class="form-control" type="text" [(ngModel)]="filterValue" (change)="filterParts(filterValue)"
+            placeholder="Search Model">
+        </mat-form-field>
+
+        <div *ngIf="isLoading">
+          <mat-spinner style="margin: 0 auto;" diameter="50"></mat-spinner>
+        </div>
+
+        <mat-table #table *ngIf="!isLoading" [dataSource]="dataSource" matSort>
+
+          <!-- Second Column -->
+          <ng-container matColumnDef="sl">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Sl No. </mat-header-cell>
+            <mat-cell *matCellDef="let element;let i = index"> {{(i+1)+ (skip)}} </mat-cell>
+          </ng-container>
+
+          <!-- Fourth Column -->
+          <ng-container matColumnDef="model_number">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Part Name
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.part_name}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="model_description">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Part Type
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" matTooltip="element.model_description"> {{element.label_type ?
+              element.label_type : ""}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="features">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Features
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" matTooltip="element.model_description"> {{element.features ?
+              element.features : ""}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="defects">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Defects
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" matTooltip="element.model_description"> {{element.defeats ?
+              element.defeats : ""}} </mat-cell>
+          </ng-container>
+
+
+          <!-- Third Column -->
+          <ng-container matColumnDef="part_number">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Set Regions
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="main-element d-flex" *ngIf="element.isAnnotated == true; else notAnnotated">
+                <button class="setregionbtn" (click)="SetRegions(element)">Update Regions</button>
+              </span>
+              <ng-template #notAnnotated>
+                <button class="setregionbtn" (click)="SetRegions(element)">Set Regions</button>
+
+              </ng-template>
+            </mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="status">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-header i18n="@@features">
+              {{'Annotated'
+              }} </mat-header-cell>
+            <mat-cell class="livis-modal-title" *matCellDef="let element" data-label="Status">
+              <span class="main-element d-flex" *ngIf="element.isAnnotated == true; else unaccepted">
+                <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                </mat-icon>
+              </span>
+              <ng-template #unaccepted>
+                <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                </mat-icon>
+              </ng-template>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="operation">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Operation </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color=""
+                (click)="editPart(element._id)">
+                <mat-icon class="livis-warning">edit</mat-icon>
+              </button>
+              <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color=""
+                (click)="deletePartInfo(element._id)">
+                <mat-icon class="livis-danger">delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-paginator #paginator [length]="resultsLength" [pageSize]="5" [pageSizeOptions]="[1,5, 10, 20]"
+          (page)="gotoNextPage($event)">
+        </mat-paginator>
+      </mat-card-content>
+    </mat-card>
+
+
+  </div>
+</div>
+
+<!-- Add Parts Modal -->
+<div class="modal fade" id="add-part-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title livis-modal-heading">Add Label</h4>
+        <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+      <div class="modal-body card-body">
+        <!-- <div class="card">  -->
+        <form [formGroup]="partsForm" novalidate (submit)="addNewPart(partsForm)">
+
+          <div class="row">
+            <!-- <mat-form-field class="col-md-12">
+              <input matInput formControlName="model_number" placeholder="Model Number *" type="text">
+              <mat-error *ngIf="isSubmitted && !partsForm.controls.model_numberumber.valid" class="text-danger">
+                Model Number is required .
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-12">
+              <textarea matInput formControlName="model_description" placeholder="{{ 'Model Description'  }}">
+              </textarea>
+            </mat-form-field> -->
+            <mat-form-field class="col-md-12">
+              <input matInput formControlName="part_name" placeholder="Part Name *" type="text">
+              <mat-error *ngIf="isSubmitted && !partsForm.controls.part_name.valid" class="text-danger">
+                Part Name is required .
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-12">
+              <input matInput formControlName="part_type" placeholder="Part Type *" type="text">
+              <mat-error *ngIf="isSubmitted && !partsForm.controls.part_type.valid" class="text-danger">
+                Part Type is required .
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-chip-list col-md-12">
+              <mat-label>Features</mat-label>
+              <mat-chip-list #featuresList aria-label="Features">
+                <mat-chip *ngFor="let item of Features" [selectable]="selectable" [removable]="removable"
+                  (removed)="removeFeatures(item)">
+                  {{item}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="New Feature..." [matChipInputFor]="featuresList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="addFeatures($event)">
+              </mat-chip-list>
+            </mat-form-field>
+
+            <mat-form-field class="example-chip-list col-md-12">
+              <mat-label>Defects</mat-label>
+              <mat-chip-list #defectList aria-label="Defects">
+                <mat-chip *ngFor="let item of Defects" [selectable]="selectable" [removable]="removable"
+                  (removed)="removeDefects(item)">
+                  {{item}}
+                  <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input placeholder="New Defect..." [matChipInputFor]="defectList"
+                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                  (matChipInputTokenEnd)="addDefects($event)">
+              </mat-chip-list>
+            </mat-form-field>
+
+
+
+
+          </div>
+          <div class="category form-category">* Required fields</div>
+          <div class="modal-footer">
+            <button mat-raised-button type="button" class="btn btn-fill btn-dark" data-dismiss="modal">Close</button>
+            <button mat-raised-button type="submit" class="btn btn-fill btn-primary">Submit</button>
+
+          </div>
+        </form>
+        <!-- </div> -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--  End Modal -->
+
+
+<!-- EDIT Parts Modal -->
+<div class="modal fade" id="edit-part-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title livis-modal-heading">Edit Label</h4>
+        <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+      <div class="modal-body card-body ">
+        <!-- <div class="card">  -->
+        <form [formGroup]="partsFormEdit" class="row" novalidate (submit)="updatePartInfo(partsFormEdit)">
+          <!-- <mat-form-field class="invisible-field">
+            <input matInput type="text" formControlName="_id">
+          </mat-form-field>
+          <mat-form-field class="col-md-12">
+            <input matInput formControlName="edit_model_number" placeholder="Model Number *" type="text">
+            <mat-error *ngIf="isSubmitted && !partsFormEdit.controls.edit_model_number.valid" class="text-danger">
+              Model Number is required .
+            </mat-error>
+          </mat-form-field> -->
+          <mat-form-field class="col-md-12">
+            <input matInput formControlName="edit_part_name" placeholder="Part Name *" type="text">
+            <mat-error *ngIf="isSubmitted && !partsFormEdit.controls.edit_part_name.valid" class="text-danger">
+              Part Name is required .
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="col-md-12">
+            <input matInput formControlName="edit_part_type" placeholder="Part Type *" type="text">
+            <mat-error *ngIf="isSubmitted && !partsFormEdit.controls.edit_part_type.valid" class="text-danger">
+              Part Type is required .
+            </mat-error>
+          </mat-form-field>
+
+          <!-- <mat-form-field class="col-md-12">
+            <textarea matInput formControlName="edit_model_description" placeholder="{{ 'Model Description'  }}">
+            </textarea>
+          </mat-form-field> -->
+          <mat-form-field class="example-chip-list col-md-12">
+            <mat-label>Features *</mat-label>
+            <mat-chip-list #editfeaturesList aria-label="Features">
+              <mat-chip *ngFor="let item of EditFeatures" [selectable]="selectable" [removable]="removable"
+                (removed)="EditremoveFeatures(item)">
+                {{item}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="New Defect..." [matChipInputFor]="editfeaturesList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="EditaddFeatures($event)">
+            </mat-chip-list>
+            
+          </mat-form-field>
+
+
+          <mat-form-field class="example-chip-list col-md-12">
+            <mat-label>Defects *</mat-label>
+            <mat-chip-list #editdefectList aria-label="Defects">
+              <mat-chip *ngFor="let item of EditDefects" [selectable]="selectable" [removable]="removable"
+                (removed)="EditremoveDefects(item)">
+                {{item}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="New Feature..." [matChipInputFor]="editdefectList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="EditaddDefects($event)">
+            </mat-chip-list>
+          </mat-form-field>
+
+          <div class="category form-category">* Required fields</div>
+          <div class="modal-footer col-md-12">
+            <button mat-raised-button type="button" class="btn btn-fill btn-dark" data-dismiss="modal">Close</button>
+            <button mat-raised-button type="submit" class="btn btn-fill btn-primary">Submit</button>
+
+          </div>
+        </form>
+        <!-- </div> -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--  End Modal -->

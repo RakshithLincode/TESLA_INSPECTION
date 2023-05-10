@@ -1,0 +1,259 @@
+    .camera-wrap-body {
+        width: 100%;
+        /* min-height: 72vh;
+        max-height: 72vh; */
+        /* display: flex; */
+    }
+    
+    .camera-wrap-body .row {
+        /* height: 68.5vh; */
+    }
+    
+    .camera-img-wrap {
+        /* max-height: 50%;  */
+        /* margin-bottom:1px; */
+        /* max-width; */
+        /* display: flex;    */
+        /* flex: 1; */
+        height: 450px;
+    }
+    
+    .camera-img-wrap img {
+        /* width: 100%; */
+        /* height: 100%; */
+    }
+    
+    .start-header-wrap {
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+    
+    .start-header-wrap .row {
+        padding: 6px;
+    }
+    
+    div#start_data {
+        /* text-align: center; */
+        margin: auto;
+    }
+    
+    #start_data .result-desc:after {
+        content: '|';
+        font-size: 32px;
+        padding-left: 8rem;
+        /* padding-left: 11vh; */
+        color: black;
+        font-weight: 500;
+    }
+    #start_data .result-desc span
+    {
+        font-size: 1.5rem !important;
+    }
+    
+    #start_data .result-desc:last-child:after {
+        content: '';
+    }
+    
+    .process-action-wrap {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    input[type="radio"]:checked,
+    input[type="radio"]:not(:checked) {
+        /* position: absolute;
+        left: -9999px; */
+        width: 0;
+        height: 0;
+        visibility: hidden;
+    }
+    
+    .bath-number-checkbox:checked+label {
+        background-color: #37c5ab;
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .bath-number-checkbox:not(:checked)+label {
+        background-color: #999999;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    .bath-number-checkbox:checked+label,
+    .bath-number-checkbox:not(:checked)+label {
+        position: relative;
+        display: inline-block;
+        padding: 10px 0px;
+        width: 6rem;
+        margin: 5px 5px;
+        text-align: center;
+        border-radius: 4px;
+        overflow: hidden;
+        cursor: pointer;
+        color: white;
+        font-weight: 500;
+    }
+    
+    .bath-number-checkbox:checked+label::before,
+    .bath-number-checkbox:not(:checked)+label::before {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        background-image: linear-gradient(138deg, var(--red), var(--yellow));
+        z-index: -1;
+    }
+    
+    .bath-number-checkbox:checked+label span,
+    .bath-number-checkbox:not(:checked)+label span {
+        position: relative;
+        display: block;
+    }
+    
+    .defect-stats-wrap i {
+        /* font-size: 15px; */
+    }
+    
+    .defect-stats-wrap .card {
+        margin-bottom: 1vh;
+        margin-top: 4vh;
+    }
+    
+    .defect-stats-wrap .card-body h3 {
+        font-size: 1.5625rem;
+        line-height: 1em;
+        margin: 0px;
+    }
+    
+    .defect-stats-wrap .card-icon {
+        padding: 1px !important;
+    }
+    
+    .defect-stats-wrap .card-title {
+        margin: 4px !important;
+        font-weight: 500 !important;
+    }
+    
+    .defect-auto-alert-wrap {
+        height: 90vh !important;
+    }
+    
+    .previsous-process-wrap {
+        margin-bottom: 20px !important;
+        margin-top: 0px !important;
+    }
+    
+    .previsous-process-wrap .card-header {
+        padding: 0.35rem 0.35rem !important;
+    }
+    
+    .previsous-process-wrap .card-header .card-icon {
+        padding: 7px 7px !important;
+    }
+    
+    .previsous-process-wrap .row {
+        margin: 0.5rem 0.1rem;
+    }
+    
+    .previsous-process-wrap .card-header .card-title {
+        line-height: 0 !important;
+        margin: 0.5rem 0px !important;
+        font-size: 0.9rem !important;
+        font-weight: 400 !important;
+    }
+    
+    .previsous-process-wrap .card-body {
+        padding: 0.05rem 9px !important;
+    }
+    
+    .previsous-process-wrap .card-body th,
+    .previsous-process-wrap .card-body td {
+        border: none !important;
+    }
+    
+    .process-summary-wrap .card {
+        margin: 5px 0px !important;
+        background-color: #f9dfe0;
+    }
+    
+    .process-summary-wrap .card-icon {
+        padding: 5px !important;
+    }
+    
+    .process-text-wrap .summary-heading {
+        font-weight: 400;
+    }
+    
+    .process-text-wrap .summary-data {
+        padding: 2px;
+        margin: 0px;
+    }
+    
+    .process-summary-wrap .col-md-4,
+    .process-summary-wrap .col-md-3 {
+        padding-left: 2px !important;
+        padding-right: 2px !important;
+    }
+    
+    .process-summary-wrap .operator-img img {
+        width: 46px;
+        border-radius: 50%;
+    }
+    
+    .process-summary-wrap .row {
+        /* margin-left: 20px;
+        padding-right: 20px; */
+    }
+    
+    .process-rew-wrap {
+        margin-left: 12px;
+    }
+    
+    .ocr-update-wrap {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .mat-option.mat-selected:not(.mat-option-multiple) {
+        background-color: #ff5a60 !important;
+        color: white !important;
+    }
+    
+    .mat-option:hover {
+        background-color: #ff5a60 !important;
+        color: white !important;
+    }
+    
+    .mat-option.mat-selected:hover {
+        background-color: #ff5a60 !important;
+        color: white !important;
+    }
+
+    .defect-stats-wrap h4,.result-status-wrap h4
+    {
+        /* font-size: 2rem !important; */
+    }
+
+    .card-header-primary {
+        background-color: #999999;
+    }
+
+    .start-form {
+        display: flex; 
+        margin-top: -20px;
+        margin-bottom: -20px;
+    }
+
+    .pull-start-select-up {
+        margin-top: -10px;
+    }
+
+    .pull-select-up {
+        margin-top: -20px;
+    }
+
+    .selected-model {
+        font-size: 10px; margin-bottom: 8px; margin-top: -15px;
+    }

@@ -1,0 +1,373 @@
+<div class="main-content" style="
+margin-top: 20px !important;
+padding: 30px 15px !important;
+min-height: calc(100vh - 140px);" >
+  <div class="container-fluid">
+    <mat-card>
+      <mat-card-title>
+        <button mat-raised-button (click)="showAddUserModal()" class="btn btn-fill btn-primary pull-right">
+          <mat-icon class="add-icon ">add</mat-icon>
+          <span class="livis-button">
+            {{ 'Add User' }}
+          </span>
+        </button>
+      </mat-card-title>
+
+      <mat-card-content>
+        <mat-form-field class="col-md-3 col-md-offset-4 livis-modal-heading">
+          <mat-label>{{ 'Search User' }}</mat-label>
+          <!-- <input
+            matInput
+            class="form-control"
+            type="text"
+            (input)="search($event)"
+          /> -->
+          <input matInput class="form-control" type="text" [(ngModel)]="filterValue" autocomplete="off"
+            (ngModelChange)="filterShift(filterValue)">
+        </mat-form-field>
+
+        <div *ngIf="isLoading">
+          <mat-spinner style="margin: 0 auto;" diameter="50"></mat-spinner>
+        </div>
+
+        <mat-table *ngIf="!isLoading" #table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="sl">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header>
+              {{ 'Sl No' }}.
+            </mat-header-cell>
+            <mat-cell class="livis-modal-title" *matCellDef="let element; let i = index" data-label="Sl No">
+              {{ i + 1 }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="username">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header>
+              {{ 'Username' }}
+            </mat-header-cell>
+            <mat-cell class="livis-modal-title" *matCellDef="let element" data-label="Username">
+              {{ element.username }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="first_name">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header>
+              {{ 'First Name' }}</mat-header-cell>
+            <mat-cell class="livis-modal-title" *matCellDef="let element" data-label="First Name">
+              {{ element.first_name }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="last_name">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header>
+              {{ 'Last Name' }}
+            </mat-header-cell>
+            <mat-cell class="livis-modal-title" *matCellDef="let element" data-label="Last Name">
+              {{ element.last_name }}
+            </mat-cell>
+          </ng-container> -->
+
+          <ng-container matColumnDef="email">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header>
+              {{ 'Email' }}
+            </mat-header-cell>
+            <mat-cell class="livis-modal-title" *matCellDef="let element" data-label="Email">
+              {{ element.email }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="role_name">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header>
+              {{ 'Role Name' }}
+            </mat-header-cell>
+            <mat-cell class="livis-modal-title" *matCellDef="let element" data-label="Role Name">
+              {{ element.role_name }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="user_address">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header>
+              {{ 'Address' }}
+            </mat-header-cell>
+            <mat-cell class="livis-modal-title" *matCellDef="let element" data-label="Address">
+              {{ element.user_address }}
+            </mat-cell>
+          </ng-container> -->
+
+          <!-- <ng-container matColumnDef="phone_number">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header>
+              {{ 'Phone Number' }}
+            </mat-header-cell>
+            <mat-cell class="livis-modal-title" *matCellDef="let element" data-label="Phone Number">
+              {{ element.phone_number }}
+            </mat-cell>
+          </ng-container> -->
+
+          <ng-container matColumnDef="operation">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header>
+              {{ 'Operation' }}
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" data-label="Operation">
+              <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color=""
+                (click)="editUser(element)">
+                <mat-icon class="livis-info">edit</mat-icon>
+              </button>
+              <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color=""
+                (click)="deleteUser(element.user_id)">
+                <mat-icon class="livis-danger">delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-paginator #paginator [length]="resultsLength" [pageSize]="itemsPerPage" [pageSizeOptions]="[5, 10, 20]">
+        </mat-paginator>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<!-- Add User Modal -->
+<div class="modal fade" id="add-user-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog card">
+    <div class="modal-content">
+      <div class="modal-header card-header">
+        <h4 class="modal-title card-title livis-modal-heading">
+          {{ 'Add New User' }}
+        </h4>
+        <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+      <div class="modal-body card-body">
+        <!-- <div class="card">  -->
+        <form [formGroup]="userForm" novalidate (submit)="addNewUser(userForm)">
+          <div class="row">
+            <mat-form-field class="col-md-12 livis-modal-title">
+              <input matInput formControlName="username" placeholder="{{ 'Username'  }} *" type="text" />
+              <mat-error *ngIf="isSubmitted && !userForm.controls.username.valid" class="text-danger">
+                {{ 'Username is required' }} .
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12 livis-modal-title">
+              <input matInput formControlName="first_name" placeholder="{{ 'First Name'  }} *" type="text" />
+              <mat-error *ngIf="isSubmitted && !userForm.controls.first_name.valid" class="text-danger">
+                {{ 'First Name is required' }} .
+              </mat-error>
+            </mat-form-field>
+
+            <!-- <mat-form-field class="col-md-6 livis-modal-title">
+              <input matInput formControlName="last_name" placeholder="{{ 'Last Name'  }} *" type="text" />
+              <mat-error *ngIf="isSubmitted && !userForm.controls.last_name.valid" class="text-danger">
+                {{ 'Last Name is required' }} .
+              </mat-error>
+            </mat-form-field> -->
+
+            <mat-form-field class="col-md-12 livis-modal-title">
+              <input matInput formControlName="email" placeholder="{{ 'Email'  }} *" type="text" />
+              <mat-error *ngIf="isSubmitted && !userForm.controls.email.valid" class="text-danger">
+                {{ 'Email is required' }} .
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12 livis-modal-title">
+              <mat-label>Role</mat-label>
+              <mat-select formControlName="role_name">
+                <mat-option *ngFor="let role of roles" [value]="role.value">
+                  {{ role.viewValue }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="isSubmitted && !userForm.controls.role_name.valid" class="text-danger">
+                {{ 'Role Name is required' }} .
+              </mat-error>
+            </mat-form-field>
+
+            <!-- <mat-form-field class="col-md-6 livis-modal-title">
+              <input matInput formControlName="phone_number" placeholder="{{ 'Phone Number'  }} *" type="number" />
+              <mat-error *ngIf="isSubmitted && !userForm.controls.phone_number.valid" class="text-danger">
+                {{ 'Phone Number is required' }} .
+              </mat-error>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field class="col-md-12 livis-modal-title">
+              <textarea matInput formControlName="user_address" placeholder="{{ 'Address'  }}">
+              </textarea>
+            </mat-form-field> -->
+
+            <mat-form-field class="col-md-6 livis-modal-title">
+              <input matInput formControlName="password" placeholder="{{ 'Password'  }} *"
+                type="{{ eyeIcon1 ? 'password' : 'text' }}" />
+              <img class="eye-icon" (click)="eyePressed1()" *ngIf="!eyeIcon1" src="../../../assets/img/closed-eye.svg"
+                alt="">
+              <img class="eye-icon" (click)="eyePressed1()" *ngIf="eyeIcon1" src="../../../assets/img/open-eye.svg"
+                alt="">
+              <mat-error *ngIf="isSubmitted && !userForm.controls.password.valid" class="text-danger">
+                {{ 'Password is required' }} .
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-6 livis-modal-title">
+              <input matInput formControlName="confirm_password"
+              placeholder="{{ 'Confirm Password' }} *"
+              type="{{ eyeIcon2 ? 'password' : 'text' }}" />
+            <img class="eye-icon" (click)="eyePressed2()" *ngIf="!eyeIcon2" src="../../../assets/img/closed-eye.svg"
+              alt="">
+            <img class="eye-icon" (click)="eyePressed2()" *ngIf="eyeIcon2" src="../../../assets/img/open-eye.svg"
+              alt="">
+              <!-- <mat-error
+                *ngIf="isSubmitted && !userForm.controls.confirm_password.valid"
+                class="text-danger"
+              >
+                {{ 'Confirm Password is required'  }} .
+              </mat-error> -->
+              <mat-error *ngIf="isSubmitted && !isPasswordMatching" class="text-danger">
+                {{ 'Password does not match' }} .
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="category form-category">
+            * {{ 'Required fields' }}
+          </div>
+          <div class="category form-category mt-3" *ngIf="isSubmitted && !userForm.controls.password.valid"
+            style="color: red;">
+            * {{ 'Password is required and must contain 8 characters which includes atleast an uppercase, a lowercase,a
+            number and a special character' }}
+          </div>
+          <div class="modal-footer">
+            <button mat-raised-button type="button" class="btn btn-fill btn-secondary livis-button"
+              data-dismiss="modal">
+              {{ 'Close' }}
+            </button>
+            <button mat-raised-button type="submit" class="btn btn-fill btn-primary livis-button"
+              id="add-manage-client-submit-btn">
+              {{ 'Submit' }}
+            </button>
+          </div>
+        </form>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!--  End Modal -->
+
+<!-- Edit User Modal -->
+<div class="modal fade" id="edit-user-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog card">
+    <div class="modal-content">
+      <div class="modal-header card-header">
+        <h4 class="modal-title card-title livis-modal-heading">
+          {{ 'Edit User Info' }}
+        </h4>
+        <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+      <div class="modal-body card-body">
+        <!-- <div class="card">  -->
+        <form [formGroup]="userEditForm" novalidate (submit)="updateUserInfo(userEditForm)">
+          <div class="row">
+            <mat-form-field class="col-md-12 livis-modal-title">
+              <input matInput formControlName="username" placeholder="{{ 'Username'  }} *" type="text" />
+              <mat-error *ngIf="isSubmitted && !userForm.controls.username.valid" class="text-danger">
+                {{ 'Username is required' }} .
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12 livis-modal-title">
+              <input matInput formControlName="first_name" placeholder="{{ 'First Name'  }} *" type="text" />
+              <mat-error *ngIf="isSubmitted && !userForm.controls.first_name.valid" class="text-danger">
+                {{ 'First Name is required' }} .
+              </mat-error>
+            </mat-form-field>
+
+            <!-- <mat-form-field class="col-md-6 livis-modal-title">
+              <input matInput formControlName="last_name" placeholder="{{ 'Last Name'  }} *" type="text" />
+              <mat-error *ngIf="isSubmitted && !userForm.controls.last_name.valid" class="text-danger">
+                {{ 'Last Name is required' }} .
+              </mat-error>
+            </mat-form-field> -->
+
+            <mat-form-field class="col-md-12 livis-modal-title">
+              <input matInput formControlName="email" placeholder="{{ 'Email'  }} *" type="text" />
+              <mat-error *ngIf="isSubmitted && !userForm.controls.email.valid" class="text-danger">
+                {{ 'Email is required' }} .
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-12 livis-modal-title">
+              <mat-label>Role</mat-label>
+              <mat-select formControlName="role_name">
+                <mat-option *ngFor="let role of roles" [value]="role.value">
+                  {{ role.viewValue }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="isSubmitted && !userForm.controls.role_name.valid" class="text-danger">
+                {{ 'Role Name is required' }} .
+              </mat-error>
+            </mat-form-field>
+
+            <!-- <mat-form-field class="col-md-6 livis-modal-title">
+              <input matInput formControlName="phone_number" placeholder="{{ 'Phone Number'  }} *" type="number" />
+              <mat-error *ngIf="isSubmitted && !userForm.controls.phone_number.valid" class="text-danger">
+                {{ 'Phone Number is required' }} .
+              </mat-error>
+            </mat-form-field> -->
+
+            <!-- <mat-form-field class="col-md-12 livis-modal-title">
+              <textarea matInput formControlName="user_address" placeholder="{{ 'Address'  }}">
+              </textarea>
+            </mat-form-field> -->
+
+            <mat-form-field class="col-md-6 livis-modal-title">
+              <input matInput formControlName="password" placeholder="{{ 'Password'  }} *"
+                type="{{ eyeIcon1 ? 'password' : 'text' }}" />
+              <img class="eye-icon" (click)="eyePressed1()" *ngIf="!eyeIcon1" src="../../../assets/img/closed-eye.svg"
+                alt="">
+              <img class="eye-icon" (click)="eyePressed1()" *ngIf="eyeIcon1" src="../../../assets/img/open-eye.svg"
+                alt="">
+              <mat-error *ngIf="isSubmitted && !userForm.controls.password.valid" class="text-danger">
+                {{ 'Password is required' }} .
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="col-md-6 livis-modal-title">
+              <input matInput formControlName="confirm_password"
+              placeholder="{{ 'Confirm Password' }} *"
+              type="{{ eyeIcon2 ? 'password' : 'text' }}" />
+            <img class="eye-icon" (click)="eyePressed2()" *ngIf="!eyeIcon2" src="../../../assets/img/closed-eye.svg"
+              alt="">
+            <img class="eye-icon" (click)="eyePressed2()" *ngIf="eyeIcon2" src="../../../assets/img/open-eye.svg"
+              alt="">
+               <mat-error *ngIf="isSubmitted && !userForm.controls.confirm_password.valid" class="text-danger">
+                {{ 'Confirm Password is required' }} .
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="category form-category">
+            * {{ 'Required fields' }}
+          </div>
+          <div class="modal-footer">
+            <button mat-raised-button type="button" class="btn btn-fill btn-secondary" data-dismiss="modal">
+              {{ 'Close' }}
+            </button>
+            <button mat-raised-button type="submit" class="btn btn-fill btn-primary"
+              id="update-manage-client-submit-btn">
+              {{ 'Submit' }}
+            </button>
+          </div>
+        </form>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!--  End Modal -->

@@ -1,0 +1,1008 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <mat-card class="reports-wrap">
+            <form [formGroup]="searchForm" novalidate (submit)="serachFilter(searchForm)">
+                <div class="row reports-header">
+                    <mat-form-field class="col-md-2 livis-modal-title">
+                        <input placeholder="{{'Select Date Range' }}" matInput ngxDaterangepickerMd startKey="start"
+                            endKey="end" [locale]="{applyLabel: 'ok', format: 'YYYY-MM-DD'}" id="date_range"
+                            formControlName="date_range" showClearButton="true" />
+                    </mat-form-field>
+
+                    <mat-form-field class="col-md-2 livis-modal-title">
+                        <mat-select formControlName="model" class="livis-modal-title">
+                            <mat-option value="">{{'Select Model' }}</mat-option>
+                            <mat-option class="livis-modal-title" *ngFor="let item of part_list"
+                                [value]="item.part_name">
+                                {{ item.part_name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- <mat-form-field class="col-md-2 livis-modal-title">
+                                <mat-select formControlName="shift_id" class="livis-modal-title">
+                                    <mat-option value="">{{'Select Shift' }}</mat-option>
+                                    <mat-option class="livis-modal-title" *ngFor="let shift of shifts" [value]="shift._id">
+                                    {{ shift.shift_name | livisUnderscorePipe | titlecase}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field> -->
+                    <!-- <mat-form-field class="col-md-2 livis-modal-title">
+                        <mat-select formControlName="workstation_id" class="livis-modal-title">
+                            <mat-option value="">{{'Select Workstation' }}</mat-option>
+                            <mat-option class="livis-modal-title" *ngFor="let workstation of workstations"
+                                [value]="workstation._id">
+                                {{ workstation.workstation_name | livisUnderscorePipe | titlecase}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+
+                    <!-- <mat-form-field class="col-md-3 livis-modal-title">
+                        <input (focus)="onFocus()" placeholder="Search WorkStation" #workStationsInput matInput
+                            [formControl]="wsCtrl" [matAutocomplete]="autoWorkStations"
+                            formControlName="workstation_id" />
+                        <mat-autocomplete #autoWorkStations="matAutocomplete">
+                            <mat-option *ngFor="let ws of filteredWorkStations | async" [value]="ws">
+                                {{ws}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field> -->
+
+                    <mat-form-field class="col-md-2 livis-modal-title">
+                        <mat-select formControlName="status" class="livis-modal-title">
+                            <mat-option class="livis-modal-title" value="">{{'Select Status' }}
+                            </mat-option>
+                            <mat-option class="livis-modal-title" value="Accepted">{{'Passed' }}
+                            </mat-option>
+                            <mat-option class="livis-modal-title" value="Rejected">{{'Failed' }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div class="col-md-2 form-group ">
+                        <button mat-raised-button class="btn btn-primary livis-button mx-2" >
+                            <i class="material-icons">search</i>
+                            <span i18n="@@search">{{'search' }}</span>
+                        </button>
+                        <button mat-raised-button class="btn btn-primary livis-button mx-2" (click)="downloadReport()"  >
+                            <i class="material-icons">cloud_download</i>
+                            <span i18n="@@search">{{'Download' }}</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- <div class="rox reports-body"> -->
+            <mat-card-content class="defect-table-wrap">
+                <div *ngIf="isLoading">
+                    <mat-spinner style="margin: 0 auto;" diameter="50"></mat-spinner>
+                </div>
+                <mat-table *ngIf="!isLoading" class="table table-responsive" id="defect-report-table" #table
+                    [dataSource]="dataSource">
+                    <ng-container (click)="showDefectImageModal(element)" class="conrow">
+                        <ng-container matColumnDef="slNo">
+                            <mat-header-cell class="livis-modal-heading mat-table-heading" *matHeaderCellDef mat-header
+                                i18n="@@slNumber">
+                                {{'Sl No'}}.
+                            </mat-header-cell>
+                            <mat-cell class="livis-modal-title" *matCellDef="let element;let i = index"
+                                data-label="Sl No">
+                                {{(i+1)+(filterPayload.skip)}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="operator">
+                            <mat-header-cell class="livis-modal-heading mat-table-heading" *matHeaderCellDef mat-header
+                                i18n="@@operator">
+                                {{'Operator' }} </mat-header-cell>
+                            <mat-cell class="livis-modal-title" style="cursor: pointer;"
+                                (click)="showDefectImageModal(element)" *matCellDef="let element" data-label="Operator">
+                                <span class="main-element" style="cursor: pointer;"
+                                    (click)="showDefectImageModal(element)">
+                                    {{element.operator_name ? element.operator_name : "--"}}</span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="createdAt">
+                            <mat-header-cell class="livis-modal-heading mat-table-heading" *matHeaderCellDef mat-header
+                                i18n="@@scannedAt">
+                                {{'Inspected At' }} </mat-header-cell>
+                            <mat-cell class="livis-modal-title" *matCellDef="let element" data-label="Inspected At"
+                                style="cursor: pointer;" (click)="showDefectImageModal(element)">
+                                <span class="main-element">
+                                    {{element.created_at ? element.created_at :
+                                    "--"}}</span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="partNumber">
+                            <mat-header-cell class="livis-modal-heading mat-table-heading" *matHeaderCellDef mat-header
+                                i18n="@@partNumber">
+                                {{'Model name' }} </mat-header-cell>
+                            <mat-cell class="livis-modal-title" *matCellDef="let element" style="cursor: pointer;"
+                                (click)="showDefectImageModal(element)" data-label="Model name">
+                                <span class="main-element"> {{element.part_name
+                            }}</span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="shift">
+                            <mat-header-cell class="livis-modal-heading mat-table-heading" *matHeaderCellDef mat-header
+                                i18n="@@defects">
+                                {{'Shift'
+                                }} </mat-header-cell>
+                            <mat-cell class="livis-modal-title" style="cursor: pointer;"
+                                (click)="showDefectImageModal(element)" *matCellDef="let element" data-label="Shift">
+                                <span class="main-element"> {{element.shift_name ? element.shift_name : "--"}}</span>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="workstation">
+                            <mat-header-cell class="livis-modal-heading mat-table-heading" *matHeaderCellDef mat-header
+                                i18n="@@features">
+                                {{'Workstation' }} </mat-header-cell>
+                            <mat-cell class="livis-modal-title" style="cursor: pointer;"
+                                (click)="showDefectImageModal(element)" *matCellDef="let element"
+                                data-label="Workstation">
+                                <span class="main-element"> {{element.workstation_name ? element.workstation_name :
+                                    "--"}}</span>
+                            </mat-cell>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="status">
+                            <mat-header-cell class="livis-modal-heading mat-table-heading" *matHeaderCellDef mat-header
+                                i18n="@@features">
+                                {{'Status'
+                                }} </mat-header-cell>
+                            <mat-cell class="livis-modal-title" *matCellDef="let element" style="cursor: pointer;"
+                                (click)="showDefectImageModal(element)" data-label="Status">
+                                <span class="main-element d-flex" *ngIf="element.status == 'Accepted'; else unaccepted">
+                                    <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                                    </mat-icon>
+                                </span>
+                                <ng-template #unaccepted>
+                                    <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                                    </mat-icon>
+                                </ng-template>
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="operation">
+                            <mat-header-cell class="livis-modal-heading mat-table-heading" *matHeaderCellDef mat-header
+                                i18n="@@features">
+                                {{'Operation'
+                                }} </mat-header-cell>
+                            <mat-cell class="livis-modal-title" style="cursor: pointer;"
+                                (click)="showDefectImageModal(element)" *matCellDef="let element"
+                                data-label="Operation">
+                                <span class="main-element d-flex">
+                                    <mat-icon class="material-icons report-info" matTooltip="View report">info
+                                    </mat-icon>
+                                </span>
+                                <!-- <mat-icon *ngIf="element.remarks" class="livis-error flag" style="cursor: pointer;"
+                                (click)="showFlagFromViewForm(element)" matTooltip="Flag Part">flag</mat-icon> -->
+                            </mat-cell>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container matColumnDef="remark">
+                        <mat-header-cell class="livis-modal-heading mat-table-heading" *matHeaderCellDef mat-header
+                            i18n="@@remark" class="custom-remark-header-cell">{{'Remark' }} </mat-header-cell>
+                        <mat-cell class="livis-modal-title" *matCellDef="let element" class="remark-cell"
+                            class="custom-remark-cell" data-label="Remark">
+                            <button *ngIf="!element.remarks" (click)="showRemarkForm(element)" mat-raised-button
+                                class="btn btn-info btn-sm btn-round">
+                                <i class="material-icons">comment</i><span i18n="@@addRemark">{{'Add Remark'
+                                    }}</span>
+                            </button>
+                            <!-- <a >
+                                           Add Remark+
+                                        </a>  -->
+                            <button *ngIf="element.remarks" (click)="showRemarkForm(element)" mat-raised-button
+                                class="btn btn-info btn-sm btn-round" [matTooltip]="element.remarks">
+                                <i class="material-icons">mode_edit</i><span
+                                    i18n="@@addRemark">{{listSubstring(element.remarks)}}</span>
+                            </button>
+                            <!-- <a *ngIf = "element.remarks" title="{{element.remark}}" href="JavaScript:Void(0)" (click)="showRemarkForm(element.process_id,element.inspected_part_id,element.remark)" >
+                                            {{listSubstring(element.remarks)}}+
+                                         </a>  -->
+                        </mat-cell>
+                    </ng-container>
+
+                    <!-- <ng-container matColumnDef="operation">
+                        <mat-header-cell class="livis-modal-heading mat-table-heading" *matHeaderCellDef mat-header> {{'Operation' |
+                            livisTranslatePipe}} </mat-header-cell>
+                        <mat-cell class="livis-modal-title" *matCellDef="let element" data-label="Operation">
+                            <button mat-icon-button class="iconbutton" (click)="showDefectImageModal(element)">
+                                <mat-icon class="livis-info" matTooltip="Part Image">image</mat-icon>
+                            </button>
+                            <button mat-icon-button class="iconbutton" (click)="showFlagForm(element)">
+                                <mat-icon class="livis-error" matTooltip="Flag Part">flag</mat-icon>
+                            </button>
+                        </mat-cell>
+                    </ng-container> -->
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"
+                        [ngClass]="{'highlight-selected-row': selectedRowIndex == row.id}">
+                    </mat-row>
+                </mat-table>
+
+            </mat-card-content>
+
+            <mat-card-content>
+                <mat-paginator #paginator [length]="resultsLength" [pageSize]="pageSize"
+                    [pageSizeOptions]="[10, 50, 100]" (page)="gotoNextPage($event)">
+                </mat-paginator>
+            </mat-card-content>
+            <!-- </div> -->
+
+        </mat-card>
+    </div>
+</div>
+
+<!-- Part Remark  Modal -->
+<div class="modal fade" id="add-remark-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog card">
+        <div class="modal-content">
+            <div class="modal-header card-header livis-modal-heading">
+                <h4 class="modal-title card-title livis-modal-heading" i18n="@@remark">{{'Remark' }}
+                </h4>
+                <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons">clear</i>
+                </button>
+            </div>
+            <div class="modal-body card-body">
+                <form [formGroup]="remarkForm" novalidate>
+                    <mat-form-field class="invisible-field">
+                        <input matInput type="text" formControlName="slave_obj_id">
+                    </mat-form-field>
+
+                    <mat-form-field class="invisible-field">
+                        <input matInput type="text" formControlName="created_at">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width livis-modal-title">
+                        <input matInput formControlName="remark" placeholder="{{'Remark' }} *" type="text">
+                        <mat-error *ngIf="isSubmitted && !remarkForm.controls.remark.valid" class="text-danger"
+                            i18n="@@partNumberRequired">
+                            {{'Remark is required' }} .
+                        </mat-error>
+                    </mat-form-field>
+
+                    <div class="category form-category livis-modal-title">* {{'Required fields' }}
+                    </div>
+                    <div class="modal-footer">
+                        <button mat-raised-button type="button"
+                            class="btn btn-fill btn-secondary livis-close-btn livis-button" data-dismiss="modal"
+                            i18n="@@close" (click)="isFlagModal = false">
+                            {{'Close' }}
+                        </button>
+                        <button mat-raised-button type="submit" class="btn btn-fill btn-primary livis-button"
+                            i18n="@@update" id="update-remark" (click)="updateFlag(remarkForm)">
+                            {{'Update' }}
+                        </button>
+                        <ng-template #updateRemarkBlock>
+
+                            <!-- <button 
+                            mat-raised-button 
+                            type="submit" 
+                            class="btn btn-fill btn-primary livis-button" 
+                            i18n="@@update"
+                            (click)="updateRemark(remarkForm)">
+                            {{'Update' }}
+                        </button> -->
+                        </ng-template>
+
+                    </div>
+                </form>
+                <!-- </div> -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--  End Modal -->
+
+<div class="modal fade" id="retrain-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog card">
+        <div class="modal-content">
+            <div class="modal-body card-body">
+                Are you sure you want to retrain?
+            </div>
+
+            <div class="modal-footer">
+                <button mat-raised-button type="button" class="btn btn-fill btn-secondary livis-close-btn livis-button"
+                    data-dismiss="modal" i18n="@@close">{{'Close' }}</button>
+                <button mat-raised-button type="submit" class="btn btn-fill btn-warning" i18n="@@update">{{'Retrain'
+                    }}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-center" id="defect-image-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog report-modal-dialog" id="fullScreen">
+        <div class="modal-content reports-priting-modal report-modal-content"
+            style="width: 100% !important; margin-top: -80px;">
+            <div class="modal-header card-header reports-modal-header">
+                <i class="material-icons cross-icon" *ngIf="fullScreenOn" (click)="modalFullScreen()">fullscreen</i>
+                <i class="material-icons cross-icon" *ngIf="!fullScreenOn"
+                    (click)="modalFullScreen()">fullscreen_exit</i>
+                <h4 class="modal-title card-title livis-heading" i18n="@@remark">{{'Inspection Results'
+                    }}</h4>
+                <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    <i class="material-icons cross-icon">clear</i>
+                </button>
+            </div>
+            <div class="row printing-flex m-0">
+                <div class="col-md-8" *ngIf="printImage">
+                    <!-- <mat-slide-toggle type="checkbox" class="nav-link d-none" (click)="changeImage()" color="primary"
+                        [(ngModel)]="isInference" ngDefaultControl style="position: absolute; top: 20px;">
+                    </mat-slide-toggle> -->
+                    <!-- <img *ngIf="selectedImage == 'Original Image'" class="image-border-radius my-3" width="100%"
+                        height="500" [src]="selectedUrl" alt="No Preview Available">
+                    <div *ngIf="selectedImage == 'Inference Image'">
+                        <img *ngFor="let number of [0,1,2]" class="image-border-radius multiple_image my-3" width="45%"
+                            [src]="selectedUrl[number]" alt="No Preview Available">
+                    </div> -->
+                    <div class="image-container">
+                        <img *ngFor="let number of [0]" class="image-border-radius multiple_image my-3" width="45%"
+                             [src]="printImage[number]" alt="No Preview Available">
+                        <div class="actual-label">Actual-Image</div>
+                      <!-- </div>
+                      <div class="image-container"> -->
+                        <img *ngFor="let number of [1]" class="image-border-radius multiple_image my-3" width="45%"
+                             [src]="printImage[number]" alt="No Preview Available">
+                        <div class="predict-label">Predicted-Image</div>
+                        <!-- <div class="image-box"></div> -->
+                      </div>  
+                    <!-- <img *ngFor="let number of [0]" class="image-border-radius multiple_image my-3" width="45%"
+                        [src]="printImage[number]" alt="No Preview Available" >
+                    <img *ngFor="let number of [1]" class="image-border-radius multiple_image my-3" width="45%"
+                        [src]="printImage[number]" alt="No Preview Available">     -->
+
+                </div>
+                <div class="col-md-4 row justify-content-start align-content-start mt-3 pl-0" *ngIf="selectedDefect"
+                    #pdfTable>
+                    <div class="col-md-12 report-modal-heading">
+                        Model name
+                    </div>
+                    <div class="report-modal-usecase-name col-md-12 mt-1">
+                        {{ selectedDefect.part_name }}
+                    </div>
+                    <div class="col-md-12 mt-2 row p-0">
+                        <div class="col-md-4 report-modal-heading">
+                            Inspected at:
+                        </div>
+                        <div class="col-md-7 report-modal-inspected-at">
+                            {{ selectedDefect.created_at }}
+                        </div>
+                        <div class="col-md-4 report-modal-heading mt-3">
+                            Status:
+                        </div>
+                        <div class="col-md-7 report-modal-status-accepted mt-3"
+                            *ngIf="selectedDefect.status == 'Accepted'">
+                            Accepted
+                        </div>
+                        <div class="col-md-7 report-modal-status-rejected mt-3"
+                            *ngIf="selectedDefect.status == 'Rejected'">
+                            Rejected
+                        </div>
+
+                        <div class="col-md-12 report-modal-heading mt-3">
+                            Reasons:
+                        </div>
+                        <hr>
+                        <div class="reject-reason-scroll width-100">
+
+                            <div class="col-md-12 report-modal-sub-heading mt-3"
+                                *ngIf="reject_reason_features && reject_reason_features.length">
+                                Features:
+                            </div>
+
+                            <div *ngIf=" reject_reason_features && reject_reason_features.length && features && features.length; else nofeature"
+                                class="width-100">
+                                <div *ngFor="let reason of features">
+                                    <div class="print_details_body col-md-12 row justify-content-between mt-2"
+                                        *ngIf="!reject_reason_features.includes(reason)">
+
+                                        <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                            titlecase}}</div>
+
+                                        <!-- <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                                        </mat-icon> -->
+                                    </div>
+                                    <div class="print_details_body col-md-12 row justify-content-between mt-2"
+                                        *ngIf="reject_reason_features.includes(reason)">
+
+                                        <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                            titlecase}}</div>
+
+                                        <!-- <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">
+                                            highlight_off
+                                        </mat-icon> -->
+                                    </div>
+
+                                </div>
+
+                            </div> 
+                            <ng-template #nofeature>
+                                <div *ngFor="let reason of features" class="col-md-12 row justify-content-between mt-2">
+                                    <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                        titlecase}}</div>
+
+                                    <!-- <mat-icon class="material-icons accepted-part " matTooltip="Passed">check_circle
+                                    </mat-icon> -->
+
+                                </div>
+
+                            </ng-template>
+
+
+                            <div class="col-md-12 report-modal-sub-heading mt-3"
+                                *ngIf="reject_reason_features && reject_reason_features.length">
+                                Defects:
+                            </div>
+                            <!-- <div *ngIf="reject_reason_defects && reject_reason_defects.length && defects && defects.length; else  nodefect" -->
+                            <div *ngIf="reject_reason_defects && reject_reason_defects.length" class="width-100">
+                                <div *ngFor="let reason of defects">
+                                    <div class="print_details_body col-md-12 row justify-content-between mt-2"
+                                        *ngIf="reject_reason_defects.includes(reason)">
+                                        <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                            titlecase}}</div>
+                                        <!-- <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                                        </mat-icon> -->
+                                    </div>
+
+                                    <div class="print_details_body col-md-12 row justify-content-between mt-2"
+                                        *ngIf="!reject_reason_defects.includes(reason)">
+                                        <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                            titlecase}}</div>
+                                        <!-- <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">
+                                            highlight_off
+                                        </mat-icon> -->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <ng-template #nodefect>
+                                <div *ngFor="let reason of defects" class="col-md-12 row justify-content-between mt-2">
+                                    <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                        titlecase}}</div>
+
+                                    <!-- <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                                    </mat-icon> -->
+
+                                </div>
+
+                            </ng-template>
+
+                        </div>
+
+
+                        <!-- <div  class="width-100">
+                            <div *ngFor="let reason of selectedDefect.reject_reason.defects">
+
+                                <div class="col-md-12 row justify-content-between " >
+                                    <div class="col-md-7 reject-reason mt-2 px-0">{{reason | livisUnderscorePipe | titlecase}}</div>
+                                        <div class="col-md-5 reject-reason-absence mt-2 " >Present</div>
+                                    </div>
+                            </div>
+                            <div *ngFor="let reason of selectedDefect.reject_reason.features">
+
+                                <div class="col-md-12 row justify-content-between " >
+                                    <div class="col-md-7 reject-reason mt-2 px-0">{{reason | livisUnderscorePipe | titlecase}}</div>
+                                        <div class="col-md-5 reject-reason-absence mt-2 " >Missing</div>
+                                    </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+                    <div class="no-print col-md-12 d-flex justify-content-between align-items-center mt-5 ">
+                        <button mat-raised-button class="btn btn-fill btn-primary livis-close-btn livis-button"
+                            (click)="printDiv('print')">
+                            {{ 'Export' }}
+                        </button>
+                        <button mat-raised-button
+                            class="btn btn-fill btn-primary livis-close-btn livis-button download-btn"
+                            (click)="download('print')">
+                            {{ 'Download'  }}
+                        </button>
+                        <!-- <button mat-raised-button class="btn btn-fill btn-primary livis-close-btn livis-button"
+                            (click)="showFlagForm()">
+                            {{ 'Flag' }}
+                        </button> -->
+                        <button mat-raised-button type="button"
+                            class="btn btn-fill btn-secondary livis-close-btn livis-button" data-dismiss="modal"
+                            i18n="@@close">{{'Close' }}</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="tobeprinted row width-100" *ngIf="selectedDefect" id="print">
+    <!-- <div class="header">
+        <span class="livis-print-heading">
+            Inspection Results
+        </span>
+    </div> -->
+    <div class="footer1">
+
+        <div class="header2 j-c-b">
+            <span class="livis-print-heading">
+                Inspection Report
+            </span>
+            <div class="inspection_id">
+                <span class="print_details_heading-ii">Inspection ID : &nbsp;</span>
+                <span> #{{ selectedDefect._id ? selectedDefect._id : "--" }}</span>
+            </div>
+        </div>
+        <div class="print_body ">
+            <!-- <div class="part_name">
+                <span class="part_name_heading">Inspection ID : &nbsp;</span>
+                <span> #{{ selectedDefect._id ? selectedDefect._id : "--" }}</span>
+            </div> -->
+            <div class="print_img">
+                <img class="image-border-radius my-3" *ngFor="let i of [0,1]" width="500" height="200"
+                    [src]="printImage[i]" alt="No Preview Available">
+                <!-- <img class="image-border-radius my-3"  width="98%" alt="No Preview Available"> -->
+
+            </div>
+            <table>
+                <tr>
+                    <td colspan="2" class="td-1">
+                        <div class="print_details_heading">
+                            Model name
+                        </div>
+                        <div class="print_details_body ">
+                            {{ selectedDefect.part_name ? selectedDefect.part_name : "--"}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="print_details_heading">
+                            Inspected At
+                        </div>
+                        <div class="print_details_body ">
+                            {{ selectedDefect.created_at ? selectedDefect.created_at : "--" }}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="print_details_heading">
+                            Workstation Name
+                        </div>
+                        <div class="print_details_body ">
+                            {{ selectedDefect.workstation_name ? selectedDefect.workstation_name : "--" }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="print_details_heading">
+                            Operator
+                        </div>
+                        <div class="print_details_body ">
+                            {{ selectedDefect.operator_name ? selectedDefect.operator_name : "--" }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="print_details_heading">
+                            Status
+                        </div>
+                        <div class="print_details_body report-modal-status-accepted "
+                            *ngIf="selectedDefect.status == 'Accepted'">
+                            Accepted
+                        </div>
+                        <div class="print_details_body report-modal-status-rejected "
+                            *ngIf="selectedDefect.status == 'Rejected'">
+                            Rejected
+                        </div>
+                    </td>
+                </tr>
+                <!-- <tr class="d-none">
+                    <td>
+                        <div class="print_details_heading">
+                            Workstation Name    
+                        </div>
+                        <div class="print_details_body">
+                            {{ selectedDefect.workstation_name }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="print_details_heading">
+                            Operator    
+                        </div>
+                        <div class="print_details_body">
+                            {{ selectedDefect.operator_name }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="print_details_heading">
+                            Status
+                        </div>
+                        <div class="print_details_body report-modal-status-accepted" *ngIf="selectedDefect.isAccepted">
+                            Accepted
+                        </div>
+                        <div class="print_details_body report-modal-status-rejected" *ngIf="!selectedDefect.isAccepted">
+                            Rejected
+                        </div>
+                    </td>
+                </tr> -->
+                <tr *ngIf="defects && defects.length > 2 || features && features.length > 2">
+                    <td colspan="3" class="hidden-tr">
+
+                    </td>
+
+                </tr>
+                <tr *ngIf="defects && defects.length > 2 || features && features.length > 2">
+                    <td colspan="3" class="hidden-tr2">
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="2">
+                    </td>
+                    <!-- </tr>
+                <tr> -->
+                    <td colspan="2">
+                        
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="info-td">
+                        <div class="print_details_heading reasons f-h-subheadingtop">
+                            Definition
+                        </div>
+
+                        <div class="print_details_heading reasons f-h-subheading">
+                            Feature Info
+                        </div>
+
+                        <div *ngIf="features.length; else nofeatureInfo" class="d-flex">(
+                            <div *ngFor="let feature of features" class="">
+                                <div class="print_details_sub_body">
+                                    {{feature | livisUnderscorePipe | titlecase}}
+                                    {{feature == features[features.length-1] ? ""
+                                    : ', '}}
+                                    &nbsp;
+                                </div>
+                            </div>)
+                        </div>
+                        <ng-template #nofeatureInfo>
+                            <div class="print_details_body ">
+                                --
+                            </div>
+                        </ng-template>
+
+                        <div class="print_details_heading reasons defect-info f-h-subheading">
+                            Defects Info
+                        </div>
+
+                        <div *ngIf="defects.length; else nodefectInfo" class="d-flex ">(
+                            <div *ngFor="let defect of defects" class="">
+                                <div class="print_details_sub_body width-100">
+                                    {{defect | livisUnderscorePipe | titlecase}}
+                                    {{defect == defects[defects.length-1] ? "" :
+                                    ', '}}
+                                    &nbsp;
+                                </div>
+                            </div>)
+                        </div>
+                        <ng-template #nodefectInfo>
+                            <div class="print_details_body ">
+                                --
+                            </div>
+                        </ng-template>
+                    </td>
+                    <td colspan="2">
+                        <div class="print_details_heading f-h-subheadingtop">
+                            Features
+                        </div>
+                        <div class="d-flex">
+                            <div *ngIf="reject_reason_features && reject_reason_features.length && features && features.length; else nofeature"
+                                class="d-flex width-100 justify-evenly">
+                                <div *ngFor=" let reason of features" class="d-flex fd justify-evenly">
+                                    <div class="print_details_body width-100 align"
+                                        *ngIf="!reject_reason_features.includes(reason)">
+                                        {{reason}}
+                                        <!-- <img [src]="tick" width="15" height="15" alt=""> -->
+                                    </div>
+                                    <div class="print_details_body width-100 align"
+                                        *ngIf="reject_reason_features.includes(reason)">
+                                        {{reason}}
+                                        <!-- <img [src]="cancel" width="15" height="15" alt=""> -->
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <ng-template #nofeature>
+                                <div *ngIf="features && features.length; else notThere"
+                                    class="d-flex width-100 justify-evenly">
+                                    <div class="print_details_body fd" *ngFor="let reason of features">
+                                        {{reason}}
+                                        <!-- <img [src]="tick" width="15" height="15" alt=""> -->
+                                    </div>
+                                </div>
+                                <ng-template #notThere>
+                                    <div class="print_details_body ">--</div>
+                                </ng-template>
+                            </ng-template>
+                        </div>
+                        </td>
+                    <td>
+                        <div class="print_details_heading f-h-heading">
+                            Defects Found
+                        </div>
+                        <div class="d-flex">
+
+                            <!-- <div *ngIf="reject_reason_defects && reject_reason_defects.length && defects && defects.length; else  nodefect" -->
+                            <div *ngIf="reject_reason_defects && reject_reason_defects.length"
+                                class="d-flex width-100 justify-evenly">
+                                <div *ngFor="let reason of defects" class="d-flex fd justify-evenly">
+                                    <div class="print_details_body  width-100 align"
+                                        *ngIf="reject_reason_defects.includes(reason)">
+                                        {{reason}}
+                                        <!-- <img [src]="tick" width="15" height="15" alt=""> -->
+                                    </div>
+                                    <div class="print_details_body  width-100 align"
+                                        *ngIf="!reject_reason_defects.includes(reason)">
+                                        {{reason}}
+                                        <!-- <img [src]="cancel" width="15" height="15" alt=""> -->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <ng-template #nodefect>
+                                <div *ngIf="defects && defects.length; else notThere"
+                                    class="d-flex width-100 justify-evenly">
+                                    <div class=" print_details_body fd" *ngFor="let reason of defects">
+                                        {{reason}}
+                                        <!-- <img [src]="cancel" width="15" height="15" alt=""> -->
+                                    </div>
+                                </div>
+                                <ng-template #notThere>
+                                    <div class="print_details_body ">--</div>
+                                </ng-template>
+                            </ng-template>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="print_details_heading">
+                            Remark
+                        </div>
+                        <div class="print_details_body remark-div ">
+
+                            {{ selectedDefect.remarks ? selectedDefect.remarks : "--" }}
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="print_details_heading">
+                            Verified By
+                        </div>
+                        <div class="print_details_body d-none report-modal-status-accepted ">
+                            Verified
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <!-- <div class="footer1"> -->
+        <img class="image-border-radius my-3" width="125" [src]="livislogo" alt="No Preview Available">
+        <span class="cgr">This is a computer generated report.</span>
+        <!-- <div class="page-counter"></div> -->
+        <!-- </div>     -->
+    </div>
+</div>
+
+
+
+
+<div class="fullScreendiv  fullScreen d-none" id="fullScreenDIV">
+    <div class="modal-content reports-priting-modal report-modal-content"
+        style="width: 100% !important; height: 100vh;">
+        <div class="card-header reports-modal-header d-flex justify-content-between">
+            <i class="material-icons cross-icon" *ngIf="fullScreenOn" (click)="modalFullScreen()">fullscreen</i>
+            <i class="material-icons cross-icon" *ngIf="!fullScreenOn" (click)="modalFullScreen()">fullscreen_exit</i>
+            <h4 class="modal-title card-title livis-heading ml-5" i18n="@@remark">{{'Inspection Results'
+                }}</h4>
+            <button mat-button type="button" class="close" (click)="CloseFullScreen()" data-dismiss="modal"
+                aria-hidden="true">
+                <i class="material-icons cross-icon">clear</i>
+            </button>
+        </div>
+        <div class="row printing-flex m-0" style="height: 80vh !important ;">
+            <div class="col-md-8" style="height: 100% !important ;" *ngIf="printImage">
+                <!-- <mat-slide-toggle type="checkbox" class="nav-link" (click)="changeImage()" color="primary"
+                    [(ngModel)]="isInference" ngDefaultControl style="position: absolute; top: 20px;">
+                </mat-slide-toggle>
+                <img *ngIf="selectedImage == 'Original Image'" class="image-border-radius my-3" width="100%"
+                    height="500" [src]="selectedUrl" alt="No Preview Available">
+                <div *ngIf="selectedImage == 'Inference Image'" style="height: 100% !important ;">
+                    <img *ngFor="let number of [0,1,2]" class="image-border-radius images-to-show multiple_image my-3"
+                        width="45%" [src]="selectedUrl[number]" alt="No Preview Available">
+                </div> -->
+                <img *ngFor="let number of [0,1]" class="image-border-radius images-to-show multiple_image my-3"
+                    width="45%" [src]="printImage[number]" alt="No Preview Available">
+            </div>
+            <div class="col-md-4 row justify-content-start align-content-start mt-3 pl-0" *ngIf="selectedDefect"
+                #pdfTable>
+                <div class="col-md-12 report-modal-heading">
+                    Model name
+                </div>
+                <div class="report-modal-usecase-name col-md-12 mt-1">
+                    {{ selectedDefect.part_name }}
+                </div>
+                <div class="col-md-12 mt-2 row p-0">
+                    <div class="col-md-4 report-modal-heading">
+                        Inspected at:
+                    </div>
+                    <div class="col-md-7 report-modal-inspected-at">
+                        {{ selectedDefect.created_at }}
+                    </div>
+                    <div class="col-md-4 report-modal-heading mt-3">
+                        Status:
+                    </div>
+                    <div class="col-md-7 report-modal-status-accepted mt-3" *ngIf="selectedDefect.status == 'Accepted'">
+                        Accepted
+                    </div>
+                    <div class="col-md-7 report-modal-status-rejected mt-3" *ngIf="selectedDefect.status == 'Rejected'">
+                        Rejected
+                    </div>
+
+                    
+
+                    <hr>
+                    <div class="reject-reason-scroll width-100">
+
+                        <div class="col-md-12 report-modal-sub-heading mt-3"
+                            *ngIf="reject_reason_features && reject_reason_features.length">
+                            Features:
+                        </div>
+
+                        <div *ngIf=" reject_reason_features && reject_reason_features.length && features && features.length; else nofeature"
+                            class="width-100">
+                            <div *ngFor="let reason of features">
+                                <div class="print_details_body col-md-12 row justify-content-between mt-2"
+                                    *ngIf="!reject_reason_features.includes(reason)">
+
+                                    <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                        titlecase}}</div>
+
+                                    <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                                    </mat-icon>
+                                </div>
+                                <div class="print_details_body col-md-12 row justify-content-between mt-2"
+                                    *ngIf="reject_reason_features.includes(reason)">
+
+                                    <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                        titlecase}}</div>
+
+                                    <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">
+                                        highlight_off
+                                    </mat-icon>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <ng-template #nofeature>
+                            <div *ngFor="let reason of features" class="col-md-12 row justify-content-between mt-2">
+                                <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                    titlecase}}</div>
+
+                                <mat-icon class="material-icons accepted-part " matTooltip="Passed">check_circle
+                                </mat-icon>
+
+                            </div>
+
+                        </ng-template>
+
+
+                        <div class="col-md-12 report-modal-sub-heading mt-3"
+                            *ngIf="reject_reason_features && reject_reason_features.length">
+                            Defects:
+                        </div>
+                        <!-- <div *ngIf="reject_reason_defects && reject_reason_defects.length && defects && defects.length; else  nodefect"
+                            class="width-100"> -->
+                        <div *ngIf="reject_reason_defects && reject_reason_defects.length" class="width-100">
+                            <div *ngFor="let reason of defects">
+                                <div class="print_details_body col-md-12 row justify-content-between mt-2"
+                                    *ngIf="reject_reason_defects.includes(reason)">
+                                    <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                        titlecase}}</div>
+                                    <!-- <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                                    </mat-icon> -->
+                                </div>
+
+                                <div class="print_details_body col-md-12 row justify-content-between mt-2"
+                                    *ngIf="!reject_reason_defects.includes(reason)">
+                                    <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                        titlecase}}</div>
+                                    <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">
+                                        highlight_off
+                                    </mat-icon>
+                                </div>
+
+                            </div>
+                        </div>
+                        <ng-template #nodefect>
+                            <div *ngFor="let reason of defects" class="col-md-12 row justify-content-between mt-2">
+                                <div class="col-md-7 reject-reason  px-0">{{reason | livisUnderscorePipe |
+                                    titlecase}}</div>
+
+                                <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                                </mat-icon>
+
+                            </div>
+
+                        </ng-template>
+
+                    </div>
+
+
+                    <div  class="width-100">
+                                <div *ngFor="let reason of selectedDefect.reject_reason.defects">
+    
+                                    <div class="col-md-12 row justify-content-between " >
+                                        <div class="col-md-7 reject-reason mt-2 px-0">{{reason | livisUnderscorePipe | titlecase}}</div>
+                                            <div class="col-md-5 reject-reason-absence mt-2 " >Present</div>
+                                        </div>
+                                </div>
+                                <div *ngFor="let reason of selectedDefect.reject_reason.features">
+    
+                                    <div class="col-md-12 row justify-content-between " >
+                                        <div class="col-md-7 reject-reason mt-2 px-0">{{reason | livisUnderscorePipe | titlecase}}</div>
+                                            <div class="col-md-5 reject-reason-absence mt-2 " >Missing</div>
+                                        </div>
+                                </div>
+                            </div>
+
+                </div>
+                <div class="no-print col-md-12 d-flex justify-content-between align-items-center mt-5 ">
+                    <button mat-raised-button class="btn btn-fill btn-primary livis-close-btn livis-button"
+                        (click)="printDiv('print')">
+                        {{ 'Export' }}
+                    </button>
+                    <!-- <button mat-raised-button
+                                class="btn btn-fill btn-primary livis-close-btn livis-button download-btn"
+                                (click)="download('print')">
+                                {{ 'Download'  }}
+                            </button> -->
+                    <!-- <button mat-raised-button class="btn btn-fill btn-primary livis-close-btn livis-button"
+                                (click)="showFlagForm()">
+                                {{ 'Flag' }}
+                            </button> -->
+                    <button mat-raised-button type="button"
+                        class="btn btn-fill btn-secondary livis-close-btn livis-button" data-dismiss="modal"
+                        (click)="CloseFullScreen()" i18n="@@close">{{'Close' }}</button>
+                    <!-- <button mat-raised-button class="btn btn-fill btn-primary livis-close-btn livis-button"*ngIf="!fullScreenOn"
+                        (click)="modalFullScreen()">
+                        {{ 'Exit Full Screen' }}
+                    </button> -->
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>

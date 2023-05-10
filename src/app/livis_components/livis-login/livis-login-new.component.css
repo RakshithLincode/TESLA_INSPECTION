@@ -1,0 +1,175 @@
+html {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .livis-login-page{
+      height: 100%;
+  }
+  
+  .livis-login-page .box-form {
+    display: flex;
+    flex: 1 1 100%;
+    align-items: stretch;
+    justify-content: space-between;
+    height: 100%;
+  
+  }
+  
+  .livis-login-page .box-form div {
+    height: auto;
+  }
+  .livis-login-page .box-form .left {
+    width: 60%;
+    color: #FFFFFF;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../../../assets/img/dribbble-shot_6.gif");
+    overflow: hidden;
+  }
+  
+  
+  .livis-login-page .box-form .right {
+    width: 40%;
+    color: #000000;
+    background-color: #F5F5F5 !important;
+    overflow: hidden;
+  }
+  
+  .livis-login-page .header-logo-wrap
+  {
+      margin-top: 15%;
+      margin-left: 15%;
+  }
+  
+  .livis-login-page .header-logo-wrap img
+  {
+      width: 100px;
+  }
+  .livis-login-page .login-form-wrap
+  {
+      margin-top: 20%;
+      margin-left: 15%;
+  }
+  
+  .livis-login-page .login-form-wrap h1
+  {
+      font-size: 42px;
+      font-weight: 600;
+      color: #27506C;
+      margin-bottom: 0px;
+  }
+  
+  .livis-login-page .login-form-wrap p
+  {
+      font-size: 14px;
+      /* font-weight: 600; */
+      color: #51697B;
+      margin-left: 4px;
+  
+  }
+  
+  .livis-login-page .login-form-wrap .livis-login-form{
+      margin-top: 5%;
+      width: 70%;
+      margin-left: 0px;
+  }
+  
+  
+  .livis-login-page .login-form-wrap .livis-login-form .bmd-form-group{
+      margin-bottom: 10px;
+  }
+  
+  .livis-login-page .login-form-wrap .livis-login-form .login-form-input
+  {
+      margin-bottom: 20px;
+  }
+  
+  .livis-login-page .login-form-wrap .livis-login-form .login-button-wrap{
+      display: flex;
+      justify-content: end;
+      
+  }
+  
+  
+  /* .livis-login-page .footer-copyright-wrap
+  {
+      margin-top: 20%;
+      margin-left: 50%;
+  } */
+  
+  @media screen and (max-width:575px) and (min-width:0px)  {
+    .livis-login-page .footer-copyright-wrap {
+      margin-top: 5%;
+      margin-left: 50%;
+    }
+  }
+  
+  @media screen and (max-width:745px) and (min-width:575px)  {
+    .livis-login-page .footer-copyright-wrap {
+      margin-top: 20%;
+      margin-left: 50%;
+    }
+  }
+  
+  @media screen and (min-width:745px)  {
+    .livis-login-page .footer-copyright-wrap {
+      margin-top: 10%;
+      margin-left: 50%;
+    }
+  }
+  
+  .livis-login-page .footer-copyright-wrap div
+  {
+      /* display: flex;
+      justify-content: space-between; */
+  }
+  
+  .livis-login-page .footer-copyright-wrap img{
+      width: 40px;
+  }
+  
+  .livis-login-page .footer-copyright-wrap {
+      color: #51697B;
+      font-weight: 600;
+      font-size: 14px;
+  }
+  
+  @media (max-width: 980px) {
+      /* .livis-login-page .box-form {
+        flex-flow: wrap;
+        text-align: center;
+        align-content: center;
+        align-items: center;
+      } */
+    }
+  
+  @media (max-width: 980px) {
+      
+    .livis-login-page .box-form .right,.livis-login-page .box-form .left {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 575px) {
+      .livis-login-page .box-form {
+          display: block;
+      }
+      .livis-login-page .box-form .right,.livis-login-page .box-form .left {
+        width: 100%;
+      }
+      .livis-login-page .box-form .left {
+          height: 30%;
+      }
+      .livis-login-page .login-form-wrap p
+      {
+          margin: 10px;
+      }
+  
+    }
+  
+    html {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+   

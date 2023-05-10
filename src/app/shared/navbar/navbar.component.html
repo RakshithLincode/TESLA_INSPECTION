@@ -1,0 +1,108 @@
+<nav #navbar class="navbar navbar-expand-lg navbar-transparent navbar-absolute">
+  <div class="container-fluid" style="padding: 0px !important;">
+    <div class="navbar-wrapper" style="margin-left: 50px !important ;">
+      <!-- with sidebar
+         <div class="navbar-minimize" style="padding: 0px !important; z-index: 100;">
+        <button mat-raised-button class="btn btn-just-icon btn-white btn-fab btn-round">
+          <img class="text_align-center visible-on-sidebar-regular" src="../../../assets/img/right-arrow.png" alt="">
+          <img class="design_bullet-list-67 visible-on-sidebar-mini" src="../../../assets/img/left-arrow.png" alt="">
+        </button>
+      </div> -->
+      <img src="/assets/img/Logopipe.png" style="width: 180px;">
+      <!-- <a class="navbar-brand " style=" font-weight:700 !important; font-size:24px !important" href="{{getPath()}}">
+        {{getTitle()}} PANEL</a> -->
+
+    </div>
+    <div class="htime-wrap" style="display:none !important">
+      <p id="liviswatch"></p>
+    </div>
+
+    <nav class="navbar parts-navbar ">
+      <div class="container-fluid center-for-mobile " row>
+        <a class="navbar-brand col-md-2 col-sm-3">
+        </a>
+        <!-- <div class="col-md-5 col-sm-8"> -->
+        <!-- <img src="/assets/img/search-interface-symbol.png" alt="" srcset="" class="livis-parts-search-icon" (click)="search_part()">
+                    <img src="/assets/img/restart_trainig.png" alt="" srcset="" class="livis-parts-refresh-icon" (click)="refreshDatasetCallBack()">
+                    <input type="search" name="" id="" class="livis-parts-search-input search-text" 
+                    placeholder="Search 'Help'"         
+                    (keyup)="filter_part()"
+                    [formControl]="typeCtrl"
+                    [matAutocomplete]="autoTypePart"
+                    > -->
+
+        <!-- </div> -->
+        <div class="col-md-8 col-sm-12 row justify-content-end right-nav">
+          <div class=" col-md-5 col-sm-3 row create-box" *ngIf="!hideStart">
+
+            <div class=" col-md-6 ">
+              <!-- <button class="btn btn-primary my-3 navbar-start-btn livis-start-btn " (click)=showStartForm() id="start_process_btn">
+                        Start
+                      </button> -->
+                      <a class="navbar-brand " style=" font-weight:700 !important; font-size:24px !important" href="{{getPath()}}">
+                        {{getTitle()}} PANEL</a>
+
+            </div>
+
+
+          </div>
+          <div class="col-md-7 col-sm-12 row justify-content-end come-down mr-3"
+            style="align-items: center !important ;">
+            <!-- comment below div for sidebar  -->
+            <!-- <div class="col-md-8 col-sm-8 row justify-content-around"> -->
+
+            <a class="dropdown-toggle col-md-4 col-sm-3 row justify-content-center icons-ms" matTooltip="Operator Panel"
+              id="monitor" style="align-items: center !important ;" routerLink="/operator">
+              <img src="../../../assets/img/monitor.png" alt="">
+            </a>
+            <a class="dropdown-toggle col-md-4 col-sm-3 row justify-content-center icons-ms" matTooltip="Reports Panel"
+              id="stats" style="align-items: center !important ;" routerLink="/report/reports">
+              <img src="../../../assets/img/statistics.png" alt="">
+            </a>
+
+
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                More Option
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" [routerLink]="['/user/users']">Users and Management</a>
+                <a class="dropdown-item" [routerLink]="['/config/part']">Part Management</a>
+                <a class="dropdown-item" [routerLink]="['/aboutus']">About Us</a>
+                <!-- <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a> -->
+              </div>
+            </div>
+            <!-- </div> -->
+
+            <div class="dropdown">
+              <a class="dropdown-toggle col-md-4 col-sm-4 row justify-content-center align-items-center logout" href="#"
+                role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../../../assets/img/profile3.png" alt="">
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item settings-icon row justify-content-between" [routerLink]="['/logout']">Logout<img
+                    width="15" src="../../../../assets/img/exit.png" /></a>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+    </nav>
+    <!-- <button mat-button class="navbar-toggler btn-no-ripple" type="button" (click)="sidebarToggle()">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+      <span class="navbar-toggler-icon icon-bar"></span>
+    </button> -->
+    <!--<div class="collapse navbar-collapse justify-content-end" id="navigation">
+
+    </div> -->
+  </div>
+</nav>

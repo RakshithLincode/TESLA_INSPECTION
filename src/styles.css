@@ -1,0 +1,308 @@
+body{
+
+    --livis-bg-color: #eee;
+    --livis-color:#1DA2BF;
+
+    --livis-btn1-bg-color: #1DA2BF;
+    --livis-btn1-color: #ffffff;
+    --livis-btn2-bg-color: #98a4ac;
+    --livis-btn2--color: #ffffff;       
+    
+
+    --livis-card-color : #ffffff;
+
+    --livis-search-input-bg-color:#ffffff;
+    --livis-search-input-color: rgb(51, 51, 51);
+    
+    --livis-heading-color : #1DA2BF;
+    --livis-title-color: #1DA2BF;
+    --livis-digit-color : #1DA2BF;
+    --livis-special-ch-color: #1DA2BF;
+
+    --livis-modal-heading : #1DA2BF;
+    --livis-modal-body : #1DA2BF;
+
+    --livis-tooltip-color : #1DA2BF;
+    --livis-tooltip-bg-color : #1DA2BF;
+
+    --livis-border-color : #1DA2BF;
+
+}
+@font-face {
+    font-family: LivisFontHeading;
+    src: url('./assets/css/proxima/Proxima.otf');
+  }
+  
+  
+  
+  .livis-heading{
+    font-size: 18px !important;
+    font-family: LivisFontHeading !important;
+    font-weight: 500 !important;
+  }
+  
+  
+  
+  .livis-title{
+    font-size: 14px !important;
+    font-family: LivisFontHeading !important;
+  }
+  
+  .livis-card-heading{
+    font-size: 16px !important;
+    font-family: LivisFontHeading !important;
+    font-weight: 500 !important;
+  }
+  
+  .livis-card-title{
+    font-size: 12px !important;
+    font-family: LivisFontHeading !important;
+  }
+  
+  
+  .livis-modal-heading{
+    font-size: 16px !important;
+    font-family: LivisFontHeading !important;
+    font-weight: 500 !important;
+  }
+  
+  
+  .livis-modal-title{
+    font-size: 14px !important;
+    font-family: LivisFontHeading !important;
+    
+  }
+  
+  .livis-table-heading{
+    font-size: 14px !important;
+    font-family: LivisFontHeading !important;
+    
+  }
+  .livis-table-title{
+    font-size: 12px !important;
+    font-family: LivisFontHeading !important;
+    
+  }
+  
+  .livis-input{
+    font-size: 12px !important;
+    font-family: LivisFontHeading !important;
+  }
+  
+  .livis-tooltip{
+    font-size: 12px !important;
+    font-family: LivisFontHeading !important;
+  }
+  
+  .livis-button{
+    font-size: 12px !important;
+    font-family: LivisFontHeading !important;
+  }
+  
+  
+  
+  .mat-tooltip {
+    /* background: linear-gradient(90deg, #DB0505 -3.13%, #510B0B 102.19%) !important; */
+    background: var(--livis-color) !important;
+    color: white !important;
+    text-transform: capitalize !important;
+    font-weight: 600 !important;
+    font-size: 10px;
+  }
+
+
+
+
+/* You can add global styles to this file, and also import other style files */
+.icon-status-active{
+    color: #37c5ab;
+}
+.icon-status-inactive{
+    color: #D93900;
+}
+
+.invisible-field
+{
+    display: block;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
+
+.invisible-element
+{
+    display: none !important;
+}
+
+.timepicker-overlay{ 
+    z-index: 1200 !important; 
+}
+.htime-wrap
+{
+    display: flex !important;
+    width: 100%;
+    height: 30px;
+    justify-content: center;
+}
+
+.htime-wrap p
+{
+    height: 30px;
+    background-color: #ff5a60;
+    width: 80px;
+    padding: 4px 8px;
+    color: #ffffff;
+    border-radius: 15px;
+    font-weight: 500;
+}
+
+.livis-primary
+{
+    color: #ff5a60;
+}
+
+.livis-primary-bg
+{
+    background-color: #ff5a60;
+}
+
+.livis-info
+{
+    color: #00BCD4;
+}
+
+.livis-info-bg
+{
+    background-color: #00BCD4;
+}
+
+.livis-success
+{
+    color: #37C5AB;
+}
+
+.livis-success-bg
+{
+    background-color: #37C5AB;
+}
+
+.livis-warning
+{
+    color: #FFB606;
+}
+
+.livis-warning-bg
+{
+    background-color: #FFB606;
+}
+
+.livis-danger
+{
+    color: #D93900;
+}
+
+.livis-danger-bg
+{
+    background-color: #D93900;
+}
+
+.livis-rose
+{
+    color: #FD79A8;
+}
+
+.livis-rose-bg
+{
+    background-color: #FD79A8;
+}
+
+.livis-inverse
+{
+    color: #10073C;
+}
+
+.livis-inverse-bg
+{
+    background-color: #10073C;
+}
+
+.livis-default
+{
+    color: #999999;
+}
+
+.livis-default-bg
+{
+    background-color: #999999;
+}
+
+.livis-rosealt
+{
+    color: #E84393;
+}
+
+.livis-rosealt-bg
+{
+    background-color: #E84393;
+}
+
+.mat-button.btn, .mat-raised-button.btn, .mat-raised-button.btn:not([class*=mat-elevation-z]), .btn {
+    padding: 8px 15px;
+}
+.livis-search-btn
+{
+    outline: none !important;
+    transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
+    background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) !important; 
+    /* background-image: radial-gradient(circle at center, #FF385C 0%, #E61E4D 27.5%, #E31C5F 40%, #D70466 57.5%, #BD1E59 75%, #BD1E59 100% ) !important;
+    background-size: 200% 200% !important;
+    opacity: 0 !important; */
+}
+
+.sidebar .logo-img-large {
+    /* width: 42px;
+    max-height: 42px; */
+}
+
+.sidebar .logo-img-large img{
+    width: 66px;
+    margin-top: -5px;
+
+}
+
+.sidebar .logo-img img {
+    width: 35px;
+    top: 19px;
+}
+.livis-bold-text
+{
+    font-weight: 500;
+}
+.livis-close-btn
+{
+    margin-right: 10px !important;
+}
+
+.livis-text-color
+{
+    color: #10073c !important;
+}
+
+.mat-option.mat-selected:not(.mat-option-multiple){
+    background-color: #ff5a60 !important;
+    color: white !important;
+}
+
+.mat-option:hover {
+    background-color: #ff5a60 !important;
+    color: white !important;
+}
+
+.mat-option.mat-selected:hover{
+    background-color: #ff5a60 !important;
+    color: white !important;
+}
+
+/* .body-container .mat-button {
+font-size: small !important;
+} */

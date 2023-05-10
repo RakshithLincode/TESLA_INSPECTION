@@ -1,0 +1,118 @@
+<div class="livis-login-page">
+
+  <div class="box-form">
+    <div class="left">
+      <!-- <div class="overlay">
+            <h1>New here ?</h1>
+            <p>Kindly contact us by email at sales@lincode.ai or call at (650) 789-5454 for the credentials
+            </p>
+            <span>
+                <p>login with social media</p>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#">Contact Us</a>
+            </span>
+            </div> -->
+    </div>
+
+
+    <div class="right">
+
+      <div class="row header-logo-wrap">
+        <div class="">
+          <img class="img-fluid" src="/assets/img/Logopipe.png" style="width: 300px;">
+        </div>
+      </div>
+
+      <div class="row login-form-wrap">
+        <div class="login-form-heading">
+          <h1>Get Started</h1>
+          <!-- <p>Login to access the livis product. <span class="text-danger">Did you forget your password?</span></p> -->
+        </div>
+
+        <div class="livis-login-form">
+          <form [formGroup]="loginForm">
+            <div class="login-form-input">
+              <span class="bmd-form-group" [ngClass]="{ 'has-error': isSubmitted && formControls.email.errors }">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">email</i>
+                    </span>
+                  </div>
+                  <input type="email" id="email" class="form-control" name="email" formControlName="email"
+                    placeholder="Email...">
+                </div>
+                <div *ngIf="isSubmitted && formControls.email.errors" class="help-block">
+                  <div class="text-danger text-center" *ngIf="formControls.email.errors.required">Email is required
+                  </div>
+                </div>
+
+              </span>
+            </div>
+            <div class="login-form-input">
+              <span class="bmd-form-group" [ngClass]="{ 'has-error': isSubmitted && formControls.password.errors }">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="material-icons">lock_outline</i>
+                    </span>
+                  </div>
+                  <input type="password" id="password" class="form-control" formControlName="password"
+                    placeholder="Password...">
+                </div>
+
+                <div *ngIf="isSubmitted && formControls.password.errors" class="help-block">
+                  <div class="text-danger text-center" *ngIf="formControls.password.errors.required">Password is
+                    required</div>
+                </div>
+              </span>
+            </div>
+            <!-- <span *ngIf="isOpeatorLogin" class="bmd-form-group" [ngClass]="{ 'has-error': isSubmitted && formControls.workstation_name.errors }">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="material-icons">computer</i>
+                      </span>
+                    </div>
+                   
+                    <mat-select placeholder="Select Workstation" class="form-control" formControlName="workstation_name">
+                      <mat-option *ngFor="let workstation of workstations" [value]="workstation._id">
+                       
+                        {{ workstation.workstation_name }}
+                      </mat-option>
+                    </mat-select>
+                  </div>
+                  <div *ngIf="isSubmitted && formControls.workstation_name.errors" class="help-block">
+                    <div class="text-danger text-center" *ngIf="formControls.workstation_name.errors.required">Please Select Workstation</div>
+                  </div>
+                </span> -->
+
+            <div class="login-button-wrap">
+
+              <button type="submit" class="btn btn-primary" (click)="loginUser($event)">{{'LOGIN' }}</button>
+
+
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <div class="row footer-copyright-wrap">
+        <div class="row">
+          <div col-md-6><a href="https://lincode.ai/" target="_blank"><img class="img-fluid"
+                src="./assets/img/logo.png"></a></div>
+          &nbsp;&nbsp;<div col-md-5>
+            <p class="">Copyright 2022-2023</p>
+          </div>
+
+
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

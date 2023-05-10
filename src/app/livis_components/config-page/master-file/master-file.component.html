@@ -1,0 +1,326 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    <mat-card>
+      <mat-card-title>
+        <button mat-raised-button (click)="uploadComponents()" class="btn btn-fill btn-primary pull-right">
+          Bulk Upload
+        </button>
+        <!-- <button mat-raised-button (click)="addParts()" class="btn btn-fill btn-primary pull-right">
+          Add Label
+        </button> -->
+      </mat-card-title>
+
+      <mat-card-content>
+        <mat-form-field class="col-md-3 col-md-offset-4">
+          <mat-label>Search Model</mat-label>
+          <input matInput class="form-control" type="text" [(ngModel)]="filterValue" (blur)="filterParts(filterValue)"
+            placeholder="Search Parts">
+        </mat-form-field>
+
+        <div *ngIf="isLoading">
+          <mat-spinner style="margin: 0 auto;" diameter="50"></mat-spinner>
+        </div>
+
+        <mat-table #table *ngIf="!isLoading" [dataSource]="dataSource" matSort>
+
+          <!-- Second Column -->
+          <ng-container matColumnDef="sl">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Sl No.
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element;let i = index"> {{(i+1) + (skip)}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="eu_number">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> EU Number
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element['eu-number']}} </mat-cell>
+          </ng-container>
+          <!-- Fourth Column -->
+          <ng-container matColumnDef="model_number">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Model Number
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Material}} </mat-cell>
+          </ng-container>
+
+          <!-- Third Column -->
+          <ng-container matColumnDef="description">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> EU 13
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element['Material description']}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="amount">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Amount
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Amount}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="unit">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Unit
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.Unit}} </mat-cell>
+          </ng-container>
+          
+          <ng-container matColumnDef="uom">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> UOM
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.UoM}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="country">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Country
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element['Country of Origin']}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-header i18n="@@features">
+              {{'Annotated'
+              }} </mat-header-cell>
+            <mat-cell class="livis-modal-title" *matCellDef="let element" data-label="Status">
+              <span class="main-element d-flex" *ngIf="element.isCompleted == true; else unaccepted">
+                <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                </mat-icon>
+              </span>
+              <ng-template #unaccepted>
+                <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                </mat-icon>
+              </ng-template>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="operation">
+            <mat-header-cell class="livis-modal-heading" *matHeaderCellDef mat-sort-header> Operation
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <!-- <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color=""
+                  (click)="editPart(element._id)">
+                  <mat-icon class="livis-warning">edit</mat-icon>
+                </button> -->
+              <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color=""
+                (click)="deletePartInfo(element._id)">
+                <mat-icon class="livis-danger">delete</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-paginator #paginator [length]="resultsLength" [pageSize]="5" [pageSizeOptions]="[1,5, 10, 20]" (page)="gotoNextPage($event)">
+        </mat-paginator>
+      </mat-card-content>
+    </mat-card>
+
+
+  </div>
+</div>
+
+<!-- Add Parts Modal -->
+<div class="modal fade" id="add-part-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title ">Add Model</h4>
+        <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+      <div class="modal-body card-body">
+        <!-- <div class="card">  -->
+        <form [formGroup]="partsForm" novalidate (submit)="addNewPart(partsForm)">
+
+          <div class="row">
+            <mat-form-field class="col-md-6">
+              <input matInput formControlName="model" placeholder="Model Number *" type="text">
+              <mat-error *ngIf="isSubmitted && !partsForm.controls.model.valid" class="text-danger">
+                Model Number is required .
+              </mat-error>
+            </mat-form-field>
+
+            <!-- <mat-form-field class="col-md-6">
+                <input matInput formControlName="part_number" placeholder="Part Number *" type="text">
+                <mat-error *ngIf="partsForm.controls.part_number.errors">
+                  <mat-error *ngIf="isSubmitted && partsForm.controls.part_number.errors.required" class="text-danger">
+                    Part Number is required .
+                  </mat-error>
+                </mat-error>
+              </mat-form-field> -->
+
+            <!-- <mat-form-field class="col-md-6">
+                <input matInput formControlName="bath_number_denominator" placeholder="Total Bath *" type="text">
+                <mat-error *ngIf="partsForm.controls.bath_number_denominator.errors">
+                  <mat-error *ngIf="isSubmitted && partsForm.controls.bath_number_denominator.errors.required" class="text-danger">
+                      Total Bath  is required .
+                  </mat-error>
+                </mat-error>
+              </mat-form-field>
+  
+              <mat-form-field class="col-md-6">
+                <input matInput formControlName="plugged_cell_percent" placeholder="Plugged Cell Percentage *" type="number">
+              
+                <mat-error *ngIf="isSubmitted && partsForm.controls.plugged_cell_percent.errors">
+                  <mat-error *ngIf="partsForm.controls.plugged_cell_percent.errors.required" class="text-danger">
+                    Plugged Cell Percentage is required .
+                  </mat-error>
+                  <mat-error *ngIf="isSubmitted && partsForm.controls.plugged_cell_percent.errors?.pattern" class="text-danger">
+                    Plugged Cell Percentage is not valid .
+                  </mat-error>
+              </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row specification-wrap">
+            <div class="model-specification-wrap col-md-4 available-box-wrap">
+              <small class="text-muted">(Drag and Drop elements to Feature and Defect Grid)</small>
+              <h5>Available Defect and Feature List</h5>
+            
+              <div
+                cdkDropList
+                #availableList="cdkDropList"
+                [cdkDropListData]="availables"
+                [cdkDropListConnectedTo]="[featureList,defectList]"
+                class="feature-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="feature-box" *ngFor="let item of availables" cdkDrag>{{item | livisUnderscorePipe | titlecase}}</div>
+              </div>
+            </div>
+            
+            <div class="model-specification-wrap col-md-4 feature-box-wrap">
+              <h5>Enabled Features</h5>
+            
+              <div
+                cdkDropList
+                #featureList="cdkDropList"
+                [cdkDropListData]="features"
+                [cdkDropListConnectedTo]="[availableList,defectList]"
+                class="feature-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="feature-box" *ngFor="let item of features" cdkDrag>{{item | livisUnderscorePipe | titlecase}}</div>
+              </div>
+            </div>
+  
+            <div class="model-specification-wrap defect-box-wrap col-md-4">
+              <h5>Enabled Defects</h5>
+            
+              <div
+                cdkDropList
+                #defectList="cdkDropList"
+                [cdkDropListData]="defects"
+                [cdkDropListConnectedTo]="[featureList,availableList]"
+                class="feature-list"
+                (cdkDropListDropped)="drop($event)">
+                <div class="feature-box" *ngFor="let item of defects" cdkDrag>{{item | livisUnderscorePipe | titlecase}}</div>
+              </div>
+            </div>-->
+          </div>
+          <div class="category form-category">* Required fields</div>
+          <div class="modal-footer">
+            <button mat-raised-button type="button" class="btn btn-fill btn-dark" data-dismiss="modal">Close</button>
+            <button mat-raised-button type="submit" class="btn btn-fill btn-primary">Submit</button>
+
+          </div>
+        </form>
+        <!-- </div> -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--  End Modal -->
+
+
+<!-- EDIT Parts Modal -->
+<div class="modal fade" id="edit-part-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title ">Edit Model</h4>
+        <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+      <div class="modal-body card-body">
+        <!-- <div class="card">  -->
+        <form [formGroup]="partsFormEdit" novalidate (submit)="updatePartInfo(partsFormEdit)">
+          <mat-form-field class="invisible-field">
+            <input matInput type="text" formControlName="_id">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput formControlName="edit_model" placeholder="Model Number *" type="text">
+            <mat-error *ngIf="isSubmitted && !partsFormEdit.controls.edit_model.valid" class="text-danger">
+              Model Number is required .
+            </mat-error>
+          </mat-form-field>
+
+          <!-- <mat-form-field class="example-full-width">
+              <input matInput formControlName="edit_part_number" placeholder="Part Number *" type="text">
+              <mat-error *ngIf="partsFormEdit.controls.edit_part_number.errors">
+                <mat-error *ngIf="isSubmitted && partsFormEdit.controls.edit_part_number.errors.required"
+                  class="text-danger">
+                  Part Number is required .
+                </mat-error>
+              </mat-error>
+            </mat-form-field> -->
+
+          <!-- <mat-form-field class="example-full-width">
+              <input matInput formControlName="edit_bath_number_denominator" placeholder="Bath Number *" type="number">
+              <mat-error *ngIf="partsFormEdit.controls.edit_bath_number_denominator.errors">
+                <mat-error *ngIf="isSubmitted && partsFormEdit.controls.edit_bath_number_denominator.errors.required"
+                  class="text-danger">
+                  Part Number is required .
+                </mat-error>
+              </mat-error>
+            </mat-form-field> -->
+
+          <div class="category form-category">* Required fields</div>
+          <div class="modal-footer">
+            <button mat-raised-button type="button" class="btn btn-fill btn-dark" data-dismiss="modal">Close</button>
+            <button mat-raised-button type="submit" class="btn btn-fill btn-primary">Submit</button>
+
+          </div>
+        </form>
+        <!-- </div> -->
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--  End Modal -->
+
+
+
+<!-- bulk upload modal  -->
+<div class="modal" id="add-bulk-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header ">
+        <h4 class="modal-title livis-modal-heading" i18n="@@editModel">
+          {{ 'Upload File' }}
+        </h4>
+        <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="material-icons">clear</i>
+        </button>
+      </div>
+      <input style="align-self: center; padding: 10px;" type="file"
+      id="file"
+      (change)="handleFileInput($event.target.files)"/>
+      <div class="modal-footer">
+        <button mat-raised-button type="button" class="btn btn-fill btn-secondary" data-dismiss="modal" i18n="@@close">
+          {{ 'Close' }}
+        </button>
+        <button mat-raised-button type="submit" class="btn btn-fill btn-primary" i18n="@@submit" *ngIf="doneUploading"
+          (click)="uploadFileToActivity()">
+          {{ 'Submit' }}
+        </button>
+        <button mat-raised-button type="submit" class="btn btn-fill btn-primary" i18n="@@submit" *ngIf="!doneUploading" disabled
+        >
+        {{ 'Uploading ...' }}
+      </button>
+      </div>
+    </div>
+  </div>
+</div>

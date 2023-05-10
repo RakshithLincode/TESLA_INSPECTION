@@ -1,0 +1,38 @@
+.defect-table-wrap
+{
+    display: flex;
+    /* display: flex;
+    width: 100%; */
+}
+
+#defect-detail-table
+{
+    margin-top: 6px;
+}
+.table-right-border
+{
+    border-right: 1px solid #999999;
+}
+
+.highlight-selected-row{
+    background: #999999; /* green */
+  }
+
+/* 
+  .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+  }
+  .custom-day.focused {
+    background-color: #e6e6e6;
+  }
+  .custom-day.range, .custom-day:hover {
+    background-color: rgb(2, 117, 216);
+    color: white;
+  }
+  .custom-day.faded {
+    background-color: rgba(2, 117, 216, 0.5);
+  } */

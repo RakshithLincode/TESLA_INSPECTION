@@ -1,0 +1,477 @@
+<div class="operator-panel mt-5 ">
+  <div class="col-md-12 col-sm-12 row justify-content-between mt-2 mb-1">
+    <div class="col-md-4 row col-sm-12 " style="margin-left: 2% !important;">
+      <div class="col-md-6 part-name row">
+        <!-- <span style="align-self: flex-end;">
+          Part Name : &nbsp;
+          {{selected_part_item ? selected_part_item : '--'}}
+        </span> -->
+      </div>
+    </div>
+    <!-- <div class="col-md-4 row justify-content-end">
+            <div class="col-md-3">
+                <button class="btn btn-primary inspect-button invisible" id="inspect_btn">Inspect</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-danger operator-button invisible" id="stop_process_btn">Stop Process</button>
+            </div>
+        </div> -->
+  </div>
+  <div class="col-md-12 row main-box">
+    <div class="col-md-9  col-lg-9 col-sm-12 camera-shots row" id="camera_layout_wrap"
+      style="position:relative !important">
+      <!-- <div class="status-box">
+        <div class="status-status-box">
+
+          <span *ngIf="inspection_status == 'Accepted'"
+            style="background: #20BA07 !important ; color:white !important">Accepted</span>
+          <span *ngIf="inspection_status == 'Rejected'"
+            style="background: red !important ; color:white !important">Rejected</span>
+        </div>
+        <div *ngIf="defect_list">
+
+          <div class="defect-under-status row" *ngFor="let defect of defect_list">
+            <span class=" col-md-12 col-md-12 status-defect"> {{defect}} </span>
+
+          </div>
+        </div>
+      </div>
+      <div class="live-box">
+        <span><img src="../../../../../assets/img/live.png" width="100%" alt=""></span>
+      </div>
+      <div class="fullscreen-box" (click)="goFullScreen()" id="full-screen-icon-open">
+        <span><img src="../../../../../assets/img/fullscreen.png" width="35px" alt=""></span>
+      </div>
+      <div class="fullscreen-box invisible" (click)="exitFullScreen()" id="full-screen-icon-close">
+
+        <span><img src="../../../../../assets/img/fullscreen.png" class="" width="35px" alt=""></span>
+      </div> -->
+    </div>
+    <!-- BUTTON DIV -->
+    <div class="col-md-3 col-sm-12 col-lg-3">
+      <div class="col-md-12 row justify-content-between" style="margin-bottom: 10px !important;">
+        <!-- <button class="btn btn-primary livis-start-btn " (click)="setConfigurationFunction()"
+          id="configure_btn">Configure</button> -->
+        <button class="btn btn-primary justify-content-start livis-start-btn " (click)="showStartForm()"
+          id="start_process_btn">Start
+          Process</button>
+        <button class="btn btn-primary justify-content-end livis-start-btn invisible" (click)="getinspection()"
+          [disabled]="Apicalldone" id="inspect_btn">{{buttonText}}</button>
+        <!-- <button class="btn btn-primary justify-content-end livis-start-btn invisible" *ngIf="Apicalldone" [disabled]="true"
+          id="inspect_btn">Please wait ...</button>
+        -->
+        <!-- {{Apicalldone}}  -->
+        <button class="btn btn-danger operator-button invisible" id="stop_process_btn" (click)="processEndForm()">Stop
+          Process</button>
+        <!-- <button class="btn btn-success justify-content-start livis-start-btn " (click)="continuRobotMovenent()"
+          id="start_process_btn">Continue
+          Robot</button> -->
+      </div>
+
+      <div class="right-sidebar-container">
+
+        <!-- INSPECTION COUNT -->
+        <mat-accordion>
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+              <mat-panel-title class="livis-heading insp-count">INSPECTION COUNT</mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+
+            <div class="row slider-dropdown">
+              <div class="col-md-4 row">
+                <span class="center-aligner col-md-12 col-md-12 units"> Units </span>
+                <span class="center-aligner col-md-12 value-count">{{acceptedCount ? acceptedCount : 0 }}</span>
+                <span class="center-aligner col-md-12 accepted status-dropdown-count"> Accepted </span>
+              </div>
+              <!-- <mat-divider class="center-aligner divider-width"></mat-divider> -->
+              <!-- <div></div> -->
+              <div class="col-md-4 row">
+                <span class="center-aligner col-md-12 units"> Units </span>
+                <span class="center-aligner col-md-12 value-count">{{rejectedCount ? rejectedCount : 0}}</span>
+                <span class="center-aligner col-md-12  rejected status-dropdown-count"> Rejected </span>
+              </div>
+
+              <!-- <mat-divider  class="center-aligner divider-width"></mat-divider> -->
+              <div class="col-md-4 row">
+                <span class="center-aligner col-md-12 units"> Total </span>
+                <span class="center-aligner col-md-12 value-count">{{totalCount ? totalCount : 0}}</span>
+                <span class="center-aligner col-md-12 status-dropdown-count"> Count </span>
+              </div>
+            </div>
+          </mat-expansion-panel>
+          <!-- 2nd Expansion -->
+        </mat-accordion>
+
+        <!--STATUS-->
+        <mat-accordion>
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+              <mat-panel-title class="livis-heading insp-count">STATUS</mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div class="row justify-content-center livis-heading">
+              <div class="accepted status" *ngIf="inspection_status == 'Accepted'">
+                ACCEPTED
+              </div>
+              <div class="rejected status" *ngIf="inspection_status == 'Rejected'">
+                REJECTED
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <!--DEFECT DETAILS-->
+        <mat-accordion>
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+              <mat-panel-title class="livis-heading insp-count">DETAILS</mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <!-- <div class="row defect-css"> -->
+              <!-- <div class="col-md-8">
+                Posiiton Radius Defect: 
+              </div>
+              <div class="">{{defects}}</div> -->
+            <!-- </div> -->
+            <!-- <div class="row defect-css"> -->
+              <!-- <div class="col-md-8">
+                Radius Defect Value: 
+              </div>
+              <div class="">{{radius_defect_value}}</div> -->
+            <!-- </div> -->
+            <div class="row defect-css">
+              <div class="col-md-8">
+                Left Radius: 
+              </div>
+              <div class="">{{left_radius}}</div>
+            </div>
+            <div class="row defect-css">
+              <div class="col-md-8">
+                Left Length Edge: 
+              </div>
+              <div class="">{{left_length}}</div>
+            </div>
+            <div class="row defect-css">
+              <div class="col-md-8">
+                Right Radius: 
+              </div>
+              <div class="">{{right_radius}}</div>
+            </div>
+            <div class="row defect-css">
+              <div class="col-md-8">
+                Right Length Edge: 
+              </div>
+              <div class="">{{right_length}}</div>
+            </div>
+            <div class="row" *ngIf="defect_list">
+              <!-- <span class="center-aligner defect-list" *ngFor="let defect of defect_list; last as isLast"> {{defect
+                | livisUnderscorePipe | livisCamelCasePipe}}<ng-container *ngIf="!isLast">, </ng-container>&nbsp;
+              </span> -->
+              <!-- <div class="col-md-12 row my-1">
+                <span class=" col-md-10 status-dropdown-count"> Description </span>
+                <span class="main-element col-md-2 d-flex px-0" *ngIf="defect_list.includes('Description'); else unaccepted">
+                  <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                  </mat-icon>
+                </span>
+                <ng-template #unaccepted>
+                  <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                  </mat-icon>
+                </ng-template>
+              </div>
+              <div class="col-md-12 row my-1">
+                <span class=" col-md-10 status-dropdown-count"> Special Barcode </span>
+                <span class="main-element col-md-2 d-flex px-0" *ngIf="defects && defects.includes('Special_Barcode'); else unaccepted">
+                  <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                </mat-icon>
+              </span>
+              <ng-template #unaccepted>
+                  <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                  </mat-icon>
+                </ng-template>
+              </div>
+              <div class="col-md-12 row my-1">
+                <span class=" col-md-10 status-dropdown-count"> Batch ID </span>
+                <span class="main-element col-md-2 d-flex px-0" *ngIf="defect_list.includes('Batch_ID'); else unaccepted">
+                  <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                  </mat-icon>
+                </span>
+                <ng-template #unaccepted>
+                  <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                  </mat-icon>
+                </ng-template>
+              </div>
+              <div class="col-md-12 row my-1">
+                <span class=" col-md-10 status-dropdown-count">Material ID</span>
+                <span class="main-element col-md-2 d-flex px-0" *ngIf="defect_list.includes('Material_ID'); else unaccepted">
+                  <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                  </mat-icon>
+                </span>
+                <ng-template #unaccepted>
+                  <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                  </mat-icon>
+                </ng-template>
+              </div>
+              <div class="col-md-12 row my-1">
+                <span class=" col-md-10 status-dropdown-count"> Net wt </span>
+                <span class="main-element col-md-2 d-flex px-0" *ngIf="defect_list.includes('Net_Wt'); else unaccepted">
+                  <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                  </mat-icon>
+                </span>
+                <ng-template #unaccepted>
+                  <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                  </mat-icon>
+                </ng-template>
+              </div>
+              <div class="col-md-12 row my-1">
+                <span class=" col-md-10 status-dropdown-count"> Bag ID </span>
+                <span class="main-element col-md-2 d-flex px-0" *ngIf="defect_list.includes('Bag_ID'); else unaccepted">
+                  <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                  </mat-icon>
+                </span>
+                <ng-template #unaccepted>
+                  <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                  </mat-icon>
+                </ng-template>
+              </div> -->
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <!--ALLIGNMENT VALUE-->
+        <mat-accordion>
+          <mat-expansion-panel [expanded]="true" #mep="matExpansionPanel">
+            <mat-expansion-panel-header [collapsedHeight]="'40px'" [expandedHeight]="'40px'">
+              <mat-panel-title class="livis-heading insp-count" style="max-width : 200px !important">SETTINGS
+                <!-- <mat-icon class="livis-warning" [hidden]="false" data-toggle="modal" data-target="#edit-threshold-modal">
+                edit
+              </mat-icon> -->
+                <div class="justify-content-center align-items-center pl-3">
+                  <mat-icon [hidden]="(showEditIcon || !mep.expanded)" data-toggle="modal"
+                    data-target="#edit-threshold-modal" (click)="editThreshold($event)"
+                    style="z-index: 100000 !important; font-size: medium;">
+                    edit
+                  </mat-icon>
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div class="row throshold-setter livis-heading">
+              <div class="col-md-12 row my-2">
+                <div class="col-md-6 allignment-heading-font-size">Circle Radius</div>
+                <div class="col-md-6 text-center allignment-font-size">{{label_angle ? label_angle :
+                  0}}</div>    
+                  <div class="col-md-6 allignment-heading-font-size">Centroid To Egde Left</div>
+                  <div class="col-md-6 text-center allignment-font-size">{{centroid_to_edge_value_1 ? centroid_to_edge_value_1 :
+                    0}}</div> 
+                  <div class="col-md-6 allignment-heading-font-size">Centroid To Egde Right</div>
+                  <div class="col-md-6 text-center allignment-font-size">{{centroid_to_edge_value_2 ? centroid_to_edge_value_2 :
+                    0}}</div>         
+                <!-- <span class="main-element d-flex" *ngIf="!label_angle; else unaccepted">
+                  <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                  </mat-icon>
+                </span> -->
+                <ng-template #unaccepted>
+                  <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                  </mat-icon>
+                </ng-template>
+              </div>
+              <!-- <div class="col-md-12 row my-2">
+                <div class="col-md-5 allignment-heading-font-size">Distance(Sealent - Label)</div>
+                <div class="col-md-5 text-center allignment-font-size">{{threshold ? threshold.top_triangle :
+                  0}}({{threshold_actual ? threshold_actual.top_value : 0}})</div>
+                <span class="main-element d-flex" *ngIf="!label_to_sealent_measurment; else unaccepted">
+                  <mat-icon class="material-icons accepted-part" matTooltip="Passed">check_circle
+                  </mat-icon>
+                </span>
+                <ng-template #unaccepted>
+                  <mat-icon class="material-icons unaccepted-part" matTooltip="Failed">highlight_off
+                  </mat-icon>
+                </ng-template>
+              </div> -->
+              
+              <!-- <div class="col-md-6 row my-2">
+                <div class="col-md-9 allignment-heading-font-size">LEFT</div>
+                <div class="col-md-3 text-center allignment-font-size">{{threshold ? threshold.left_triangle : 0}}({{threshold_actual ? threshold_actual.left_value : 0}})</div>
+              </div>
+              <div class="col-md-6 row my-2">
+                <div class="col-md-9 allignment-heading-font-size ">BOTTOM</div>
+                <div class="col-md-3 justify-content-end allignment-font-size ">
+                  {{threshold ? threshold.bottom_triangle : 0}}({{threshold_actual ? threshold_actual.bottom_value : 0}})</div>
+              </div>
+              <div class="col-md-6 row my-2">
+                <div class="col-md-9 allignment-heading-font-size">RIGHT</div>
+                <div class="col-md-3 text-center allignment-font-size">{{threshold ? threshold.right_triangle : 0}}({{threshold_actual ? threshold_actual.right_value : 0}})
+                </div>
+              </div> -->
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+        <!-- THRESHOLD SLIDER -->
+        <!-- <mat-accordion>
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="livis-heading insp-count">SET THRESHOLD</mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-divider></mat-divider>
+            <div class="row throshold-setter">
+              <label for="customRange3" class="form-label col-md-12">Example range</label>
+              <input type="range" class="form-range col-md-12" [(ngModel)]="rangeValue" (change)="onChangeRange(rangeValue)" min="0" max="1" step="0.1" id="customRange3">
+              <span *ngIf="rangeValue">{{rangeValue ? rangeValue : 0}}</span>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- SHOW START FORM MODAL -->
+<div class="modal " id="process-start-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title livis-modal-heading" i18n="@@addPar">{{'Select Usecase' }}</h4>
+        <div class="livis-box-cross-icon">
+          <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="processStartForm" novalidate (ngSubmit)="startProcess(processStartForm)">
+          <div class="row">
+            <mat-form-field class="col-md-12">
+              <mat-select (selectionChange)="partChange($event.value)" placeholder="{{ 'Select Usecase'  }} *"
+                formControlName="part_name">
+                <mat-option *ngFor="let part of part_list" [value]="part.part_name">{{part.part_name}}</mat-option>
+              </mat-select>
+
+              <mat-error *ngIf="
+                                isSubmitted && !processStartForm.controls.model.valid
+                              " class="text-danger" i18n="@@partNumberRequired">
+                {{ "Model is required" }} .
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="modal-footer">
+            <button mat-raised-button type="submit" class="btn btn-livis-secondary" data-dismiss="modal"
+              aria-hidden="true">{{'Cancel' }}</button>&nbsp;
+            <button mat-raised-button type="submit" class="btn btn-livis-primary" i18n="@@submit">{{'Submit' }}</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CONFIGRATION MODAL -->
+<div class="modal " id="configuration-model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" i18n="@@addPar">{{'Set Configuration' }}</h4>
+        <div class="livis-box-cross-icon">
+          <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="setConfiguration" (ngSubmit)="submitModalConfiguration(setConfiguration)">
+          <mat-form-field>
+            <input matInput formControlName="rows" placeholder="Number of rows" type="text">
+            <mat-error *ngIf="isSubmittedConfig && !setConfiguration.controls.rows.valid" class="text-danger">
+              Number of rows is required .
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="columns" placeholder="Number of columns" type="text">
+            <mat-error *ngIf="isSubmittedConfig && !setConfiguration.controls.columns.valid" class="text-danger">
+              Number of columns is required .
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput formControlName="port" placeholder="Port Number" type="text">
+            <mat-error *ngIf="isSubmittedConfig && !setConfiguration.controls.port.valid" class="text-danger">
+              Port Number is required .
+            </mat-error>
+          </mat-form-field>
+          <div class="modal-footer">
+            <button mat-raised-button type="submit" class="btn btn-livis-secondary" data-dismiss="modal"
+              aria-hidden="true">{{'Cancel' }}</button>
+            <button mat-raised-button type="submit" class="btn btn-livis-primary" i18n="@@submit">{{'Submit' }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ALIGNMENT MODAL -->
+<div class="modal" id="edit-threshold-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  data-backdrop="static" data-keyboard="false" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title livis-modal-heading" i18n="@@addPar">{{'Set Configuration' }}</h4>
+        <div class="livis-box-cross-icon">
+          <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="thresholdForm" (ngSubmit)="submitThreshold(thresholdForm)">
+          <div class="col-md-12 row">
+            <div class="col-md-12 ">
+              <mat-form-field>
+                <input matInput formControlName="top" placeholder="Circle Radius Value in Degrees" type="number" step="1"
+                  min="0">
+                <mat-error *ngIf="isSubmitted && !thresholdForm.controls.rows.valid" class="text-danger">
+                  Value is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-md-6 ">
+              <mat-form-field>
+                <input matInput formControlName="bottom" placeholder="Label To Sealer Value" type="number" step="0.1" min="0">
+                <mat-error *ngIf="isSubmitted && !thresholdForm.controls.columns.valid" class="text-danger">
+                  Value is required.
+                </mat-error>
+              </mat-form-field>
+            </div> -->
+            </div>
+          <div class="col-md-12 row">
+            <div class="col-md-6 ">
+              <mat-form-field>
+                <input matInput formControlName="bottom" placeholder="Centroid To Egde Left" type="number" step="1" min="0">
+                <mat-error *ngIf="isSubmitted && !thresholdForm.controls.port.valid" class="text-danger">
+                  Value is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6 ">
+              <mat-form-field>
+                <input matInput formControlName="left" placeholder="Centroid To Egde Right" type="number" step="1" min="0">
+                <mat-error *ngIf="isSubmitted && !thresholdForm.controls.port.valid" class="text-danger">
+                  Value is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button mat-raised-button type="submit" class="btn btn-livis-secondary" data-dismiss="modal"
+              aria-hidden="true" (click)="closeModal()">{{'Cancel'}}</button>
+            <button mat-raised-button type="submit" class="btn btn-livis-primary" i18n="@@submit">{{'Submit' }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

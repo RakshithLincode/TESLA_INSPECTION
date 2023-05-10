@@ -1,0 +1,30 @@
+
+<div class="wrapper">
+    <!-- <div class="sidebar livis-sidebar" style="z-index:1 !important ;" data-color="white" data-background-color="red" data-image="./assets/img/sidebar-1.jpg">
+        <app-sidebar-cmp></app-sidebar-cmp>
+    </div> -->
+    <div class="main-panel" style="width:100% !important ; height: 100% !important;">
+        <app-navbar-cmp></app-navbar-cmp>
+        <router-outlet></router-outlet>
+        <!-- <div *ngIf="!isMap()"> -->
+            <app-footer-cmp></app-footer-cmp>
+        <!-- </div> -->
+    </div>
+    <app-fixedplugin></app-fixedplugin>
+</div>
+
+
+
+
+<!-- with sidebar
+ <div class="wrapper">
+    <div class="sidebar livis-sidebar" style="z-index:1 !important ;" data-color="white" data-background-color="red" data-image="./assets/img/sidebar-1.jpg">
+        <app-sidebar-cmp></app-sidebar-cmp>
+    </div>
+    <div class="main-panel">
+        <app-navbar-cmp></app-navbar-cmp>
+        <router-outlet></router-outlet>
+
+    </div>
+    <app-fixedplugin></app-fixedplugin>
+</div> -->

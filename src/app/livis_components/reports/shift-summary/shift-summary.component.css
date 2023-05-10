@@ -1,0 +1,19 @@
+.defect-table-wrap
+{
+    display: flex;
+    /* display: flex;
+    width: 100%; */
+}
+
+#defect-detail-table
+{
+    margin-top: 6px;
+}
+.table-right-border
+{
+    border-right: 1px solid #999999;
+}
+
+.highlight-selected-row{
+    background: #999999; /* green */
+}

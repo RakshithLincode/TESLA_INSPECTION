@@ -1,0 +1,64 @@
+.has-error .form-control[type="email"],
+.has-error input[type="password"] {
+    border-color: rgb(216, 12, 12) !important;
+    color: rgb(230, 14, 14);
+    /* background-color: black; */
+}
+
+.mat-option.mat-selected:not(.mat-option-multiple){
+    background-color: #ff5a60 !important;
+    color: white !important;
+}
+
+.full-width {
+    width: 200%;
+}
+
+.mat-option:hover {
+    background-color: #ff5a60 !important;
+    color: white !important;
+}
+
+.mat-option.mat-selected:hover{
+    background-color: #ff5a60 !important;
+    color: white !important;
+}
+
+.login-page .page-header .container, .lock-page .page-header .container {
+    padding-top: 33vh !important;
+    /* padding-top: 2vh !important; */
+}
+
+.custom-container-padding{
+    padding-top: 2vh !important;
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0px 20px;
+}
+
+.logo-image {
+    z-index: 10;
+}
+
+.logo-image img {
+    height: 100px;
+    width: auto;
+}
+
+.nav-pills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0px;
+    background-color: hsla(0,0%,78.4%,.2);
+    cursor: pointer;
+}
+
+.nav-pills .nav-item .nav-link.active {
+    border-radius: 4px;
+    transform: scale(1.05);
+}

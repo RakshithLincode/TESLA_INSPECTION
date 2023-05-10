@@ -1,0 +1,219 @@
+<div class="main-content">
+    <div class="container-fluid">
+      
+      <mat-card>
+        <mat-card-title>
+          <button mat-raised-button (click)="addShift(element)" class="btn btn-fill btn-primary pull-right">
+            Add Shift
+          </button>  
+        </mat-card-title>
+       
+        <mat-card-content>
+          <mat-form-field class="col-md-3 col-md-offset-4">
+            <mat-label>Filter Shifts</mat-label>
+            <input matInput class="form-control" type="text" [(ngModel)]="filterValue"
+          (blur)="filterShift(filterValue)" placeholder="Search shifts">
+          </mat-form-field>
+          <mat-table #table [dataSource]="dataSource" matSort>
+            <!-- First Column ID-->
+           
+            
+            <!-- Second Column -->
+
+            <ng-container matColumnDef="sl">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Sl No. </mat-header-cell>
+              <mat-cell *matCellDef="let element;let i = index"> {{(i+1)}} </mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="shift_name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Shift Name </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.shift_name}} </mat-cell>
+            </ng-container>
+  
+            <!-- Third Column -->
+            <ng-container matColumnDef="start_time">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Start Time </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{element.start_time}}
+              </mat-cell>
+            </ng-container>
+            <!-- Fourth Column -->
+            <ng-container matColumnDef="end_time">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> End Time </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.end_time }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <div *ngIf="element.status">
+                  <span color="primary" class="material-icons icon-status-active">fiber_manual_record </span>
+                </div>
+                <div *ngIf="!element.status">
+                  <span color="primary" class="material-icons icon-status-inactive">fiber_manual_record </span>
+                </div>    
+              </mat-cell>
+            </ng-container>
+            <!-- Action Column -->
+            <ng-container matColumnDef="operation">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Operation </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <button mat-icon-button matTooltip="Click to Edit" class="iconbutton"
+                  color="primary" (click)="editShift(element._id)">
+                  <mat-icon class="livis-warning">edit</mat-icon>
+                </button> 
+                <button mat-icon-button matTooltip="Click to Delete" class="iconbutton"
+                  color="" (click)="deleteShift(element._id)">
+                  <mat-icon class="livis-danger">delete</mat-icon>
+                </button> 
+                </mat-cell>
+            </ng-container>
+           
+  
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </mat-card-content>
+        <mat-card-content>
+            <mat-paginator #paginator [length]="resultsLength"
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 20]">
+            </mat-paginator>
+        </mat-card-content>
+    </mat-card>
+      
+       
+    </div>
+</div>
+
+   <!-- Add Shift Modal -->
+   <div class="modal fade" id="add-shift-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header card-header">
+          <h4 class="modal-title card-title">Add Shift</h4>
+          <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <div class="modal-body">
+            <!-- <div class="card">  -->
+          <form [formGroup]="shiftForm" novalidate (submit)="addNewShift(shiftForm)">
+
+
+            <mat-form-field class="">
+              <input matInput placeholder="Shift Name *" type="text" formControlName="shift_name">
+              <mat-error *ngIf="isSubmitted && shiftForm.controls.shift_name.errors">
+                <mat-error *ngIf="shiftForm.controls.shift_name.errors.required" class="text-danger">
+                  Shift Name is required .
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="">
+             
+              <input matInput [ngxTimepicker]="start_time" aria-label="24hr format" [format]="24" formControlName="start_time" placeholder="Start Time" type="text">
+              <ngx-material-timepicker #start_time></ngx-material-timepicker>
+              <mat-error *ngIf="isSubmitted && shiftForm.controls.start_time.errors">
+                <mat-error *ngIf="shiftForm.controls.start_time.errors.required" class="text-danger">
+                  Start Time is required .
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="">
+              <input matInput [ngxTimepicker]="end_time" aria-label="24hr format" [format]="24" formControlName="end_time" placeholder="End Time" type="text">
+              <ngx-material-timepicker #end_time></ngx-material-timepicker>
+              <mat-error *ngIf="isSubmitted && shiftForm.controls.end_time.errors">
+                <mat-error *ngIf="shiftForm.controls.end_time.errors.required" class="text-danger">
+                  End Time is required .
+                </mat-error>
+              </mat-error>
+            </mat-form-field>
+            
+           
+          
+
+            <div class="form-group">
+              <mat-checkbox  formControlName="status">
+                Shift Status
+              </mat-checkbox>
+            </div> 
+           
+           
+            <div class="category form-category">* Required fields</div>
+            <div class="modal-footer">
+                <button mat-raised-button type="button" class="btn btn-fill btn-dark" data-dismiss="modal">Close</button>
+                <button mat-raised-button type="submit" class="btn btn-fill btn-primary">Submit</button>
+               
+              </div>
+          </form>
+          <!-- </div> -->
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  <!--  End Modal -->
+
+   <!-- Edit Shift Modal -->
+   <div class="modal fade" id="edit-shift-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header card-header">
+          <h4 class="modal-title card-title">Edit Shift</h4>
+          <button mat-button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+        <div class="modal-body">
+            <!-- <div class="card">  -->
+         
+          <form [formGroup]="shiftFormEdit" novalidate (submit)="updateShift(shiftFormEdit)">
+            <mat-form-field class="invisible-field">
+              <input matInput type="text"  formControlName="_id">
+            </mat-form-field>
+            <div class="form-group">
+              <input class="form-control" formControlName="edit_shift_name" placeholder="Shift Name *" type="text">
+              <!-- {{partsForm.controls}} -->
+              <mat-error *ngIf="shiftFormEdit.controls.edit_shift_name.errors">
+                <mat-error *ngIf="isSubmitted && shiftFormEdit.controls.edit_shift_name.errors.required" class="text-danger">
+                  Shift Name is required .
+                </mat-error>
+              </mat-error>
+            </div>
+            <div class="form-group">
+              <input class="form-control" aria-label="24hr format" [format]="24" [ngxTimepicker]="edit_start_time" formControlName="edit_start_time" placeholder="Start Time" type="text">
+              <ngx-material-timepicker #edit_start_time></ngx-material-timepicker>
+              <mat-error *ngIf="isSubmitted && shiftFormEdit.controls.edit_start_time.errors">
+                <mat-error *ngIf="shiftFormEdit.controls.edit_start_time.errors.required" class="text-danger">
+                  Start Time is required .
+                </mat-error>
+              </mat-error>
+            </div> 
+
+            <div class="form-group">
+              <input class="form-control" aria-label="24hr format" [format]="24" [ngxTimepicker]="edit_end_time" formControlName="edit_end_time" placeholder="End Time" type="text">
+              <ngx-material-timepicker #edit_end_time></ngx-material-timepicker>
+              <mat-error *ngIf="isSubmitted && shiftFormEdit.controls.edit_end_time.errors">
+                <mat-error *ngIf="shiftFormEdit.controls.edit_end_time.errors.required" class="text-danger">
+                  End Time is required .
+                </mat-error>
+              </mat-error>
+            </div> 
+            <mat-checkbox formControlName="edit_status">status</mat-checkbox>
+           
+            <div class="category form-category">* Required fields</div>
+            <div class="modal-footer">
+                <button mat-raised-button type="button" class="btn btn-fill btn-dark" data-dismiss="modal">Close</button>
+                <button mat-raised-button type="submit" class="btn btn-fill btn-primary">Submit</button>
+               
+              </div>
+          </form>
+          <!-- </div> -->
+        </div>
+       
+      </div>
+    </div>
+  </div>
+  <!--  End Modal -->

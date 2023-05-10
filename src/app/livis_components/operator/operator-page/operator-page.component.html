@@ -1,0 +1,136 @@
+<div class="main-content">
+    <div class="container-fluid">
+       
+        <div class="row">
+            <div class="col-md-9 camera-wrap">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title"><b>LIVE FEED</b></h4>
+                    </div>
+
+                    <div class="card-body camera-wrap-body">
+                        <div class="row" id="camera_layout_wrap">
+                            
+
+                            <!-- <div class="col-lg-6 col-md-6 col-sm-6 camera-img-wrap" >
+                                <img src="../../../../assets/img/nopreview.png" id="live_feed_01" alt="" >
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 camera-img-wrap" >
+                                <img src="../../../../assets/img/nopreview.png" id="live_feed_01" alt="" >
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 camera-img-wrap" >
+                                <img src="../../../../assets/img/nopreview.png" id="live_feed_01" alt="" >
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6 camera-img-wrap" >
+                                <img src="../../../../assets/img/nopreview.png" id="live_feed_01" alt="" >
+                            </div> -->
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-3 ">
+
+                <div  *ngIf = "!result_status" class="card">
+                    <div id="result-status-wrap" class="card-header card-header-success text-center">
+                      <h4 class="card-title">
+                        <b>STATUS</b>
+                        <b style="display:block" id="result-status"></b>
+                      </h4>
+                    </div>
+
+                    <div class="card-body defect-stats-wrap">
+                        <div class="card-body text-center">
+                            <h4  style="
+                            text-transform: uppercase;
+                            font-weight: 600;
+                            color: #000000;
+                            font-size: 2em;
+                        " id="livis-total-accepted"> -- </h4>
+                        </div>
+                    </div>            
+                </div>
+
+                <div  *ngIf = "result_status=='Accepted'" class="card">
+                    <div id="result-status-wrap" class="card-header card-header-success text-center">
+                      <h4 class="card-title">
+                        <b>STATUS</b>
+                        <b style="display:block" id="result-status"></b>
+                      </h4>
+                    </div>
+
+                    <div class="card-body defect-stats-wrap">
+                        <div class="card-body text-center">
+                            <h4  style="
+                            text-transform: uppercase;
+                            font-weight: 600;
+                            color: #4ecbb4;
+                            font-size: 2em;
+                        " id="livis-total-accepted">ACCEPTED</h4>
+                        </div>
+                    </div>            
+                </div> 
+                
+                <div  *ngIf = "result_status=='Rejected'" class="card">
+                    <div id="result-status-wrap" class="card-header card-header-danger text-center">
+                      <h4 class="card-title">
+                        <b>STATUS</b>
+                        <b style="display:block" id="result-status"></b>
+                      </h4>
+                    </div>
+
+                    <div class="card-body defect-stats-wrap">
+                        <div class="card-body text-center">
+                            <h4  style="
+                            text-transform: uppercase;
+                            font-weight: 600;
+                            color: #d53300;
+                            font-size: 2em;
+                        " id="livis-total-accepted">REJECTED</h4>
+                        </div>
+                    </div> 
+                </div>    
+
+                <!-- <div *ngIf="!defect_list" class="card">
+                    <div id="defect-status-wrap" class="card-header card-header-success text-center">
+                      <h4 class="card-title">
+                        <b>DEFECT LIST</b>
+                        <b style="display:block" id="defect-list"></b>
+                      </h4>
+                    </div>
+
+                    <div class="card-body defect-stats-wrap">
+                        <div class="card-body text-center">
+                            {{ defect_list?defect_list:'--' }}
+                        </div>
+                    </div>            
+                </div>-->
+
+                <div *ngIf="defect_list" class="card">
+                    <div id="defect-status-wrap" class="card-header card-header-danger text-center">
+                      <h4 class="card-title">
+                        <b>DEFECT LIST</b>
+                        <b style="display:block" id="defect-list"></b>
+                      </h4>
+                    </div>
+
+                    <div class="card-body defect-stats-wrap">
+                        <div class="card-body text-center">
+                            <h5 *ngFor="let d of defect_list">{{ d | livisUnderscorePipe | titlecase }}</h5>
+                        </div>
+                    </div>            
+                </div> 
+
+            </div>
+
+    </div>
+</div>
+
+ 

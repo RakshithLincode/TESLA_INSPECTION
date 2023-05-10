@@ -1,0 +1,465 @@
+.navbar {
+    padding: 5px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    /* position: fixed !important; */
+    z-index: 100;
+    top: 0px !important;
+    min-height: 50px !important;
+    position: absolute !important;
+    width: 96% !important;
+    padding: 0px !important;
+}
+
+.nav-item {
+    margin: 1rem;
+    width: 50px;
+    display: flex;
+}
+
+.navbar-brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.livis-parts-search-input {
+    border: none !important;
+    width: 100% !important;
+    border-radius: 5px !important;
+    height: 40px !important;
+    font-size: 12px !important;
+    padding-left: 80px !important;
+    padding-right: 40px !important;
+    background-color: var(--livis-search-input-bg-color) !important;
+}
+
+.livis-parts-search-input::placeholder {
+    color: var(--livis-search-input-color) !important;
+}
+
+
+.livis-parts-search-icon {
+    cursor: pointer !important;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+}
+
+.livis-parts-refresh-icon {
+    cursor: pointer !important;
+    width: 16px !important;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+
+.screen {
+    background-color: var(--livis-bg-color) !important;
+
+}
+
+.livis-parts-create-btn {
+    /* width: 80% !important; */
+    border-radius: 5px !important;
+    /* height: 40px !important; */
+    /* background-color: var(--livis-btn1-bg-color)  !important;
+    color: var(--livis-btn1-color)!important; */
+    font-size: 12px !important;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    cursor: pointer !important;
+}
+
+.livis-parts-create-btn:hover {
+
+    box-shadow: 0px 8px 24px -12px #7f7fa4;
+}
+
+
+/* .create-box::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    border-right: 1px solid #818181;
+    top: 10%;
+    bottom: 10%;
+} */
+
+.livis-parts-card-section {
+    padding-block-start: 100px !important;
+    margin-inline: 0px !important;
+    padding-inline: 18px !important;
+}
+
+.livis-parts-footer-div {
+    justify-content: space-between;
+}
+
+/* .after-line::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    border-right: 1px solid #818181;
+    top: 10%;
+    bottom: 10%;
+} */
+
+.livis-parts-footer-reach {
+    justify-content: end !important;
+}
+
+footer {
+    /* position: fixed; */
+    bottom: 0px !important;
+    width: 100% !important;
+    padding-block: 15px !important;
+}
+
+.livis-parts-card {
+    padding-inline: 18px !important;
+}
+
+
+.invisible {
+    display: none !important;
+}
+
+.solid-color {
+    background-color: #eee !important;
+}
+
+.box-icon {
+    padding: 8px !important;
+    margin-inline: 7px !important;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: #F4F4F7;
+    border-radius: 12px !important;
+}
+
+.box-icon:hover {
+    background-color: #1DA2BF;
+}
+
+.create-box {
+    margin-right: 10px !important;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+
+
+
+.livis-parts-profile {
+    background: url('../../../assets/img/profile2.png');
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    min-width: 50px !important;
+    width: 50px;
+    height: 30px;
+}
+
+.livis-parts-profile:hover {
+    background: url('../../../assets/img/profile.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    width: 50px;
+    height: 30px;
+    min-width: 50px !important;
+
+}
+
+.box-icon {
+    /* padding: 8px !important; */
+    /* margin-inline: 7px !important; */
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: #F4F4F7;
+    border-radius: 12px !important;
+}
+
+.box-icon:hover {
+    background-color: #1DA2BF;
+}
+
+.navbar-start-btn {
+    font-size: 10px !important;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.livis-start-btn {
+    color: var(--livis-bg-color) !important;
+    background: var(--livis-color) !important;
+    font-size: 12px !important;
+    padding-inline: 45px !important;
+    border-radius: 12px !important;
+    padding-block: 12px !important;
+}
+
+
+/* comment this for sidebar  */
+.icons-ms {
+    /* padding-block: 10px !important; */
+    /* background: white !important; */
+    /* border-radius: 10px !important; */
+    /* margin: 5px !important; */
+}
+
+
+
+/* navbar css  */
+.grey-back {
+    background: linear-gradient(90deg, rgb(210 210 210) 10%, rgb(205 205 205) 100%, rgb(221 217 217) -10%);
+}
+
+.margin-left {
+    margin-left: 10px;
+    max-width: 98% !important;
+}
+
+.no-margin {
+    margin-left: 0px !important;
+}
+
+.font-change {
+    padding-block: 10px !important;
+    font-size: 26px !important;
+    font-weight: 700 !important;
+}
+
+
+.navbar {
+    padding: 5px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    /* position: fixed !important; */
+    z-index: 100;
+    top: 0px !important;
+    min-height: 50px !important;
+    position: absolute !important;
+    width: 100% !important;
+    padding: 0px !important;
+}
+
+
+
+.navbar-brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.livis-parts-search-input {
+    border: none !important;
+    width: 100% !important;
+    border-radius: 5px !important;
+    height: 40px !important;
+    font-size: 12px !important;
+    padding-left: 80px !important;
+    padding-right: 40px !important;
+    background-color: var(--livis-search-input-bg-color) !important;
+}
+
+.livis-parts-search-input::placeholder {
+    color: var(--livis-search-input-color) !important;
+}
+
+
+.livis-parts-search-icon {
+    cursor: pointer !important;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+}
+
+.livis-parts-refresh-icon {
+    cursor: pointer !important;
+    width: 16px !important;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+
+.screen {
+    background-color: var(--livis-bg-color) !important;
+
+}
+
+.livis-parts-create-btn {
+    /* width: 80% !important; */
+    border-radius: 5px !important;
+    /* height: 40px !important; */
+    /* background-color: var(--livis-btn1-bg-color)  !important;
+    color: var(--livis-btn1-color)!important; */
+    font-size: 12px !important;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    cursor: pointer !important;
+}
+
+.livis-parts-create-btn:hover {
+
+    box-shadow: 0px 8px 24px -12px #7f7fa4;
+}
+
+/* 
+.create-box::after{
+    content: '';
+    position: absolute;
+    right: 0;
+    border-right: 1px solid #818181;
+    top: 10%;
+    bottom: 10%;
+} */
+
+.livis-parts-card-section {
+    padding-block-start: 100px !important;
+    margin-inline: 0px !important;
+    padding-inline: 18px !important;
+}
+
+.livis-parts-footer-div {
+    justify-content: space-between;
+}
+
+.after-line::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    border-right: 1px solid #818181;
+    top: 10%;
+    bottom: 10%;
+}
+
+.livis-parts-footer-reach {
+    justify-content: end !important;
+}
+
+footer {
+    /* position: fixed; */
+    bottom: 0px !important;
+    width: 100% !important;
+    padding-block: 15px !important;
+}
+
+.livis-parts-card {
+    padding-inline: 18px !important;
+}
+
+
+.invisible {
+    display: none !important;
+}
+
+.solid-color {
+    background-color: #eee !important;
+}
+
+.box-icon {
+    padding: 8px !important;
+    margin-inline: 7px !important;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: #F4F4F7;
+    border-radius: 12px !important;
+}
+
+.box-icon:hover {
+    background-color: #1DA2BF;
+}
+
+.create-box {
+    margin-right: 10px !important;
+    display: flex;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+
+
+
+/* .livis-parts-profile{
+    background: url('../../../../assets/img/profile2.png');
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    min-width: 50px !important;
+      width: 50px;
+    height: 30px;
+} */
+/* .livis-parts-profile:hover{
+    background: url('../../../../assets/img/profile.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+      width: 50px;
+    height: 30px;
+    min-width: 50px !important;
+
+} */
+
+.box-icon {
+    /* padding: 8px !important; */
+    /* margin-inline: 7px !important; */
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+    background-color: #F4F4F7;
+    border-radius: 12px !important;
+}
+
+.box-icon:hover {
+    background-color: #1DA2BF;
+}
+
+.navbar-start-btn {
+    font-size: 10px !important;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.livis-start-btn {
+    color: var(--livis-bg-color) !important;
+    background: var(--livis-color) !important;
+    font-size: 12px !important;
+    padding-inline: 45px !important;
+    border-radius: 12px !important;
+    padding-block: 12px !important;
+}
+
+
+@media(max-width : 1063px) {
+    .right-nav {
+        min-width: 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+}
+
+@media(max-width : 1200px) {
+
+    .create-box::after {
+        display: none !important;
+        border: none !important;
+    }
+}
+.button-hover-remove:hover{
+    box-shadow: none !important;
+}
+.dropdown-item:hover{
+    background-color: var(--livis-color);
+}
+.dropdown-item{
+cursor: pointer !important;
+}

@@ -1,0 +1,124 @@
+<div class="main-content">
+    <div class="container-fluid">       
+        <div class="row">
+            
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-primary">
+                      <div class="card-icon">
+                        <i class="material-icons">settings_ethernet</i>
+                      </div>
+                      <h4 class="card-title">Setting Details</h4>
+                    
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="settingForm" novalidate (submit)="updateSettingForm(settingForm)">
+            
+                            
+                            <mat-form-field >
+                              <input matInput formControlName="client_db_name" placeholder="Client DB Name *" type="text">
+                              <mat-error *ngIf="isSubmitted && !settingForm.controls.client_db_name.valid" class="text-danger">
+                                Client DB Name is required .
+                              </mat-error>
+                            </mat-form-field>
+
+                            <!-- <div class="row"> -->
+                
+                            <mat-form-field class="">
+                              <input matInput formControlName="static_path" placeholder="Static Path *" type="text">
+                              <mat-error *ngIf="settingForm.controls.static_path.errors">
+                                <mat-error *ngIf="isSubmitted && settingForm.controls.static_path.errors.required" class="text-danger">
+                                    Static Path is required .
+                                </mat-error>
+                              </mat-error>
+                            </mat-form-field>
+
+                            <!-- <div class="col-md-3">
+                                <span class="btn btn-round btn-rose btn-file">
+                                    <span class="fileinput-new fileinput-exists">Add Path</span>
+                                    <input (change) = "changePath($event)"  type="file" id="ctrl" webkitdirectory directory multiple name="upload_disc" />
+                                </span>
+                            </div>
+                            </div> -->
+
+                                        <!--Camera-->
+                <div formArrayName="config_datas">
+                    <div *ngFor="let address of settingForm.controls.config_datas.controls; let i=index" class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="livis-bold-text">Config Data {{i + 1}}</span>
+                        <span class="fa fa-remove pull-right" *ngIf="settingForm.controls.config_datas.controls.length > 1" (click)="removeConfigData(i)"></span>
+                    </div>
+                    <div class="panel-body" [formGroupName]="i">
+                        <div class="row"> 
+                            <mat-form-field class="col-md-6">
+                            <input matInput placeholder="key *" type="text" class="form-control" formControlName="key_config">
+                            <mat-error *ngIf="isSubmitted && !settingForm.controls.config_datas.controls[i].controls.key_config.valid" class="text-danger">
+                                Camera ID is required
+                            </mat-error>
+                            </mat-form-field>
+        
+                            <mat-form-field class="col-md-6">
+                            <input matInput placeholder="value *" type="text" class="form-control" formControlName="value_config">
+                            <mat-error *ngIf="isSubmitted && !settingForm.controls.config_datas.controls[i].controls.key_config.valid" class="text-danger">
+                                Camera ID is required
+                            </mat-error>
+                            </mat-form-field>
+                        </div> 
+                    
+                    </div>
+                    </div>
+                </div>
+      
+                <div class="margin-20">
+                    <a href="javascript:void(0);" (click)="addConfigData()" style="cursor: default">
+                    Add another config
+                    </a>
+                </div>
+                
+
+                <div class="row specification-wrap">
+                    <div class="model-specification-wrap col-md-6 available-box-wrap">
+                      <small class="text-muted">(Drag and Drop elements to Module Grid)</small>
+                      <h5>Available Module</h5>
+                    
+                      <div
+                        cdkDropList
+                        #availableList="cdkDropList"
+                        [cdkDropListData]="available_modules"
+                        [cdkDropListConnectedTo]="[featureList]"
+                        class="feature-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <div class="feature-box" *ngFor="let item of available_modules" cdkDrag>{{item | livisUnderscorePipe | titlecase}}</div>
+                      </div>
+                    </div>
+                    
+                    <div class="model-specification-wrap col-md-6 feature-box-wrap">
+                      <h5>Enabled Module</h5>
+                    
+                      <div
+                        cdkDropList
+                        #featureList="cdkDropList"
+                        [cdkDropListData]="enable_modules"
+                        [cdkDropListConnectedTo]="[availableList]"
+                        class="feature-list"
+                        (cdkDropListDropped)="drop($event)">
+                        <div class="feature-box" *ngFor="let item of enable_modules" cdkDrag>{{item | livisUnderscorePipe | titlecase}}</div>
+                      </div>
+                    </div>
+          
+                  
+                  </div>
+                <div class="category form-category">* Required fields</div>
+
+                <button mat-raised-button type="submit" class="btn btn-fill btn-primary pull-right">Submit</button>
+                
+                </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>    
+</div>        

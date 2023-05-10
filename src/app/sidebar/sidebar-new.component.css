@@ -1,0 +1,88 @@
+.sidebar-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .nav{
+      min-width: 100% !important;
+      width: 100% !important;
+  }
+  .sidebar-logo-image {
+    width: 200px;
+    height: auto;
+    max-height: 80px;
+    margin: auto auto 0px auto;
+  }
+  
+  .user {
+    margin: 0px;
+    padding: 20px 0px;
+    border-top: 1px solid #51697B;
+    width: 80%;
+  }
+  
+  .livis-create-new
+  {
+    border: black;
+    padding: 4px 34px;
+    margin-top: 3px;
+    border-radius: 8px;
+    min-width: 160px !important;
+    font-family: roboto;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  
+  .livis-create-new span
+  {
+    margin-right: 10px;
+  }
+  
+  .livis-menu-icon{
+    float: left;
+    margin-right: 10px;
+    line-height: 30px;
+    margin-top: 5px;
+  }
+  .nav-link{
+      color: black !important;
+  }
+  .sidebar li.active > a{
+      background:#EBEBF1 !important;
+  }
+  .nav-link{
+    box-shadow: none !important;
+  }
+
+
+  .nav-item.active a{
+    background:#EBEBF1 !important;
+    /* color: white !important; */
+    border-radius: 10px !important;
+
+  }
+  .nav-item:hover a{
+    background:#EBEBF1 !important;
+    border-radius: 10px !important;
+  }
+
+
+  .livis-sidebar
+{
+    background: #FFFFFF;
+    box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, 0.07);
+    border-radius: 25px;
+  
+
+}
+
+.logo-img-small img
+{
+    width: 100%;
+}
+
+.logo-img-large img
+{
+    width: 160px;
+}
+
