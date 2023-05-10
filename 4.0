@@ -1,0 +1,6 @@
+Requirement already satisfied: celery in /root/anaconda3/envs/freedom/lib/python3.7/site-packages (3.1.26.post2)
+Requirement already satisfied: kombu<3.1,>=3.0.37 in /root/anaconda3/envs/freedom/lib/python3.7/site-packages (from celery) (3.0.37)
+Requirement already satisfied: billiard<3.4,>=3.3.0.23 in /root/anaconda3/envs/freedom/lib/python3.7/site-packages (from celery) (3.3.0.23)
+Requirement already satisfied: pytz>dev in /root/anaconda3/envs/freedom/lib/python3.7/site-packages (from celery) (2020.1)
+Requirement already satisfied: anyjson>=0.3.3 in /root/anaconda3/envs/freedom/lib/python3.7/site-packages (from kombu<3.1,>=3.0.37->celery) (0.3.3)
+Requirement already satisfied: amqp<2.0,>=1.4.9 in /root/anaconda3/envs/freedom/lib/python3.7/site-packages (from kombu<3.1,>=3.0.37->celery) (1.4.9)

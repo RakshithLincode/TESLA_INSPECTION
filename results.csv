@@ -1,0 +1,309 @@
+_id,camera_view,camera_index,status,reason,time_stamp,inspection_id,inference_image,remark,consolidated
+61ce96964ab84456faf6df7e,1,1,Rejected,{'dent': 1},2021-12-31 11:05:18,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96964ab84456faf6df7d.jpg,,True
+61ce96964ab84456faf6df80,2,2,Accepted,{},2021-12-31 11:05:18,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96964ab84456faf6df7f.jpg,,True
+61ce96964ab84456faf6df82,3,3,Rejected,{'dent': 1},2021-12-31 11:05:18,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96964ab84456faf6df81.jpg,,True
+61ce96964ab84456faf6df84,4,4,Accepted,{},2021-12-31 11:05:18,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96964ab84456faf6df83.jpg,,True
+61ce96964ab84456faf6df86,5,5,Accepted,{},2021-12-31 11:05:18,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96964ab84456faf6df85.jpg,,True
+61ce96964ab84456faf6df88,6,6,Rejected,{'dent': 1},2021-12-31 11:05:18,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96964ab84456faf6df87.jpg,,True
+61ce96964ab84456faf6df8a,7,7,Rejected,{'burr': 2},2021-12-31 11:05:18,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96964ab84456faf6df89.jpg,,True
+61ce96964ab84456faf6df8c,8,8,Accepted,{},2021-12-31 11:05:18,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96964ab84456faf6df8b.jpg,,True
+61ce96964ab84456faf6df8e,9,9,Accepted,{},2021-12-31 11:05:18,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96964ab84456faf6df8d.jpg,,True
+61ce96974ab84456faf6df90,10,10,Accepted,{},2021-12-31 11:05:19,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96974ab84456faf6df8f.jpg,,True
+61ce96984ab84456faf6df92,11,11,Accepted,{},2021-12-31 11:05:20,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96984ab84456faf6df91.jpg,,True
+61ce96994ab84456faf6df94,12,12,Rejected,{'Part mismatch': 1},2021-12-31 11:05:21,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96994ab84456faf6df93.jpg,,True
+61ce96994ab84456faf6df96,13,13,Rejected,{'Part mismatch': 1},2021-12-31 11:05:21,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96994ab84456faf6df95.jpg,,True
+61ce96994ab84456faf6df98,14,14,Rejected,{'dent': 1},2021-12-31 11:05:21,61ce96904ab84456faf6df7c,http://127.0.0.1:3306/images/61ce96994ab84456faf6df97.jpg,,True
+61ce98184ab84456faf6df9c,1,1,Rejected,{'dent': 1},2021-12-31 11:11:44,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce98184ab84456faf6df9b.jpg,,True
+61ce98184ab84456faf6df9e,2,2,Accepted,{},2021-12-31 11:11:44,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce98184ab84456faf6df9d.jpg,,True
+61ce98184ab84456faf6dfa0,3,3,Rejected,{'dent': 1},2021-12-31 11:11:44,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce98184ab84456faf6df9f.jpg,,True
+61ce98184ab84456faf6dfa2,4,4,Accepted,{},2021-12-31 11:11:44,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce98184ab84456faf6dfa1.jpg,,True
+61ce98184ab84456faf6dfa4,5,5,Accepted,{},2021-12-31 11:11:44,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce98184ab84456faf6dfa3.jpg,,True
+61ce98194ab84456faf6dfa6,6,6,Rejected,{'dent': 1},2021-12-31 11:11:45,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce98194ab84456faf6dfa5.jpg,,True
+61ce98194ab84456faf6dfa8,7,7,Rejected,{'burr': 2},2021-12-31 11:11:45,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce98194ab84456faf6dfa7.jpg,,True
+61ce98194ab84456faf6dfaa,8,8,Accepted,{},2021-12-31 11:11:45,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce98194ab84456faf6dfa9.jpg,,True
+61ce98194ab84456faf6dfac,9,9,Accepted,{},2021-12-31 11:11:45,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce98194ab84456faf6dfab.jpg,,True
+61ce98194ab84456faf6dfae,10,10,Accepted,{},2021-12-31 11:11:45,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce98194ab84456faf6dfad.jpg,,True
+61ce981b4ab84456faf6dfb0,11,11,Accepted,{},2021-12-31 11:11:47,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce981b4ab84456faf6dfaf.jpg,,True
+61ce981b4ab84456faf6dfb2,12,12,Rejected,{'Part mismatch': 1},2021-12-31 11:11:47,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce981b4ab84456faf6dfb1.jpg,,True
+61ce981b4ab84456faf6dfb4,13,13,Rejected,{'Part mismatch': 1},2021-12-31 11:11:47,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce981b4ab84456faf6dfb3.jpg,,True
+61ce981b4ab84456faf6dfb6,14,14,Rejected,{'dent': 1},2021-12-31 11:11:47,61ce97f64ab84456faf6df9a,http://127.0.0.1:3306/images/61ce981b4ab84456faf6dfb5.jpg,,True
+61ce9c834ab84456faf6dfba,1,1,Accepted,{},2021-12-31 11:30:34,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c834ab84456faf6dfb9.jpg,,True
+61ce9c834ab84456faf6dfbc,2,2,Accepted,{},2021-12-31 11:30:35,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c834ab84456faf6dfbb.jpg,,True
+61ce9c834ab84456faf6dfbe,3,3,Rejected,{'dent': 1},2021-12-31 11:30:35,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c834ab84456faf6dfbd.jpg,,True
+61ce9c834ab84456faf6dfc0,4,4,Accepted,{},2021-12-31 11:30:35,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c834ab84456faf6dfbf.jpg,,True
+61ce9c834ab84456faf6dfc2,5,5,Accepted,{},2021-12-31 11:30:35,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c834ab84456faf6dfc1.jpg,,True
+61ce9c844ab84456faf6dfc4,6,6,Accepted,{},2021-12-31 11:30:36,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c844ab84456faf6dfc3.jpg,,True
+61ce9c844ab84456faf6dfc6,7,7,Rejected,{'burr': 2},2021-12-31 11:30:36,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c844ab84456faf6dfc5.jpg,,True
+61ce9c844ab84456faf6dfc8,8,8,Accepted,{},2021-12-31 11:30:36,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c844ab84456faf6dfc7.jpg,,True
+61ce9c854ab84456faf6dfca,9,9,Accepted,{},2021-12-31 11:30:36,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c854ab84456faf6dfc9.jpg,,True
+61ce9c854ab84456faf6dfcc,10,10,Accepted,{},2021-12-31 11:30:37,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c854ab84456faf6dfcb.jpg,,True
+61ce9c874ab84456faf6dfce,11,11,Accepted,{},2021-12-31 11:30:39,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c874ab84456faf6dfcd.jpg,,True
+61ce9c874ab84456faf6dfd0,12,12,Rejected,{'Part mismatch': 1},2021-12-31 11:30:39,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c874ab84456faf6dfcf.jpg,,True
+61ce9c874ab84456faf6dfd2,13,13,Rejected,{'Part mismatch': 1},2021-12-31 11:30:39,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c874ab84456faf6dfd1.jpg,,True
+61ce9c884ab84456faf6dfd4,14,14,Rejected,{'dent': 1},2021-12-31 11:30:39,61ce9c7e4ab84456faf6dfb8,http://127.0.0.1:3306/images/61ce9c884ab84456faf6dfd3.jpg,,True
+61ce9ca04ab84456faf6dfd8,1,1,Rejected,{'dent': 2},2021-12-31 11:31:04,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca04ab84456faf6dfd7.jpg,,True
+61ce9ca04ab84456faf6dfda,2,2,Accepted,{},2021-12-31 11:31:04,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca04ab84456faf6dfd9.jpg,,True
+61ce9ca14ab84456faf6dfdc,3,3,Rejected,{'dent': 1},2021-12-31 11:31:05,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca14ab84456faf6dfdb.jpg,,True
+61ce9ca14ab84456faf6dfde,4,4,Accepted,{},2021-12-31 11:31:05,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca14ab84456faf6dfdd.jpg,,True
+61ce9ca14ab84456faf6dfe0,5,5,Accepted,{},2021-12-31 11:31:05,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca14ab84456faf6dfdf.jpg,,True
+61ce9ca14ab84456faf6dfe2,6,6,Accepted,{},2021-12-31 11:31:05,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca14ab84456faf6dfe1.jpg,,True
+61ce9ca14ab84456faf6dfe4,7,7,Rejected,{'burr': 2},2021-12-31 11:31:05,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca14ab84456faf6dfe3.jpg,,True
+61ce9ca14ab84456faf6dfe6,8,8,Accepted,{},2021-12-31 11:31:05,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca14ab84456faf6dfe5.jpg,,True
+61ce9ca14ab84456faf6dfe8,9,9,Accepted,{},2021-12-31 11:31:05,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca14ab84456faf6dfe7.jpg,,True
+61ce9ca14ab84456faf6dfea,10,10,Accepted,{},2021-12-31 11:31:05,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca14ab84456faf6dfe9.jpg,,True
+61ce9ca34ab84456faf6dfec,11,11,Accepted,{},2021-12-31 11:31:07,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca34ab84456faf6dfeb.jpg,,True
+61ce9ca34ab84456faf6dfee,12,12,Rejected,{'Part mismatch': 1},2021-12-31 11:31:07,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca34ab84456faf6dfed.jpg,,True
+61ce9ca44ab84456faf6dff0,13,13,Rejected,{'Part mismatch': 1},2021-12-31 11:31:08,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca44ab84456faf6dfef.jpg,,True
+61ce9ca44ab84456faf6dff2,14,14,Rejected,{'dent': 1},2021-12-31 11:31:08,61ce9ca04ab84456faf6dfd6,http://127.0.0.1:3306/images/61ce9ca44ab84456faf6dff1.jpg,,True
+61ce9cd14ab84456faf6dff6,1,1,Rejected,{'dent': 2},2021-12-31 11:31:53,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd14ab84456faf6dff5.jpg,,True
+61ce9cd24ab84456faf6dff8,2,2,Accepted,{},2021-12-31 11:31:54,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd24ab84456faf6dff7.jpg,,True
+61ce9cd24ab84456faf6dffa,3,3,Rejected,{'dent': 1},2021-12-31 11:31:54,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd24ab84456faf6dff9.jpg,,True
+61ce9cd24ab84456faf6dffc,4,4,Accepted,{},2021-12-31 11:31:54,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd24ab84456faf6dffb.jpg,,True
+61ce9cd24ab84456faf6dffe,5,5,Accepted,{},2021-12-31 11:31:54,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd24ab84456faf6dffd.jpg,,True
+61ce9cd24ab84456faf6e000,6,6,Accepted,{},2021-12-31 11:31:54,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd24ab84456faf6dfff.jpg,,True
+61ce9cd24ab84456faf6e002,7,7,Rejected,{'burr': 2},2021-12-31 11:31:54,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd24ab84456faf6e001.jpg,,True
+61ce9cd24ab84456faf6e004,8,8,Accepted,{},2021-12-31 11:31:54,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd24ab84456faf6e003.jpg,,True
+61ce9cd24ab84456faf6e006,9,9,Accepted,{},2021-12-31 11:31:54,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd24ab84456faf6e005.jpg,,True
+61ce9cd34ab84456faf6e008,10,10,Accepted,{},2021-12-31 11:31:55,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd34ab84456faf6e007.jpg,,True
+61ce9cd44ab84456faf6e00a,11,11,Accepted,{},2021-12-31 11:31:56,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd44ab84456faf6e009.jpg,,True
+61ce9cd54ab84456faf6e00c,12,12,Rejected,{'Part mismatch': 1},2021-12-31 11:31:57,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd54ab84456faf6e00b.jpg,,True
+61ce9cd54ab84456faf6e00e,13,13,Rejected,{'Part mismatch': 1},2021-12-31 11:31:57,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd54ab84456faf6e00d.jpg,,True
+61ce9cd54ab84456faf6e010,14,14,Rejected,{'dent': 1},2021-12-31 11:31:57,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cd54ab84456faf6e00f.jpg,,True
+61ce9cde4ab84456faf6e013,1,1,Accepted,{},2021-12-31 11:32:06,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cde4ab84456faf6e012.jpg,,True
+61ce9cde4ab84456faf6e015,2,2,Accepted,{},2021-12-31 11:32:06,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cde4ab84456faf6e014.jpg,,True
+61ce9cde4ab84456faf6e017,3,3,Rejected,{'dent': 1},2021-12-31 11:32:06,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cde4ab84456faf6e016.jpg,,True
+61ce9cdf4ab84456faf6e019,4,4,Accepted,{},2021-12-31 11:32:06,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cdf4ab84456faf6e018.jpg,,True
+61ce9cdf4ab84456faf6e01b,5,5,Accepted,{},2021-12-31 11:32:07,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cdf4ab84456faf6e01a.jpg,,True
+61ce9cdf4ab84456faf6e01d,6,6,Rejected,{'dent': 1},2021-12-31 11:32:07,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cdf4ab84456faf6e01c.jpg,,True
+61ce9cdf4ab84456faf6e01f,7,7,Rejected,{'burr': 2},2021-12-31 11:32:07,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cdf4ab84456faf6e01e.jpg,,True
+61ce9ce04ab84456faf6e021,8,8,Accepted,{},2021-12-31 11:32:07,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9ce04ab84456faf6e020.jpg,,True
+61ce9ce04ab84456faf6e023,9,9,Accepted,{},2021-12-31 11:32:08,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9ce04ab84456faf6e022.jpg,,True
+61ce9ce04ab84456faf6e025,10,10,Accepted,{},2021-12-31 11:32:08,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9ce04ab84456faf6e024.jpg,,True
+61ce9ce24ab84456faf6e027,11,11,Accepted,{},2021-12-31 11:32:10,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9ce24ab84456faf6e026.jpg,,True
+61ce9ce24ab84456faf6e029,12,12,Rejected,{'Part mismatch': 1},2021-12-31 11:32:10,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9ce24ab84456faf6e028.jpg,,True
+61ce9ce24ab84456faf6e02b,13,13,Rejected,{'Part mismatch': 1},2021-12-31 11:32:10,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9ce24ab84456faf6e02a.jpg,,True
+61ce9ce34ab84456faf6e02d,14,14,Rejected,{'dent': 1},2021-12-31 11:32:10,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9ce24ab84456faf6e02c.jpg,,True
+61ce9cec4ab84456faf6e030,1,1,Rejected,{'chamfer_absence': 1},2021-12-31 11:32:19,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cec4ab84456faf6e02f.jpg,,True
+61ce9cec4ab84456faf6e032,2,2,Accepted,{},2021-12-31 11:32:20,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cec4ab84456faf6e031.jpg,,True
+61ce9cec4ab84456faf6e034,3,3,Rejected,{'dent': 1},2021-12-31 11:32:20,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cec4ab84456faf6e033.jpg,,True
+61ce9cec4ab84456faf6e036,4,4,Rejected,{'burr': 1},2021-12-31 11:32:20,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cec4ab84456faf6e035.jpg,,True
+61ce9cec4ab84456faf6e038,5,5,Accepted,{},2021-12-31 11:32:20,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cec4ab84456faf6e037.jpg,,True
+61ce9cec4ab84456faf6e03a,6,6,Accepted,{},2021-12-31 11:32:20,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cec4ab84456faf6e039.jpg,,True
+61ce9ced4ab84456faf6e03c,7,7,Rejected,{'burr': 2},2021-12-31 11:32:21,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9ced4ab84456faf6e03b.jpg,,True
+61ce9ced4ab84456faf6e03e,8,8,Accepted,{},2021-12-31 11:32:21,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9ced4ab84456faf6e03d.jpg,,True
+61ce9ced4ab84456faf6e040,9,9,Accepted,{},2021-12-31 11:32:21,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9ced4ab84456faf6e03f.jpg,,True
+61ce9ced4ab84456faf6e042,10,10,Accepted,{},2021-12-31 11:32:21,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9ced4ab84456faf6e041.jpg,,True
+61ce9cef4ab84456faf6e044,11,11,Accepted,{},2021-12-31 11:32:23,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cef4ab84456faf6e043.jpg,,True
+61ce9cef4ab84456faf6e046,12,12,Rejected,{'Part mismatch': 1},2021-12-31 11:32:23,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cef4ab84456faf6e045.jpg,,True
+61ce9cf04ab84456faf6e048,13,13,Rejected,{'Part mismatch': 1},2021-12-31 11:32:23,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cf04ab84456faf6e047.jpg,,True
+61ce9cf04ab84456faf6e04a,14,14,Rejected,{'dent': 1},2021-12-31 11:32:24,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cf04ab84456faf6e049.jpg,,True
+61ce9cf94ab84456faf6e04d,1,1,Accepted,{},2021-12-31 11:32:33,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cf94ab84456faf6e04c.jpg,,True
+61ce9cf94ab84456faf6e04f,2,2,Accepted,{},2021-12-31 11:32:33,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cf94ab84456faf6e04e.jpg,,True
+61ce9cf94ab84456faf6e051,3,3,Rejected,{'dent': 1},2021-12-31 11:32:33,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cf94ab84456faf6e050.jpg,,True
+61ce9cf94ab84456faf6e053,4,4,Accepted,{},2021-12-31 11:32:33,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cf94ab84456faf6e052.jpg,,True
+61ce9cf94ab84456faf6e055,5,5,Accepted,{},2021-12-31 11:32:33,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cf94ab84456faf6e054.jpg,,True
+61ce9cfa4ab84456faf6e057,6,6,Rejected,{'dent': 1},2021-12-31 11:32:34,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cfa4ab84456faf6e056.jpg,,True
+61ce9cfa4ab84456faf6e059,7,7,Rejected,{'burr': 2},2021-12-31 11:32:34,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cfa4ab84456faf6e058.jpg,,True
+61ce9cfa4ab84456faf6e05b,8,8,Accepted,{},2021-12-31 11:32:34,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cfa4ab84456faf6e05a.jpg,,True
+61ce9cfa4ab84456faf6e05d,9,9,Accepted,{},2021-12-31 11:32:34,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cfa4ab84456faf6e05c.jpg,,True
+61ce9cfb4ab84456faf6e05f,10,10,Accepted,{},2021-12-31 11:32:34,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cfa4ab84456faf6e05e.jpg,,True
+61ce9cfc4ab84456faf6e061,11,11,Accepted,{},2021-12-31 11:32:36,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cfc4ab84456faf6e060.jpg,,True
+61ce9cfd4ab84456faf6e063,12,12,Rejected,{'Part mismatch': 1},2021-12-31 11:32:37,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cfd4ab84456faf6e062.jpg,,True
+61ce9cfd4ab84456faf6e065,13,13,Rejected,{'Part mismatch': 1},2021-12-31 11:32:37,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cfd4ab84456faf6e064.jpg,,True
+61ce9cfd4ab84456faf6e067,14,14,Rejected,{'dent': 1},2021-12-31 11:32:37,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9cfd4ab84456faf6e066.jpg,,True
+61ce9d064ab84456faf6e06a,1,1,Accepted,{},2021-12-31 11:32:46,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d064ab84456faf6e069.jpg,,True
+61ce9d064ab84456faf6e06c,2,2,Accepted,{},2021-12-31 11:32:46,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d064ab84456faf6e06b.jpg,,True
+61ce9d074ab84456faf6e06e,3,3,Rejected,{'dent': 1},2021-12-31 11:32:47,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d074ab84456faf6e06d.jpg,,True
+61ce9d074ab84456faf6e070,4,4,Accepted,{},2021-12-31 11:32:47,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d074ab84456faf6e06f.jpg,,True
+61ce9d074ab84456faf6e072,5,5,Accepted,{},2021-12-31 11:32:47,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d074ab84456faf6e071.jpg,,True
+61ce9d074ab84456faf6e074,6,6,Accepted,{},2021-12-31 11:32:47,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d074ab84456faf6e073.jpg,,True
+61ce9d074ab84456faf6e076,7,7,Rejected,{'burr': 2},2021-12-31 11:32:47,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d074ab84456faf6e075.jpg,,True
+61ce9d074ab84456faf6e078,8,8,Accepted,{},2021-12-31 11:32:47,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d074ab84456faf6e077.jpg,,True
+61ce9d074ab84456faf6e07a,9,9,Accepted,{},2021-12-31 11:32:47,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d074ab84456faf6e079.jpg,,True
+61ce9d084ab84456faf6e07c,10,10,Accepted,{},2021-12-31 11:32:47,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d084ab84456faf6e07b.jpg,,True
+61ce9d094ab84456faf6e07e,11,11,Accepted,{},2021-12-31 11:32:49,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d094ab84456faf6e07d.jpg,,True
+61ce9d0a4ab84456faf6e080,12,12,Rejected,{'Part mismatch': 1},2021-12-31 11:32:49,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d0a4ab84456faf6e07f.jpg,,True
+61ce9d0a4ab84456faf6e082,13,13,Rejected,{'Part mismatch': 1},2021-12-31 11:32:50,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d0a4ab84456faf6e081.jpg,,True
+61ce9d0a4ab84456faf6e084,14,14,Rejected,{'dent': 1},2021-12-31 11:32:50,61ce9cd14ab84456faf6dff4,http://127.0.0.1:3306/images/61ce9d0a4ab84456faf6e083.jpg,,True
+61ce9d324ab84456faf6e088,1,1,Accepted,{},2021-12-31 11:33:29,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d324ab84456faf6e087.jpg,,True
+61ce9d324ab84456faf6e08a,2,2,Rejected,{'dent': 1},2021-12-31 11:33:30,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d324ab84456faf6e089.jpg,,True
+61ce9d324ab84456faf6e08c,3,3,Accepted,{},2021-12-31 11:33:30,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d324ab84456faf6e08b.jpg,,True
+61ce9d324ab84456faf6e08e,4,4,Accepted,{},2021-12-31 11:33:30,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d324ab84456faf6e08d.jpg,,True
+61ce9d324ab84456faf6e090,5,5,Accepted,{},2021-12-31 11:33:30,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d324ab84456faf6e08f.jpg,,True
+61ce9d324ab84456faf6e092,6,6,Accepted,{},2021-12-31 11:33:30,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d324ab84456faf6e091.jpg,,True
+61ce9d324ab84456faf6e094,7,7,Rejected,{'burr': 1},2021-12-31 11:33:30,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d324ab84456faf6e093.jpg,,True
+61ce9d334ab84456faf6e096,8,8,Accepted,{},2021-12-31 11:33:31,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d334ab84456faf6e095.jpg,,True
+61ce9d334ab84456faf6e098,9,9,Accepted,{},2021-12-31 11:33:31,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d334ab84456faf6e097.jpg,,True
+61ce9d334ab84456faf6e09a,10,10,Rejected,{'dent': 1},2021-12-31 11:33:31,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d334ab84456faf6e099.jpg,,True
+61ce9d354ab84456faf6e09c,11,11,Accepted,{},2021-12-31 11:33:33,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d354ab84456faf6e09b.jpg,,True
+61ce9d354ab84456faf6e09e,12,12,Accepted,{},2021-12-31 11:33:33,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d354ab84456faf6e09d.jpg,,True
+61ce9d354ab84456faf6e0a0,13,13,Accepted,{},2021-12-31 11:33:33,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d354ab84456faf6e09f.jpg,,True
+61ce9d354ab84456faf6e0a2,14,14,Accepted,{},2021-12-31 11:33:33,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d354ab84456faf6e0a1.jpg,,True
+61ce9d3e4ab84456faf6e0a5,1,1,Accepted,{},2021-12-31 11:33:42,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d3e4ab84456faf6e0a4.jpg,,True
+61ce9d3e4ab84456faf6e0a7,2,2,Rejected,{'dent': 1},2021-12-31 11:33:42,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d3e4ab84456faf6e0a6.jpg,,True
+61ce9d3e4ab84456faf6e0a9,3,3,Accepted,{},2021-12-31 11:33:42,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d3e4ab84456faf6e0a8.jpg,,True
+61ce9d3f4ab84456faf6e0ab,4,4,Accepted,{},2021-12-31 11:33:43,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d3f4ab84456faf6e0aa.jpg,,True
+61ce9d3f4ab84456faf6e0ad,5,5,Accepted,{},2021-12-31 11:33:43,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d3f4ab84456faf6e0ac.jpg,,True
+61ce9d3f4ab84456faf6e0af,6,6,Accepted,{},2021-12-31 11:33:43,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d3f4ab84456faf6e0ae.jpg,,True
+61ce9d3f4ab84456faf6e0b1,7,7,Rejected,{'burr': 2},2021-12-31 11:33:43,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d3f4ab84456faf6e0b0.jpg,,True
+61ce9d3f4ab84456faf6e0b3,8,8,Accepted,{},2021-12-31 11:33:43,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d3f4ab84456faf6e0b2.jpg,,True
+61ce9d3f4ab84456faf6e0b5,9,9,Accepted,{},2021-12-31 11:33:43,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d3f4ab84456faf6e0b4.jpg,,True
+61ce9d3f4ab84456faf6e0b7,10,10,Rejected,{'dent': 1},2021-12-31 11:33:43,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d3f4ab84456faf6e0b6.jpg,,True
+61ce9d414ab84456faf6e0b9,11,11,Accepted,{},2021-12-31 11:33:45,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d414ab84456faf6e0b8.jpg,,True
+61ce9d424ab84456faf6e0bb,12,12,Accepted,{},2021-12-31 11:33:45,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d414ab84456faf6e0ba.jpg,,True
+61ce9d424ab84456faf6e0bd,13,13,Accepted,{},2021-12-31 11:33:46,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d424ab84456faf6e0bc.jpg,,True
+61ce9d424ab84456faf6e0bf,14,14,Accepted,{},2021-12-31 11:33:46,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d424ab84456faf6e0be.jpg,,True
+61ce9d4b4ab84456faf6e0c2,1,1,Accepted,{},2021-12-31 11:33:55,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4b4ab84456faf6e0c1.jpg,,True
+61ce9d4b4ab84456faf6e0c4,2,2,Accepted,{},2021-12-31 11:33:55,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4b4ab84456faf6e0c3.jpg,,True
+61ce9d4b4ab84456faf6e0c6,3,3,Accepted,{},2021-12-31 11:33:55,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4b4ab84456faf6e0c5.jpg,,True
+61ce9d4b4ab84456faf6e0c8,4,4,Accepted,{},2021-12-31 11:33:55,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4b4ab84456faf6e0c7.jpg,,True
+61ce9d4b4ab84456faf6e0ca,5,5,Accepted,{},2021-12-31 11:33:55,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4b4ab84456faf6e0c9.jpg,,True
+61ce9d4b4ab84456faf6e0cc,6,6,Accepted,{},2021-12-31 11:33:55,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4b4ab84456faf6e0cb.jpg,,True
+61ce9d4b4ab84456faf6e0ce,7,7,Rejected,{'burr': 2},2021-12-31 11:33:55,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4b4ab84456faf6e0cd.jpg,,True
+61ce9d4c4ab84456faf6e0d0,8,8,Accepted,{},2021-12-31 11:33:56,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4c4ab84456faf6e0cf.jpg,,True
+61ce9d4c4ab84456faf6e0d2,9,9,Accepted,{},2021-12-31 11:33:56,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4c4ab84456faf6e0d1.jpg,,True
+61ce9d4c4ab84456faf6e0d4,10,10,Accepted,{},2021-12-31 11:33:56,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4c4ab84456faf6e0d3.jpg,,True
+61ce9d4e4ab84456faf6e0d6,11,11,Accepted,{},2021-12-31 11:33:58,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4e4ab84456faf6e0d5.jpg,,True
+61ce9d4e4ab84456faf6e0d8,12,12,Accepted,{},2021-12-31 11:33:58,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4e4ab84456faf6e0d7.jpg,,True
+61ce9d4e4ab84456faf6e0da,13,13,Accepted,{},2021-12-31 11:33:58,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4e4ab84456faf6e0d9.jpg,,True
+61ce9d4e4ab84456faf6e0dc,14,14,Accepted,{},2021-12-31 11:33:58,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d4e4ab84456faf6e0db.jpg,,True
+61ce9d574ab84456faf6e0df,1,1,Accepted,{},2021-12-31 11:34:07,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d574ab84456faf6e0de.jpg,,True
+61ce9d574ab84456faf6e0e1,2,2,Rejected,{'thread_absence': 1},2021-12-31 11:34:07,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d574ab84456faf6e0e0.jpg,,True
+61ce9d574ab84456faf6e0e3,3,3,Accepted,{},2021-12-31 11:34:07,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d574ab84456faf6e0e2.jpg,,True
+61ce9d584ab84456faf6e0e5,4,4,Accepted,{},2021-12-31 11:34:08,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d584ab84456faf6e0e4.jpg,,True
+61ce9d584ab84456faf6e0e7,5,5,Accepted,{},2021-12-31 11:34:08,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d584ab84456faf6e0e6.jpg,,True
+61ce9d584ab84456faf6e0e9,6,6,Accepted,{},2021-12-31 11:34:08,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d584ab84456faf6e0e8.jpg,,True
+61ce9d584ab84456faf6e0eb,7,7,Rejected,{'burr': 2},2021-12-31 11:34:08,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d584ab84456faf6e0ea.jpg,,True
+61ce9d584ab84456faf6e0ed,8,8,Accepted,{},2021-12-31 11:34:08,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d584ab84456faf6e0ec.jpg,,True
+61ce9d584ab84456faf6e0ef,9,9,Accepted,{},2021-12-31 11:34:08,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d584ab84456faf6e0ee.jpg,,True
+61ce9d584ab84456faf6e0f1,10,10,Rejected,{'dent': 1},2021-12-31 11:34:08,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d584ab84456faf6e0f0.jpg,,True
+61ce9d5a4ab84456faf6e0f3,11,11,Accepted,{},2021-12-31 11:34:10,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d5a4ab84456faf6e0f2.jpg,,True
+61ce9d5a4ab84456faf6e0f5,12,12,Accepted,{},2021-12-31 11:34:10,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d5a4ab84456faf6e0f4.jpg,,True
+61ce9d5b4ab84456faf6e0f7,13,13,Accepted,{},2021-12-31 11:34:11,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d5b4ab84456faf6e0f6.jpg,,True
+61ce9d5b4ab84456faf6e0f9,14,14,Accepted,{},2021-12-31 11:34:11,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d5b4ab84456faf6e0f8.jpg,,True
+61ce9d644ab84456faf6e0fc,1,1,Accepted,{},2021-12-31 11:34:20,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d644ab84456faf6e0fb.jpg,,True
+61ce9d644ab84456faf6e0fe,2,2,Accepted,{},2021-12-31 11:34:20,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d644ab84456faf6e0fd.jpg,,True
+61ce9d644ab84456faf6e100,3,3,Accepted,{},2021-12-31 11:34:20,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d644ab84456faf6e0ff.jpg,,True
+61ce9d644ab84456faf6e102,4,4,Accepted,{},2021-12-31 11:34:20,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d644ab84456faf6e101.jpg,,True
+61ce9d644ab84456faf6e104,5,5,Accepted,{},2021-12-31 11:34:20,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d644ab84456faf6e103.jpg,,True
+61ce9d654ab84456faf6e106,6,6,Accepted,{},2021-12-31 11:34:21,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d654ab84456faf6e105.jpg,,True
+61ce9d654ab84456faf6e108,7,7,Rejected,{'burr': 2},2021-12-31 11:34:21,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d654ab84456faf6e107.jpg,,True
+61ce9d654ab84456faf6e10a,8,8,Accepted,{},2021-12-31 11:34:21,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d654ab84456faf6e109.jpg,,True
+61ce9d654ab84456faf6e10c,9,9,Accepted,{},2021-12-31 11:34:21,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d654ab84456faf6e10b.jpg,,True
+61ce9d654ab84456faf6e10e,10,10,Rejected,{'dent': 1},2021-12-31 11:34:21,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d654ab84456faf6e10d.jpg,,True
+61ce9d674ab84456faf6e110,11,11,Accepted,{},2021-12-31 11:34:23,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d674ab84456faf6e10f.jpg,,True
+61ce9d674ab84456faf6e112,12,12,Accepted,{},2021-12-31 11:34:23,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d674ab84456faf6e111.jpg,,True
+61ce9d674ab84456faf6e114,13,13,Accepted,{},2021-12-31 11:34:23,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d674ab84456faf6e113.jpg,,True
+61ce9d674ab84456faf6e116,14,14,Accepted,{},2021-12-31 11:34:23,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d674ab84456faf6e115.jpg,,True
+61ce9d714ab84456faf6e119,1,1,Accepted,{},2021-12-31 11:34:32,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d714ab84456faf6e118.jpg,,True
+61ce9d714ab84456faf6e11b,2,2,Accepted,{},2021-12-31 11:34:33,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d714ab84456faf6e11a.jpg,,True
+61ce9d714ab84456faf6e11d,3,3,Accepted,{},2021-12-31 11:34:33,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d714ab84456faf6e11c.jpg,,True
+61ce9d714ab84456faf6e11f,4,4,Accepted,{},2021-12-31 11:34:33,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d714ab84456faf6e11e.jpg,,True
+61ce9d714ab84456faf6e121,5,5,Accepted,{},2021-12-31 11:34:33,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d714ab84456faf6e120.jpg,,True
+61ce9d714ab84456faf6e123,6,6,Accepted,{},2021-12-31 11:34:33,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d714ab84456faf6e122.jpg,,True
+61ce9d714ab84456faf6e125,7,7,Rejected,{'burr': 2},2021-12-31 11:34:33,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d714ab84456faf6e124.jpg,,True
+61ce9d724ab84456faf6e127,8,8,Accepted,{},2021-12-31 11:34:34,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d724ab84456faf6e126.jpg,,True
+61ce9d724ab84456faf6e129,9,9,Accepted,{},2021-12-31 11:34:34,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d724ab84456faf6e128.jpg,,True
+61ce9d724ab84456faf6e12b,10,10,Rejected,{'dent': 1},2021-12-31 11:34:34,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d724ab84456faf6e12a.jpg,,True
+61ce9d744ab84456faf6e12d,11,11,Accepted,{},2021-12-31 11:34:36,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d744ab84456faf6e12c.jpg,,True
+61ce9d744ab84456faf6e12f,12,12,Accepted,{},2021-12-31 11:34:36,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d744ab84456faf6e12e.jpg,,True
+61ce9d744ab84456faf6e131,13,13,Accepted,{},2021-12-31 11:34:36,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d744ab84456faf6e130.jpg,,True
+61ce9d754ab84456faf6e133,14,14,Accepted,{},2021-12-31 11:34:37,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d754ab84456faf6e132.jpg,,True
+61ce9d7e4ab84456faf6e136,1,1,Accepted,{},2021-12-31 11:34:46,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d7e4ab84456faf6e135.jpg,,True
+61ce9d7e4ab84456faf6e138,2,2,Accepted,{},2021-12-31 11:34:46,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d7e4ab84456faf6e137.jpg,,True
+61ce9d7e4ab84456faf6e13a,3,3,Accepted,{},2021-12-31 11:34:46,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d7e4ab84456faf6e139.jpg,,True
+61ce9d7e4ab84456faf6e13c,4,4,Accepted,{},2021-12-31 11:34:46,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d7e4ab84456faf6e13b.jpg,,True
+61ce9d7f4ab84456faf6e13e,5,5,Accepted,{},2021-12-31 11:34:46,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d7f4ab84456faf6e13d.jpg,,True
+61ce9d7f4ab84456faf6e140,6,6,Accepted,{},2021-12-31 11:34:47,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d7f4ab84456faf6e13f.jpg,,True
+61ce9d7f4ab84456faf6e142,7,7,Rejected,{'burr': 2},2021-12-31 11:34:47,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d7f4ab84456faf6e141.jpg,,True
+61ce9d7f4ab84456faf6e144,8,8,Accepted,{},2021-12-31 11:34:47,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d7f4ab84456faf6e143.jpg,,True
+61ce9d804ab84456faf6e146,9,9,Accepted,{},2021-12-31 11:34:47,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d804ab84456faf6e145.jpg,,True
+61ce9d804ab84456faf6e148,10,10,Rejected,{'dent': 1},2021-12-31 11:34:48,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d804ab84456faf6e147.jpg,,True
+61ce9d824ab84456faf6e14a,11,11,Accepted,{},2021-12-31 11:34:50,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d824ab84456faf6e149.jpg,,True
+61ce9d824ab84456faf6e14c,12,12,Accepted,{},2021-12-31 11:34:50,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d824ab84456faf6e14b.jpg,,True
+61ce9d824ab84456faf6e14e,13,13,Accepted,{},2021-12-31 11:34:50,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d824ab84456faf6e14d.jpg,,True
+61ce9d834ab84456faf6e150,14,14,Accepted,{},2021-12-31 11:34:50,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d834ab84456faf6e14f.jpg,,True
+61ce9d8c4ab84456faf6e153,1,1,Accepted,{},2021-12-31 11:35:00,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8c4ab84456faf6e152.jpg,,True
+61ce9d8c4ab84456faf6e155,2,2,Accepted,{},2021-12-31 11:35:00,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8c4ab84456faf6e154.jpg,,True
+61ce9d8c4ab84456faf6e157,3,3,Accepted,{},2021-12-31 11:35:00,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8c4ab84456faf6e156.jpg,,True
+61ce9d8c4ab84456faf6e159,4,4,Accepted,{},2021-12-31 11:35:00,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8c4ab84456faf6e158.jpg,,True
+61ce9d8c4ab84456faf6e15b,5,5,Accepted,{},2021-12-31 11:35:00,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8c4ab84456faf6e15a.jpg,,True
+61ce9d8c4ab84456faf6e15d,6,6,Accepted,{},2021-12-31 11:35:00,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8c4ab84456faf6e15c.jpg,,True
+61ce9d8c4ab84456faf6e15f,7,7,Rejected,{'burr': 2},2021-12-31 11:35:00,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8c4ab84456faf6e15e.jpg,,True
+61ce9d8d4ab84456faf6e161,8,8,Accepted,{},2021-12-31 11:35:01,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8d4ab84456faf6e160.jpg,,True
+61ce9d8d4ab84456faf6e163,9,9,Accepted,{},2021-12-31 11:35:01,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8d4ab84456faf6e162.jpg,,True
+61ce9d8d4ab84456faf6e165,10,10,Rejected,{'dent': 1},2021-12-31 11:35:01,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8d4ab84456faf6e164.jpg,,True
+61ce9d8f4ab84456faf6e167,11,11,Accepted,{},2021-12-31 11:35:03,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8f4ab84456faf6e166.jpg,,True
+61ce9d8f4ab84456faf6e169,12,12,Accepted,{},2021-12-31 11:35:03,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8f4ab84456faf6e168.jpg,,True
+61ce9d8f4ab84456faf6e16b,13,13,Accepted,{},2021-12-31 11:35:03,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8f4ab84456faf6e16a.jpg,,True
+61ce9d8f4ab84456faf6e16d,14,14,Accepted,{},2021-12-31 11:35:03,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d8f4ab84456faf6e16c.jpg,,True
+61ce9d984ab84456faf6e170,1,1,Accepted,{},2021-12-31 11:35:12,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d984ab84456faf6e16f.jpg,,True
+61ce9d984ab84456faf6e172,2,2,Accepted,{},2021-12-31 11:35:12,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d984ab84456faf6e171.jpg,,True
+61ce9d984ab84456faf6e174,3,3,Accepted,{},2021-12-31 11:35:12,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d984ab84456faf6e173.jpg,,True
+61ce9d984ab84456faf6e176,4,4,Accepted,{},2021-12-31 11:35:12,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d984ab84456faf6e175.jpg,,True
+61ce9d994ab84456faf6e178,5,5,Accepted,{},2021-12-31 11:35:13,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d994ab84456faf6e177.jpg,,True
+61ce9d994ab84456faf6e17a,6,6,Accepted,{},2021-12-31 11:35:13,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d994ab84456faf6e179.jpg,,True
+61ce9d994ab84456faf6e17c,7,7,Rejected,{'burr': 2},2021-12-31 11:35:13,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d994ab84456faf6e17b.jpg,,True
+61ce9d994ab84456faf6e17e,8,8,Accepted,{},2021-12-31 11:35:13,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d994ab84456faf6e17d.jpg,,True
+61ce9d994ab84456faf6e180,9,9,Accepted,{},2021-12-31 11:35:13,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d994ab84456faf6e17f.jpg,,True
+61ce9d994ab84456faf6e182,10,10,Rejected,{'dent': 1},2021-12-31 11:35:13,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d994ab84456faf6e181.jpg,,True
+61ce9d9b4ab84456faf6e184,11,11,Accepted,{},2021-12-31 11:35:15,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d9b4ab84456faf6e183.jpg,,True
+61ce9d9b4ab84456faf6e186,12,12,Accepted,{},2021-12-31 11:35:15,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d9b4ab84456faf6e185.jpg,,True
+61ce9d9c4ab84456faf6e188,13,13,Accepted,{},2021-12-31 11:35:15,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d9c4ab84456faf6e187.jpg,,True
+61ce9d9c4ab84456faf6e18a,14,14,Accepted,{},2021-12-31 11:35:16,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9d9c4ab84456faf6e189.jpg,,True
+61ce9da54ab84456faf6e18d,1,1,Rejected,{'chamfer_absence': 1},2021-12-31 11:35:25,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da54ab84456faf6e18c.jpg,,True
+61ce9da54ab84456faf6e18f,2,2,Accepted,{},2021-12-31 11:35:25,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da54ab84456faf6e18e.jpg,,True
+61ce9da54ab84456faf6e191,3,3,Accepted,{},2021-12-31 11:35:25,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da54ab84456faf6e190.jpg,,True
+61ce9da64ab84456faf6e193,4,4,Accepted,{},2021-12-31 11:35:25,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da64ab84456faf6e192.jpg,,True
+61ce9da64ab84456faf6e195,5,5,Accepted,{},2021-12-31 11:35:26,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da64ab84456faf6e194.jpg,,True
+61ce9da64ab84456faf6e197,6,6,Accepted,{},2021-12-31 11:35:26,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da64ab84456faf6e196.jpg,,True
+61ce9da64ab84456faf6e199,7,7,Rejected,{'burr': 2},2021-12-31 11:35:26,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da64ab84456faf6e198.jpg,,True
+61ce9da64ab84456faf6e19b,8,8,Accepted,{},2021-12-31 11:35:26,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da64ab84456faf6e19a.jpg,,True
+61ce9da64ab84456faf6e19d,9,9,Accepted,{},2021-12-31 11:35:26,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da64ab84456faf6e19c.jpg,,True
+61ce9da74ab84456faf6e19f,10,10,Rejected,{'dent': 1},2021-12-31 11:35:26,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da64ab84456faf6e19e.jpg,,True
+61ce9da84ab84456faf6e1a1,11,11,Rejected,{'dent': 1},2021-12-31 11:35:28,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da84ab84456faf6e1a0.jpg,,True
+61ce9da94ab84456faf6e1a3,12,12,Accepted,{},2021-12-31 11:35:29,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da94ab84456faf6e1a2.jpg,,True
+61ce9da94ab84456faf6e1a5,13,13,Accepted,{},2021-12-31 11:35:29,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da94ab84456faf6e1a4.jpg,,True
+61ce9da94ab84456faf6e1a7,14,14,Accepted,{},2021-12-31 11:35:29,61ce9d314ab84456faf6e086,http://127.0.0.1:3306/images/61ce9da94ab84456faf6e1a6.jpg,,True
+61cea1ba4ab84456faf6e1ac,1,1,Accepted,{},2021-12-31 11:52:50,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1ba4ab84456faf6e1ab.jpg,,True
+61cea1bb4ab84456faf6e1ae,2,2,Rejected,{'dent': 1},2021-12-31 11:52:50,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1bb4ab84456faf6e1ad.jpg,,True
+61cea1bb4ab84456faf6e1b0,3,3,Accepted,{},2021-12-31 11:52:51,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1bb4ab84456faf6e1af.jpg,,True
+61cea1bb4ab84456faf6e1b2,4,4,Rejected,{'burr': 1},2021-12-31 11:52:51,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1bb4ab84456faf6e1b1.jpg,,True
+61cea1bb4ab84456faf6e1b4,5,5,Accepted,{},2021-12-31 11:52:51,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1bb4ab84456faf6e1b3.jpg,,True
+61cea1bc4ab84456faf6e1b6,6,6,Accepted,{},2021-12-31 11:52:51,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1bc4ab84456faf6e1b5.jpg,,True
+61cea1bc4ab84456faf6e1b8,7,7,Rejected,{'burr': 2},2021-12-31 11:52:52,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1bc4ab84456faf6e1b7.jpg,,True
+61cea1bc4ab84456faf6e1ba,8,8,Accepted,{},2021-12-31 11:52:52,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1bc4ab84456faf6e1b9.jpg,,True
+61cea1bc4ab84456faf6e1bc,9,9,Accepted,{},2021-12-31 11:52:52,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1bc4ab84456faf6e1bb.jpg,,True
+61cea1bc4ab84456faf6e1be,10,10,Rejected,{'dent': 1},2021-12-31 11:52:52,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1bc4ab84456faf6e1bd.jpg,,True
+61cea1be4ab84456faf6e1c0,11,11,Accepted,{},2021-12-31 11:52:54,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1be4ab84456faf6e1bf.jpg,,True
+61cea1be4ab84456faf6e1c2,12,12,Accepted,{},2021-12-31 11:52:54,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1be4ab84456faf6e1c1.jpg,,True
+61cea1bf4ab84456faf6e1c4,13,13,Accepted,{},2021-12-31 11:52:55,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1bf4ab84456faf6e1c3.jpg,,True
+61cea1bf4ab84456faf6e1c6,14,14,Accepted,{},2021-12-31 11:52:55,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1bf4ab84456faf6e1c5.jpg,,True
+61cea1cd4ab84456faf6e1c9,1,1,Accepted,{},2021-12-31 11:53:09,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1cd4ab84456faf6e1c8.jpg,,True
+61cea1cd4ab84456faf6e1cb,2,2,Rejected,{'chamfer_absence': 1},2021-12-31 11:53:09,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1cd4ab84456faf6e1ca.jpg,,True
+61cea1cd4ab84456faf6e1cd,3,3,Rejected,{'chamfer_absence': 2},2021-12-31 11:53:09,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1cd4ab84456faf6e1cc.jpg,,True
+61cea1cd4ab84456faf6e1cf,4,4,Rejected,{'burr': 1},2021-12-31 11:53:09,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1cd4ab84456faf6e1ce.jpg,,True
+61cea1cd4ab84456faf6e1d1,5,5,Accepted,{},2021-12-31 11:53:09,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1cd4ab84456faf6e1d0.jpg,,True
+61cea1ce4ab84456faf6e1d3,6,6,Rejected,"{'dent': 1, 'burr': 1}",2021-12-31 11:53:10,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1ce4ab84456faf6e1d2.jpg,,True
+61cea1ce4ab84456faf6e1d5,7,7,Rejected,{'burr': 1},2021-12-31 11:53:10,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1ce4ab84456faf6e1d4.jpg,,True
+61cea1ce4ab84456faf6e1d7,8,8,Rejected,"{'chamfer_absence': 2, 'dent': 1}",2021-12-31 11:53:10,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1ce4ab84456faf6e1d6.jpg,,True
+61cea1ce4ab84456faf6e1d9,9,9,Accepted,{},2021-12-31 11:53:10,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1ce4ab84456faf6e1d8.jpg,,True
+61cea1ce4ab84456faf6e1db,10,10,Accepted,{},2021-12-31 11:53:10,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1ce4ab84456faf6e1da.jpg,,True
+61cea1d04ab84456faf6e1dd,11,11,Accepted,{},2021-12-31 11:53:12,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1d04ab84456faf6e1dc.jpg,,True
+61cea1d04ab84456faf6e1df,12,12,Accepted,{},2021-12-31 11:53:12,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1d04ab84456faf6e1de.jpg,,True
+61cea1d04ab84456faf6e1e1,13,13,Accepted,{},2021-12-31 11:53:12,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1d04ab84456faf6e1e0.jpg,,True
+61cea1d04ab84456faf6e1e3,14,14,Rejected,{'dent': 1},2021-12-31 11:53:12,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1d04ab84456faf6e1e2.jpg,,True
+61cea1de4ab84456faf6e1e6,1,1,Accepted,{},2021-12-31 11:53:26,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1de4ab84456faf6e1e5.jpg,,True
+61cea1de4ab84456faf6e1e8,2,2,Rejected,"{'chamfer_absence': 1, 'burr': 1}",2021-12-31 11:53:26,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1de4ab84456faf6e1e7.jpg,,True
+61cea1df4ab84456faf6e1ea,3,3,Rejected,{'chamfer_absence': 2},2021-12-31 11:53:27,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1df4ab84456faf6e1e9.jpg,,True
+61cea1df4ab84456faf6e1ec,4,4,Rejected,{'burr': 1},2021-12-31 11:53:27,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1df4ab84456faf6e1eb.jpg,,True
+61cea1df4ab84456faf6e1ee,5,5,Accepted,{},2021-12-31 11:53:27,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1df4ab84456faf6e1ed.jpg,,True
+61cea1df4ab84456faf6e1f0,6,6,Accepted,{},2021-12-31 11:53:27,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1df4ab84456faf6e1ef.jpg,,True
+61cea1df4ab84456faf6e1f2,7,7,Rejected,{'burr': 1},2021-12-31 11:53:27,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1df4ab84456faf6e1f1.jpg,,True
+61cea1df4ab84456faf6e1f4,8,8,Rejected,{'chamfer_absence': 2},2021-12-31 11:53:27,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1df4ab84456faf6e1f3.jpg,,True
+61cea1df4ab84456faf6e1f6,9,9,Accepted,{},2021-12-31 11:53:27,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1df4ab84456faf6e1f5.jpg,,True
+61cea1df4ab84456faf6e1f8,10,10,Accepted,{},2021-12-31 11:53:27,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1df4ab84456faf6e1f7.jpg,,True
+61cea1e14ab84456faf6e1fa,11,11,Accepted,{},2021-12-31 11:53:29,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1e14ab84456faf6e1f9.jpg,,True
+61cea1e14ab84456faf6e1fc,12,12,Accepted,{},2021-12-31 11:53:29,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1e14ab84456faf6e1fb.jpg,,True
+61cea1e14ab84456faf6e1fe,13,13,Accepted,{},2021-12-31 11:53:29,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1e14ab84456faf6e1fd.jpg,,True
+61cea1e14ab84456faf6e200,14,14,Rejected,{'dent': 1},2021-12-31 11:53:29,61cea1b14ab84456faf6e1aa,http://127.0.0.1:3306/images/61cea1e14ab84456faf6e1ff.jpg,,True
