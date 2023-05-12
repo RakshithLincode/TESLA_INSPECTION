@@ -8,7 +8,7 @@ class opt_config():
     def __init__(self):
         self.base_path = ""
         # self.detector_weights_path = "D:/BACKEND_HEMLOCK/Hemlock_Backend/LINCODE_AI_WORKER/segment/AI_WEIGHTS/hemlock_version_1.pt" # working
-        self.detector_mask_weights_path = "D:/Tesla/DEMO/LIVIS_AI_WORKER/segment/tesla_tyre.pt" 
+        self.detector_mask_weights_path = "C:/DEMO/Tesla_Tyre/TESLA_INSPECTION/segment/tesla_tyre.pt" 
         # self.gan_weight = "D:/BACKEND_HEMLOCK/Hemlock_Backend/LINCODE_AI_WORKER/segment/AI_WEIGHTS/realesr-animevideov3.pth" # working
         self.separate_crop_model = False
         self.classifier_weights = ""

@@ -24,9 +24,9 @@ import numpy as np
 from utils.segment.general import masks2segments, process_mask, process_mask_native
 from PIL import Image, ImageEnhance
 
-sys.path.insert(0,"D:/BACKEND_HEMLOCK/Hemlock_Backend/LINCODE_AI_WORKER/GAN/")
-from realesrgan import RealESRGANer
-from realesrgan.archs.srvgg_arch import SRVGGNetCompact
+# sys.path.insert(0,"D:/BACKEND_HEMLOCK/Hemlock_Backend/LINCODE_AI_WORKER/GAN/")
+# from realesrgan import RealESRGANer
+# from realesrgan.archs.srvgg_arch import SRVGGNetCompact
 
 def letterbox(im, new_shape=(640, 640), color=(114, 114, 114), auto=True, scaleFill=False, scaleup=True, stride=32):
     # Resize and pad image while meeting stride-multiple constraints
@@ -360,12 +360,12 @@ def detector_mask_inference(opt ,im0, names,img_size  ,stride, model, device ,ha
             print("TIME TAKEN BY MODEL TO PREDICT MASK :::::::::::::::::::::::::::::::::::::::::::::",time.time() - worker_start)    
             return mask_image
             
-def load_gan_model(weights):
-    model = SRVGGNetCompact(num_in_ch=3, num_out_ch=3, num_feat=64, num_conv=16, upscale=4, act_type='prelu')
-    netscale = 4
-    upsampler = RealESRGANer(scale=netscale,model_path=weights,dni_weight=None,model=model,tile=0,tile_pad=10,pre_pad=0,half=True,gpu_id=None)   
-    print('GAN "Model loaded! and is done!!"')             
-    return upsampler
+# def load_gan_model(weights):
+#     model = SRVGGNetCompact(num_in_ch=3, num_out_ch=3, num_feat=64, num_conv=16, upscale=4, act_type='prelu')
+#     netscale = 4
+#     upsampler = RealESRGANer(scale=netscale,model_path=weights,dni_weight=None,model=model,tile=0,tile_pad=10,pre_pad=0,half=True,gpu_id=None)   
+#     print('GAN "Model loaded! and is done!!"')             
+#     return upsampler
 
 # def order_points(pts):
 #     rect = np.zeros((4, 2), dtype="float32")
@@ -395,15 +395,15 @@ def load_gan_model(weights):
 #     warped = cv2.warpPerspective(image, M, (maxWidth, maxHeight))
 #     return warped
 
-def get_gan_image(upsampler,img,pts):
-    output, _ = upsampler.enhance(img, outscale=4)
-    output = Image.fromarray(output)
-    contrast = 1.5
-    output = ImageEnhance.Contrast(output).enhance(contrast)
-    brightness = 1.6
-    output = ImageEnhance.Brightness(output).enhance(brightness)
-    output = np.asarray(output)
-    output = cv2.resize(output,(1280,960))
-    return output
+# def get_gan_image(upsampler,img,pts):
+#     output, _ = upsampler.enhance(img, outscale=4)
+#     output = Image.fromarray(output)
+#     contrast = 1.5
+#     output = ImageEnhance.Contrast(output).enhance(contrast)
+#     brightness = 1.6
+#     output = ImageEnhance.Brightness(output).enhance(brightness)
+#     output = np.asarray(output)
+#     output = cv2.resize(output,(1280,960))
+#     return output
 
      
